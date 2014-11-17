@@ -1,10 +1,103 @@
-execute pathogen#infect()
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" Track the engine.
+Plugin 'SirVer/ultisnips'
+
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+
+" Vim Ruby
+Plugin 'vim-ruby/vim-ruby'
+
+" Vim Rails
+Plugin 'tpope/vim-rails'
+
+" Haml support
+Plugin 'tpope/vim-haml'
+
+" Vim Matchit
+Plugin 'tmhedberg/matchit'
+
+" Vim Tabular
+Plugin 'godlygeek/tabular'
+
+" Vim Endwise
+Plugin 'tpope/vim-endwise'
+
+" Vim Fugitive
+Plugin 'tpope/vim-fugitive'
+
+" Vim Rbenv
+Plugin 'tpope/vim-rbenv'
+
+" Coffeescript Support
+Plugin 'kchmck/vim-coffee-script'
+
+" You complete me
+Plugin 'Valloric/YouCompleteMe'
+
+" Ag helper
+Plugin 'rking/ag.vim'
+
+" Ag helper
+Plugin 'regedarek/ZoomWin'
+
+" Rabl Syntax
+Plugin 'yaymukund/vim-rabl'
+
+" JSON Syntax
+Plugin 'elzr/vim-json'
+
+" ctrl+p
+Plugin 'kien/ctrlp.vim'
+
+" indent guides
+Plugin 'nathanaelkane/vim-indent-guides'
+
+" nice themes compatibility
+Plugin 'godlygeek/csapprox'
+
+" tagbar
+Plugin 'majutsushi/tagbar'
+
+Plugin 'bling/vim-airline'
+
+Plugin 'slim-template/vim-slim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-e>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
 ""
 "" Basic Setup
 ""
+
 let mapleader = ","
 set t_Co=256
-color ir_black-256
+
+colorscheme grb256
+"color ir_black-256
+"color beauty256
+"colorscheme pyte
+"colorscheme oceanlight
+"
+
+"let g:solarized_termcolors=256
+"colorscheme solarized
+set background=dark
 
 set nocompatible      " Use vim, no vi defaults
 set relativenumber            " Show line numbers
@@ -73,6 +166,15 @@ set wildignore+=*/tmp/cache/assets/*/sprockets/*,*/tmp/cache/assets/*/sass/*
 " Disable temp and backup files
 set wildignore+=*.swp,*~,._*
 
+" Ignore apiary
+set wildignore+=*.apid
+
+" Sane Ignore For ctrlp
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|data\|log\|tmp\|vendor$',
+  \ 'file': '\.exe$\|\.so$\|\.dat$'
+  \ }
+
 if has("statusline") && !&cp
   set laststatus=2  " always show the status bar
 
@@ -91,6 +193,13 @@ nmap <leader>ew :e <C-R>=expand('%:h').'/'<cr>
 
 map <leader>t :w<cr>:call RunCurrentLineInTest()<CR>
 
+
+" tagbar mapping
+nnoremap <silent> <Leader>b :TagbarToggle<CR>
+
+" ctrl+p tags mapping
+nnoremap <leader>. :CtrlPTag<cr>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Test-running stuff
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -103,7 +212,7 @@ function! RunCurrentTest()
       call SetTestRunner("!bin/cucumber")
       exec g:bjo_test_runner g:bjo_test_file
     elseif match(expand('%'), '_spec\.rb$') != -1
-      call SetTestRunner("!bin/rspec")
+      call SetTestRunner("!be rspec")
       exec g:bjo_test_runner g:bjo_test_file
     else
       call SetTestRunner("!ruby -Itest")
@@ -124,7 +233,7 @@ function! RunCurrentLineInTest()
     call SetTestFileWithLine()
   end
 
-  exec "!bin/rspec" g:bjo_test_file . ":" . g:bjo_test_file_line
+  exec "!spring rspec " g:bjo_test_file . ":" . g:bjo_test_file_line
 endfunction
 
 function! SetTestFile()
@@ -149,4 +258,3 @@ augroup resCur
   autocmd!
   autocmd BufWinEnter * call ResCur()
 augroup END
-
