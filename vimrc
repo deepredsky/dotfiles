@@ -192,6 +192,7 @@ nmap <silent> <leader>md :!mkdir -p %:p:h<CR>
 nmap <leader>ew :e <C-R>=expand('%:h').'/'<cr>
 
 map <leader>t :w<cr>:call RunCurrentLineInTest()<CR>
+map <leader>r :w<cr>:!rubocop %<cr>
 
 
 " tagbar mapping
