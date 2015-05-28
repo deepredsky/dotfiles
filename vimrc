@@ -234,7 +234,7 @@ function! RunCurrentLineInTest()
     call SetTestFileWithLine()
   end
 
-  exec "!spring rspec " g:bjo_test_file . ":" . g:bjo_test_file_line
+  exec "!spring rspec" g:bjo_test_file . ":" . g:bjo_test_file_line
 endfunction
 
 function! SetTestFile()
