@@ -1,28 +1,63 @@
 #!/bin/bash
 
-# This has to be run from master
+set -e
 
-git checkout master
+cmd_version() {
+    echo "Clean Repo 0.0.1"
+}
 
-# Update our list of remotes
+cmd_usage() {
+    cmd_version
+    echo
+    cat <<_EOF
+Usage:
+    $PROGRAM <branch>
+        Cleanup the repo based on the given branch. Uses master branch by default
+    $PROGRAM (help|--help)
+        Show this text.
+    $PROGRAM version
+        Show version information.
+_EOF
+}
 
-git fetch
-git remote prune origin
+cmd_clean() {
+  default_branch=$1
 
-# Remove local fully merged branches
+  if [ $default_branch == '' ]
+  then
+    default_branch=master
+  fi
 
-git branch --merged master | grep -v 'master$' | grep -v 'staging$' | grep -v 'production$' | xargs git branch -d
+  git checkout $default_branch
 
-# Show remote fully merged branches
+  # Update our list of remotes
 
-echo "The following remote branches are fully merged and will be removed:"
-git branch -r --merged master | sed 's/ *origin\///' | grep -v 'master$' | grep -v 'staging$' | grep -v 'production$'
+  git fetch
+  git remote prune origin
 
-read -p "Continue (y/n)? "
-if [ "$REPLY" == "y" ]
-then
-   # Remove remote fully merged branches
-   git branch -r --merged master | sed 's/ *origin\///' \
-             | grep -v 'master$'| grep -v 'production$' | grep -v 'staging$' | xargs -I% git push origin :%
-   echo "Done!"
-fi
+  # Remove local fully merged branches
+
+  git branch --merged $default_branch | grep -v "$default_branch$" | grep -v 'master$' | grep -v 'staging$' | grep -v 'production$' | xargs git branch -d
+
+  # Show remote fully merged branches
+
+  echo "The following remote branches are fully merged and will be removed:"
+  git branch -r --merged $default_branch | sed 's/ *origin\///' | grep -v "$default_branch$" | grep -v 'master$' | grep -v 'staging$' | grep -v 'production$'
+
+  read -p "Continue (y/n)? "
+  if [ "$REPLY" == "y" ]
+  then
+    # Remove remote fully merged branches
+    git branch -r --merged $default_branch | sed 's/ *origin\///' \
+      | grep -v 'master$'| grep -v 'production$' | grep -v 'staging$' | xargs -I% git push origin :%
+    echo "Done!"
+  fi
+}
+
+case "$1" in
+  help|--help) shift;        cmd_usage "$@" ;;
+  version|--version) shift;  cmd_version "$@" ;;
+  *)                         cmd_clean "$@" ;;
+esac
+
+exit 0
