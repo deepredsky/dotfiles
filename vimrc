@@ -72,6 +72,20 @@ Plugin 'bling/vim-airline'
 
 Plugin 'slim-template/vim-slim'
 
+Plugin 'rhysd/committia.vim'
+
+Plugin 'flazz/vim-colorschemes'
+
+Plugin 'ngmy/vim-rubocop'
+
+Plugin 'chriskempson/base16-vim'
+
+Plugin 'elixir-lang/vim-elixir'
+
+Plugin 'mattn/gist-vim'
+
+Plugin 'mattn/webapi-vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -168,6 +182,9 @@ set wildignore+=*.swp,*~,._*
 
 " Ignore apiary
 set wildignore+=*.apid
+
+" make private gist by default
+let g:gist_post_private = 1
 
 " Sane Ignore For ctrlp
 let g:ctrlp_custom_ignore = {
