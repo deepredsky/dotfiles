@@ -19,6 +19,9 @@ Plugin 'honza/vim-snippets'
 " Vim Ruby
 Plugin 'vim-ruby/vim-ruby'
 
+" Vim Unimpaired
+Plugin 'tpope/vim-unimpaired'
+
 " Vim Rails
 Plugin 'tpope/vim-rails'
 
@@ -103,6 +106,9 @@ let g:UltiSnipsExpandTrigger="<c-e>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
+let base16colorspace=256  " Access colors present in 256 colorspace
+let g:airline_powerline_fonts = 1
+
 ""
 "" Basic Setup
 ""
@@ -110,7 +116,8 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let mapleader = ","
 set t_Co=256
 
-colorscheme grb256
+" colorscheme grb256
+color molokai
 "color ir_black-256
 "color beauty256
 "colorscheme pyte
@@ -122,9 +129,10 @@ colorscheme grb256
 set background=dark
 
 set nocompatible      " Use vim, no vi defaults
-set relativenumber            " Show line numbers
+set relativenumber    " Show line numbers
 set number            " Show line numbers
 set ruler             " Show line and column number
+set colorcolumn=80
 syntax enable         " Turn on syntax highlighting allowing local overrides
 syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
@@ -229,53 +237,6 @@ nnoremap <silent> <Leader>b :TagbarToggle<CR>
 
 " ctrl+p tags mapping
 nnoremap <leader>. :CtrlPTag<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Test-running stuff
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function! RunCurrentTest()
-  let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|_test.rb\)$') != -1
-  if in_test_file
-    call SetTestFile()
-
-    if match(expand('%'), '\.feature$') != -1
-      call SetTestRunner("!bin/cucumber")
-      exec g:bjo_test_runner g:bjo_test_file
-    elseif match(expand('%'), '_spec\.rb$') != -1
-      call SetTestRunner("!be rspec")
-      exec g:bjo_test_runner g:bjo_test_file
-    else
-      call SetTestRunner("!ruby -Itest")
-      exec g:bjo_test_runner g:bjo_test_file
-    endif
-  else
-    exec g:bjo_test_runner g:bjo_test_file
-  endif
-endfunction
-
-function! SetTestRunner(runner)
-  let g:bjo_test_runner=a:runner
-endfunction
-
-function! RunCurrentLineInTest()
-  let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|_test.rb\)$') != -1
-  if in_test_file
-    call SetTestFileWithLine()
-  end
-
-  exec "!spring rspec" g:bjo_test_file . ":" . g:bjo_test_file_line
-endfunction
-
-function! SetTestFile()
-  let g:bjo_test_file=@%
-endfunction
-
-function! SetTestFileWithLine()
-  let g:bjo_test_file=@%
-  let g:bjo_test_file_line=line(".")
-endfunction
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function! ResCur()
   if line("'\"") <= line("$")
