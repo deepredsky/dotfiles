@@ -3,8 +3,8 @@ require 'erb'
 
 desc "install the dot files into user's home directory"
 task :install do
-  install_oh_my_zsh
-  switch_to_zsh
+  install_fish
+  switch_to_fish
   replace_all = false
   files = Dir['*'] - %w[Rakefile README.rdoc LICENSE oh-my-zsh]
   files.each do |file|
@@ -45,45 +45,35 @@ def link_file(file)
     File.open(File.join(ENV['HOME'], ".#{file.sub(/\.erb$/, '')}"), 'w') do |new_file|
       new_file.write ERB.new(File.read(file)).result(binding)
     end
-  elsif file =~ /zshrc$/ # copy zshrc instead of link
+  elsif file =~ /config\.fish$/ # copy zshrc instead of link
+    #~/.config/fish/config.fish
     puts "copying ~/.#{file}"
-    system %Q{cp "$PWD/#{file}" "$HOME/.#{file}"}
+    system %Q{mkdir -p ~/.config/fish}
+    system %Q{cp "$PWD/#{file}" "$HOME/.config/fish/#{file}"}
   else
     puts "linking ~/.#{file}"
     system %Q{ln -s "$PWD/#{file}" "$HOME/.#{file}"}
   end
 end
 
-def switch_to_zsh
-  if ENV["SHELL"] =~ /zsh/
-    puts "using zsh"
+def switch_to_fish
+  if ENV["SHELL"] =~ /fish/
+    puts "using fish"
   else
-    print "switch to zsh? (recommended) [ynq] "
+    print "switch to fish? (recommended) [ynq] "
     case $stdin.gets.chomp
     when 'y'
-      puts "switching to zsh"
-      system %Q{chsh -s `which zsh`}
+      puts "switching to fish"
+      system %Q{chsh -s `which fish`}
     when 'q'
       exit
     else
-      puts "skipping zsh"
+      puts "skipping fish"
     end
   end
 end
 
 def install_oh_my_zsh
-  if File.exist?(File.join(ENV['HOME'], ".oh-my-zsh"))
-    puts "found ~/.oh-my-zsh"
-  else
-    print "install oh-my-zsh? [ynq] "
-    case $stdin.gets.chomp
-    when 'y'
-      puts "installing oh-my-zsh"
-      system %Q{git clone https://github.com/robbyrussell/oh-my-zsh.git "$HOME/.oh-my-zsh"}
-    when 'q'
-      exit
-    else
-      puts "skipping oh-my-zsh, you will need to change ~/.zshrc"
-    end
-  end
+  puts "installing fish"
+  system %Q{brew install fish}
 end
