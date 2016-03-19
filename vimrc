@@ -42,7 +42,13 @@ Plugin 'tpope/vim-rbenv'
 Plugin 'kchmck/vim-coffee-script'
 
 " You complete me
-Plugin 'Valloric/YouCompleteMe'
+" Plugin 'Valloric/YouCompleteMe'
+
+if has("nvim")
+  Plugin 'Shougo/deoplete.nvim'
+else
+  Plugin 'Shougo/neocomplete.vim'
+endif
 
 " Ag helper
 Plugin 'rking/ag.vim'
@@ -123,7 +129,11 @@ filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
 
-set viminfo='10,\"100,:20,%,n~/.viminfo
+if has("nvim")
+  set viminfo='10,\"100,:20,%,n~/.nviminfo
+else
+  set viminfo='10,\"100,:20,%,n~/.viminfo
+endif
 
 set encoding=utf-8    " Set default encoding to UTF-8
 
