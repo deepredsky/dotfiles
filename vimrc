@@ -8,8 +8,10 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
+if !has("nvim")
 " Track the engine.
 Plugin 'SirVer/ultisnips'
+endif
 
 " Snippets are separated from the engine. Add this if you want them:
 Plugin 'honza/vim-snippets'
@@ -286,3 +288,32 @@ augroup resCur
   autocmd!
   autocmd BufWinEnter * call ResCur()
 augroup END
+
+map <silent> <Leader>tc :call Carousel()<cr>
+
+if !has("nvim")
+  " Recommended key-mappings.
+  " <CR>: close popup and save indent.
+  inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+  function! s:my_cr_function()
+    return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+    " For no inserting <CR> key.
+    "return pumvisible() ? "\<C-y>" : "\<CR>"
+  endfunction
+  " <TAB>: completion.
+  inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+  " <C-h>, <BS>: close popup and delete backword char.
+  inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+  inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+  " Close popup by <Space>.
+  "inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+  let g:neocomplete#enable_at_startup = 1
+  let g:neocomplete#enable_fuzzy_completion = 1
+  let g:neocomplete_enable_fuzzy_completion_start_length = 2
+  let g:neocomplete_enable_camel_case_completion = 0
+  let g:neocomplete#enable_smart_case = 1
+  let g:neocomplete#enable_auto_delimiter = 1
+  let g:neocomplete#max_list = 10
+  let g:neocomplete#force_overwrite_completefunc = 1
+  let g:neocomplete#enable_auto_select = 0
+endif
