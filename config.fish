@@ -1,6 +1,5 @@
 set -gx EDITOR vim
 set -gx FORWARDS true
-set -gx GITHUB_OAUTH_TOKEN <TOKEN_HERE>
 
 alias be="bundle exec"
 alias b="bundle"
