@@ -97,6 +97,9 @@ Plugin 'mattn/gist-vim'
 
 Plugin 'mattn/webapi-vim'
 
+" RSpec test runner
+Plugin 'thoughtbot/vim-rspec'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -231,6 +234,8 @@ nmap <leader>ew :e <C-R>=expand('%:h').'/'<cr>
 map <leader>t :w<cr>:call RunCurrentLineInTest()<CR>
 map <leader>r :w<cr>:!rubocop %<cr>
 
+" RSpec.vim mappings
+map <Leader>t :call RunNearestSpec()<CR>
 
 " tagbar mapping
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
