@@ -73,7 +73,7 @@ def switch_to_fish
   end
 end
 
-def install_oh_my_zsh
+def install_fish
   puts "installing fish"
   system %Q{brew install fish}
 end
