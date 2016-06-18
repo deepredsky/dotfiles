@@ -211,7 +211,7 @@ map <leader>t :w<cr>:call RunNearestSpec()<CR>
 map <leader>r :w<cr>:!rubocop %<cr>
 
 " RSpec.vim mappings
-let g:rspec_command = "!spring rspec {spec}"
+let g:rspec_command = "!bundle exec rspec {spec}"
 
 " tagbar mapping
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
@@ -231,3 +231,13 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 let g:python3_host_prog = '/usr/local/bin/python3'
 
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+
+" Local nvim settings
+if filereadable(expand('~/.config/nvim/local.vim'))
+  source ~/.config/nvim/local.vim
+endif
+
+" Project vimrc support
+if filereadable('.local.vim')
+  source .local.vim
+endif
