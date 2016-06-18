@@ -53,7 +53,7 @@ function g --wraps=git
     end
 end
 
-fish_vi_mode
+fish_vi_key_bindings
 
 set PATH $HOME/.rbenv/bin $PATH
 set PATH $HOME/.rbenv/shims $PATH
