@@ -88,6 +88,8 @@ Plugin 'mattn/webapi-vim'
 " RSpec test runner
 Plugin 'thoughtbot/vim-rspec'
 
+Plugin 'romainl/flattened'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -107,16 +109,8 @@ let g:airline_powerline_fonts = 1
 let mapleader = ","
 set t_Co=256
 
-" colorscheme grb256
-color molokai
-"color ir_black-256
-"color beauty256
-"colorscheme pyte
-"colorscheme oceanlight
-"
+colorscheme flattened_dark
 
-"let g:solarized_termcolors=256
-"colorscheme solarized
 set background=dark
 
 set nocompatible      " Use vim, no vi defaults
