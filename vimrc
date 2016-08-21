@@ -245,5 +245,3 @@ augroup resCur
   autocmd!
   autocmd BufWinEnter * call ResCur()
 augroup END
-
-map <silent> <Leader>tc :call Carousel()<cr>
