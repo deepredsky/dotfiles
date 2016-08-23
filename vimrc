@@ -136,6 +136,11 @@ filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
 
+set termguicolors
+" enable 24 bit color support
+set t_8f=[38;2;%lu;%lu;%lum
+set t_8b=[48;2;%lu;%lu;%lum
+
 set viminfo='10,\"100,:20,%,n~/.viminfo
 
 set encoding=utf-8    " Set default encoding to UTF-8
