@@ -115,6 +115,7 @@ set t_Co=256
 
 " colorscheme grb256
 color molokai
+color flattened_dark
 "color ir_black-256
 "color beauty256
 "colorscheme pyte
