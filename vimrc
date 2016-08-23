@@ -250,3 +250,9 @@ augroup resCur
   autocmd!
   autocmd BufWinEnter * call ResCur()
 augroup END
+
+" Project vimrc support
+if filereadable('.local.vim')
+  source .local.vim
+endif
+
