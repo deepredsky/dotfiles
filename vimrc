@@ -192,6 +192,19 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 " If a file is changed outside of vim, automatically reload it without asking
 set autoread
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PROMOTE VARIABLE TO RSPEC LET
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! PromoteToLet()
+  :normal! dd
+  " :exec '?^\s*it\>'
+  :normal! P
+  :.s/\(\w\+\) = \(.*\)$/let(:\1) { \2 }/
+  :normal ==
+endfunction
+:command! PromoteToLet :call PromoteToLet()
+:map <leader>p :PromoteToLet<cr>
+
 ""
 "" Wild settings
 ""
