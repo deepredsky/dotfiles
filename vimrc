@@ -308,7 +308,7 @@ map <leader>r :w<cr>:!rubocop %<cr>
 
 " RSpec.vim mappings
 map <Leader>t :w<cr>:call RunNearestSpec()<CR>
-let g:rspec_command = "!bundle exec rspec {spec}"
+let g:rspec_command = "!clear && bundle exec rspec {spec}"
 
 " tagbar mapping
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
