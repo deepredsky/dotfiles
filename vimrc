@@ -235,6 +235,9 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
+nnoremap j gj
+nnoremap k gk
+
 " double escape for removing search highlights
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 
