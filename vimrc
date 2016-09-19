@@ -241,6 +241,8 @@ nnoremap k gk
 " double escape for removing search highlights
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 
+set lazyredraw
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PROMOTE VARIABLE TO RSPEC LET
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
