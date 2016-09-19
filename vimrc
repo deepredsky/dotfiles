@@ -169,6 +169,11 @@ set listchars+=extends:>          " The character to show in the last column whe
 set listchars+=precedes:<         " The character to show in the last column when wrap is
                                   " off and the line continues beyond the left of the screen
 
+
+
+" keep more context when scrolling off the end of a buffer
+set scrolloff=3
+
 ""
 "" Searching
 ""
