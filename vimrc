@@ -235,6 +235,9 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
+" double escape for removing search highlights
+nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PROMOTE VARIABLE TO RSPEC LET
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
