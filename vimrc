@@ -256,6 +256,7 @@ endfunction
 :command! PromoteToLet :call PromoteToLet()
 :map <leader>p :PromoteToLet<cr>
 
+set shell=bash
 ""
 "" Wild settings
 ""
