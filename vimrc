@@ -286,11 +286,10 @@ nmap <silent> <leader>md :!mkdir -p %:p:h<CR>
 
 nmap <leader>ew :e <C-R>=expand('%:h').'/'<cr>
 
-map <leader>t :w<cr>:call RunCurrentLineInTest()<CR>
 map <leader>r :w<cr>:!rubocop %<cr>
 
 " RSpec.vim mappings
-map <Leader>t :call RunNearestSpec()<CR>
+map <Leader>t :w<cr>:call RunNearestSpec()<CR>
 let g:rspec_command = "!bundle exec rspec {spec}"
 
 " tagbar mapping
