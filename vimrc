@@ -189,6 +189,9 @@ set nowritebackup
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
+" If a file is changed outside of vim, automatically reload it without asking
+set autoread
+
 ""
 "" Wild settings
 ""
