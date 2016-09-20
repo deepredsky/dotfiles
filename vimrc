@@ -114,7 +114,6 @@ let g:UltiSnipsExpandTrigger="<c-e>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-let base16colorspace=256  " Access colors present in 256 colorspace
 let g:airline_powerline_fonts = 1
 
 ""
@@ -123,8 +122,6 @@ let g:airline_powerline_fonts = 1
 
 let mapleader = ","
 set t_Co=256
-
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM AUTOCMDS
