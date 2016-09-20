@@ -98,6 +98,10 @@ Plugin 'airblade/vim-gitgutter'
 
 Plugin 'tpope/vim-repeat'
 
+Plugin 'junegunn/goyo.vim'
+
+Plugin 'junegunn/limelight.vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -341,3 +345,16 @@ inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 " Close popup by <Space>.
 inoremap <expr><Space> pumvisible() ? "\<C-y>\<Space>" : "\<Space>"
+
+function! s:goyo_enter()
+  silent !tmux set status off
+  set scrolloff=10
+endfunction
+
+function! s:goyo_leave()
+  silent !tmux set status on
+  set scrolloff=3
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
