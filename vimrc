@@ -356,13 +356,17 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 " Close popup by <Space>.
 inoremap <expr><Space> pumvisible() ? "\<C-y>\<Space>" : "\<Space>"
 
+let g:goyo_width = '90%'
+
 function! s:goyo_enter()
   silent !tmux set status off
+  GitGutterDisable
   set scrolloff=10
 endfunction
 
 function! s:goyo_leave()
   silent !tmux set status on
+  GitGutterEnable
   set scrolloff=3
 endfunction
 
