@@ -51,9 +51,6 @@ Plugin 'Shougo/neocomplete.vim'
 " Ag helper
 Plugin 'rking/ag.vim'
 
-" Ag helper
-Plugin 'regedarek/ZoomWin'
-
 " Rabl Syntax
 Plugin 'yaymukund/vim-rabl'
 
@@ -65,9 +62,6 @@ Plugin 'kien/ctrlp.vim'
 
 " indent guides
 Plugin 'nathanaelkane/vim-indent-guides'
-
-" nice themes compatibility
-Plugin 'godlygeek/csapprox'
 
 " tagbar
 Plugin 'majutsushi/tagbar'
@@ -83,8 +77,6 @@ Plugin 'flazz/vim-colorschemes'
 
 Plugin 'ngmy/vim-rubocop'
 
-Plugin 'chriskempson/base16-vim'
-
 Plugin 'elixir-lang/vim-elixir'
 
 Plugin 'mattn/gist-vim'
@@ -99,8 +91,6 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-repeat'
 
 Plugin 'junegunn/goyo.vim'
-
-Plugin 'junegunn/limelight.vim'
 
 Plugin 'jiangmiao/auto-pairs'
 
@@ -155,17 +145,9 @@ augroup vimrcEx
   autocmd! FileType *.slim set sw=2 sts=2 et
 augroup END
 
-" colorscheme grb256
 color molokai
 color flattened_dark
-"color ir_black-256
-"color beauty256
-"colorscheme pyte
-"colorscheme oceanlight
-"
 
-"let g:solarized_termcolors=256
-"colorscheme solarized
 set background=dark
 
 set nocompatible      " Use vim, no vi defaults
@@ -180,6 +162,7 @@ filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
 
 set termguicolors
+
 " enable 24 bit color support
 set t_8f=[38;2;%lu;%lu;%lum
 set t_8b=[48;2;%lu;%lu;%lum
