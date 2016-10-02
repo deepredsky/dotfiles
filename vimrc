@@ -255,6 +255,9 @@ nnoremap k gk
 " double escape for removing search highlights
 nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
 
+map <Leader><Leader> :
+map <Leader>w :w<CR>
+
 set lazyredraw
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
