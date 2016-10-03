@@ -6,7 +6,7 @@ task :install do
   install_fish
   switch_to_fish
   replace_all = false
-  files = Dir['*'] - %w[Rakefile README.rdoc LICENSE oh-my-zsh]
+  files = Dir['*'] - %w[Rakefile README.rdoc LICENSE]
   files.each do |file|
     system %Q{mkdir -p "$HOME/.#{File.dirname(file)}"} if file =~ /\//
     if File.exist?(File.join(ENV['HOME'], ".#{file.sub(/\.erb$/, '')}"))
@@ -45,9 +45,9 @@ def link_file(file)
     File.open(File.join(ENV['HOME'], ".#{file.sub(/\.erb$/, '')}"), 'w') do |new_file|
       new_file.write ERB.new(File.read(file)).result(binding)
     end
-  elsif file =~ /config\.fish$/ # copy zshrc instead of link
+  elsif file =~ /config\.fish$/
     #~/.config/fish/config.fish
-    puts "copying ~/.#{file}"
+    puts "copying ~/.config/fish/#{file}"
     system %Q{mkdir -p ~/.config/fish}
     system %Q{cp "$PWD/#{file}" "$HOME/.config/fish/#{file}"}
   else
