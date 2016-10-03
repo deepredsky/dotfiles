@@ -6,7 +6,7 @@ task :install do
   install_fish
   switch_to_fish
   replace_all = false
-  files = Dir['*'] - %w[Rakefile README.rdoc LICENSE]
+  files = Dir['*'] - %w[Rakefile README.md LICENSE]
   files.each do |file|
     system %Q{mkdir -p "$HOME/.#{File.dirname(file)}"} if file =~ /\//
     if File.exist?(File.join(ENV['HOME'], ".#{file.sub(/\.erb$/, '')}"))
