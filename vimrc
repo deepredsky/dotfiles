@@ -135,12 +135,6 @@ augroup vimrcEx
   autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
   autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt;
 
-  " Don't syntax highlight markdown because it's often wrong
-  autocmd! FileType mkd setlocal syn=off
-
-  " *.md is markdown
-  autocmd! BufNewFile,BufRead *.md setlocal ft=
-
   " indent slim two spaces, not four
   autocmd! FileType *.slim set sw=2 sts=2 et
 augroup END
