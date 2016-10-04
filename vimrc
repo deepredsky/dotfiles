@@ -218,6 +218,8 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
+vnoremap <Leader>c "+y
+
 " Keep search pattern at the center of screen
 nnoremap <silent> n nzz
 nnoremap <silent> N Nzz
@@ -248,7 +250,6 @@ function! PromoteToLet()
   :normal ==
 endfunction
 :command! PromoteToLet :call PromoteToLet()
-:map <leader>p :PromoteToLet<cr>
 
 set shell=bash
 ""
