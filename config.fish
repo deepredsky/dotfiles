@@ -1,11 +1,14 @@
 set -gx EDITOR vim
 set -gx FORWARDS true
+set -gx JAVA_HOME (/usr/libexec/java_home)
+set -gx GOPATH ~/dev/go
 
 alias be="bundle exec"
 alias b="bundle"
 alias s="bundle exec rails s"
 alias c="bundle exec rails c"
 alias gd="git diff"
+alias tmux="env TERM=xterm-256color tmux"
 # alias git="echo NO WAY!"
 
 set normal (set_color normal)
@@ -88,6 +91,7 @@ fish_vi_key_bindings
 
 set PATH $HOME/.rbenv/bin $PATH
 set PATH $HOME/.rbenv/shims $PATH
+set PATH /usr/local/sbin $PATH
 set PATH $HOME/bin $PATH
 rbenv rehash >/dev/null ^&1
 
@@ -97,3 +101,5 @@ set -gx TWO_TASK SALORMA
 set -gx ORACLE_SID SALORMA
 set -gx DYLD_FALLBACK_LIBRARY_PATH "/usr/local/opt"
 
+
+test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
