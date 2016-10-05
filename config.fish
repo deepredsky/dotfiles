@@ -32,6 +32,37 @@ set __fish_git_prompt_char_stashstate '↩'
 set __fish_git_prompt_char_upstream_ahead '+'
 set __fish_git_prompt_char_upstream_behind '-'
 
+function __fzf_ctrl_r
+  history | fzf-tmux -d30% +s --tiebreak=index --toggle-sort=ctrl-r -q (commandline) | read -l select
+
+  and commandline -rb $select
+  commandline -f repaint
+end
+
+function __fzf_ctrl_t
+  set -q FZF_CTRL_T_COMMAND
+  or set -l FZF_CTRL_T_COMMAND "
+  command find -L . \\( -path '*/\\.*' -o -fstype 'dev' -o -fstype 'proc' \\) -prune \
+  -o -type f -print \
+  -o -type d -print \
+  -o -type l -print 2> /dev/null | sed 1d | cut -b3-"
+  fish -c "$FZF_CTRL_T_COMMAND" | fzf-tmux -d30% -m | __fzfescape | read -l selects
+  and commandline -i "$selects"
+  commandline -f repaint
+end
+
+function __fzfescape
+  while read item
+    echo -n (echo -n "$item" | sed -E 's/([ "$~'\''([{<>})&])/\\\\\\1/g')' '
+  end
+end
+
+function fish_user_key_bindings
+bind \cr __fzf_ctrl_r
+bind -M insert \cr __fzf_ctrl_r
+bind \ct __fzf_ctrl_t
+bind -M insert \ct __fzf_ctrl_t
+end
 
 function fish_prompt
   set last_status $status
