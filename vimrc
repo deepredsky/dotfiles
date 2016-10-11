@@ -219,6 +219,7 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 
 vnoremap <Leader>c "+y
+nnoremap <leader>p :r!pbpaste<cr>
 
 " Keep search pattern at the center of screen
 nnoremap <silent> n nzz
