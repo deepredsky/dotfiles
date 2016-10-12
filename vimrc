@@ -279,7 +279,7 @@ let g:gist_post_private = 1
 
 " Sane Ignore For ctrlp
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|data\|log\|tmp\|vendor$',
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|data\|\/log\|tmp\|vendor\|node_modules$',
   \ 'file': '\.exe$\|\.so$\|\.dat$'
   \ }
 
