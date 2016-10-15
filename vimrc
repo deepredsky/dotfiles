@@ -306,6 +306,9 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
 endif
 
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
 if has("statusline") && !&cp
   set laststatus=2  " always show the status bar
 
