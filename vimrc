@@ -215,14 +215,6 @@ inoremap <right> <nop>
 vnoremap <Leader>c "+y
 nnoremap <leader>p :r!pbpaste<cr>
 
-" Keep search pattern at the center of screen
-nnoremap <silent> n nzz
-nnoremap <silent> N Nzz
-nnoremap <silent> * *zz
-nnoremap <silent> # #zz
-nnoremap <silent> g* g*zz
-nnoremap <silent> g# g#zz
-
 nnoremap j gj
 nnoremap k gk
 
