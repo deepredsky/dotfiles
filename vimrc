@@ -1,95 +1,92 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin('~/.vim/plugged')
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plug 'gmarik/Vundle.vim'
 
-Plugin 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 
 " Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 
 " Vim Ruby
-Plugin 'vim-ruby/vim-ruby'
+Plug 'vim-ruby/vim-ruby'
 
 " Vim Unimpaired
-Plugin 'tpope/vim-unimpaired'
+Plug 'tpope/vim-unimpaired'
 
 " Vim Rails
-Plugin 'tpope/vim-rails'
+Plug 'tpope/vim-rails'
 
 " Haml support
-Plugin 'tpope/vim-haml'
+Plug 'tpope/vim-haml'
 
 " Vim Matchit
-Plugin 'tmhedberg/matchit'
+Plug 'tmhedberg/matchit'
 
 " Vim Tabular
-Plugin 'godlygeek/tabular'
+Plug 'godlygeek/tabular'
 
 " Vim Endwise
-Plugin 'tpope/vim-endwise'
+Plug 'tpope/vim-endwise'
 
 " Vim Fugitive
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 " Vim Rbenv
-Plugin 'tpope/vim-rbenv'
+Plug 'tpope/vim-rbenv'
 
 " Coffeescript Support
-Plugin 'kchmck/vim-coffee-script'
+Plug 'kchmck/vim-coffee-script'
 
-Plugin 'Shougo/neocomplete.vim'
+Plug 'Shougo/neocomplete.vim'
 
 " Ag helper
-Plugin 'rking/ag.vim'
+Plug 'rking/ag.vim'
 
 " Rabl Syntax
-Plugin 'yaymukund/vim-rabl'
+Plug 'yaymukund/vim-rabl'
 
 " JSON Syntax
-Plugin 'elzr/vim-json'
+Plug 'elzr/vim-json'
 
 " ctrl+p
-Plugin 'kien/ctrlp.vim'
+Plug 'kien/ctrlp.vim'
 
 " tagbar
-Plugin 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
-Plugin 'slim-template/vim-slim'
+Plug 'slim-template/vim-slim'
 
-Plugin 'rhysd/committia.vim'
+Plug 'rhysd/committia.vim'
 
-Plugin 'flazz/vim-colorschemes'
+Plug 'flazz/vim-colorschemes'
 
-Plugin 'ngmy/vim-rubocop'
+Plug 'ngmy/vim-rubocop'
 
-Plugin 'elixir-lang/vim-elixir'
+Plug 'elixir-lang/vim-elixir'
 
-Plugin 'mattn/gist-vim'
+Plug 'mattn/gist-vim'
 
-Plugin 'mattn/webapi-vim'
+Plug 'mattn/webapi-vim'
 
 " RSpec test runner
-Plugin 'thoughtbot/vim-rspec'
+Plug 'thoughtbot/vim-rspec'
 
-Plugin 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 
-Plugin 'tpope/vim-repeat'
+Plug 'tpope/vim-repeat'
 
-Plugin 'junegunn/goyo.vim'
+Plug 'junegunn/goyo.vim'
 
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
+call plug#end()
 filetype plugin indent on    " required
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
