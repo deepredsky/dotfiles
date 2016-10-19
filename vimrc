@@ -43,9 +43,6 @@ Plugin 'tpope/vim-rbenv'
 " Coffeescript Support
 Plugin 'kchmck/vim-coffee-script'
 
-" You complete me
-" Plugin 'Valloric/YouCompleteMe'
-
 Plugin 'Shougo/neocomplete.vim'
 
 " Ag helper
@@ -59,9 +56,6 @@ Plugin 'elzr/vim-json'
 
 " ctrl+p
 Plugin 'kien/ctrlp.vim'
-
-" indent guides
-Plugin 'nathanaelkane/vim-indent-guides'
 
 " tagbar
 Plugin 'majutsushi/tagbar'
@@ -92,7 +86,7 @@ Plugin 'tpope/vim-repeat'
 
 Plugin 'junegunn/goyo.vim'
 
-Plugin 'jiangmiao/auto-pairs'
+Plugin 'tpope/vim-surround'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
