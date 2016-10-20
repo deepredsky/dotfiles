@@ -85,6 +85,7 @@ Plug 'tpope/vim-repeat'
 Plug 'junegunn/goyo.vim'
 
 Plug 'tpope/vim-surround'
+Plug 'junegunn/vim-slash'
 
 call plug#end()
 filetype plugin indent on    " required
@@ -308,7 +309,7 @@ nmap <silent> <leader>md :!mkdir -p %:p:h<CR>
 
 nmap <leader>ew :e <C-R>=expand('%:h').'/'<cr>
 
-map <leader>r :w<cr>:!rubocop %<cr>
+map <leader>r :w<cr>:RuboCop<cr>
 
 " RSpec.vim mappings
 map <Leader>t :w<cr>:call RunNearestSpec()<CR>
