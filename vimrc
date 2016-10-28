@@ -319,7 +319,9 @@ let g:rspec_command = "!clear && bundle exec rspec {spec}"
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
 
 " ctrl+p tags mapping
-nnoremap <leader>. :CtrlPTag<cr>
+nnoremap <leader>. :CtrlPBufTag<cr>
+
+let g:ctrlp_extensions = ['buffertag']
 
 " Project vimrc support
 if filereadable('.local.vim')
