@@ -86,6 +86,7 @@ Plug 'junegunn/goyo.vim'
 
 Plug 'tpope/vim-surround'
 Plug 'junegunn/vim-slash'
+Plug 'fatih/vim-go'
 
 call plug#end()
 filetype plugin indent on    " required
