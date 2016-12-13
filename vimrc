@@ -158,6 +158,8 @@ set viminfo='10,\"100,:20,%,n~/.viminfo
 
 set encoding=utf-8    " Set default encoding to UTF-8
 
+set tags=./tags,tags,.git/tags
+
 ""
 "" Whitespace
 ""
