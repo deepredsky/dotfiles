@@ -84,6 +84,8 @@ Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/vim-slash'
 Plug 'fatih/vim-go'
+Plug 'walm/jshint.vim'
+
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 
 call plug#end()
