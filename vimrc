@@ -52,9 +52,6 @@ Plug 'yaymukund/vim-rabl'
 " JSON Syntax
 Plug 'elzr/vim-json'
 
-" ctrl+p
-Plug 'kien/ctrlp.vim'
-
 " tagbar
 Plug 'majutsushi/tagbar'
 
@@ -87,6 +84,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/vim-slash'
 Plug 'fatih/vim-go'
+Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 
 call plug#end()
 filetype plugin indent on    " required
@@ -318,14 +316,6 @@ map <leader>r :w<cr>:RuboCop<cr>
 map <Leader>t :w<cr>:call RunNearestSpec()<CR>
 let g:rspec_command = "!clear && bundle exec rspec {spec}"
 
-" tagbar mapping
-nnoremap <silent> <Leader>b :TagbarToggle<CR>
-
-" ctrl+p tags mapping
-nnoremap <leader>. :CtrlPBufTag<cr>
-
-let g:ctrlp_extensions = ['buffertag']
-
 " Project vimrc support
 if filereadable('.local.vim')
   source .local.vim
@@ -362,6 +352,9 @@ function! s:goyo_leave()
   GitGutterEnable
   set scrolloff=3
 endfunction
+
+nnoremap <silent> <C-p> :Files<CR>
+nnoremap <leader>. :BTags<cr>
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
