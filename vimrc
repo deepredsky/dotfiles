@@ -3,9 +3,6 @@ filetype off                  " required
 
 call plug#begin('~/.vim/plugged')
 
-" let Vundle manage Vundle, required
-Plug 'gmarik/Vundle.vim'
-
 Plug 'SirVer/ultisnips'
 
 " Snippets are separated from the engine. Add this if you want them:
