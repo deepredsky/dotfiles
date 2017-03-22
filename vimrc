@@ -88,6 +88,16 @@ Plug 'tpope/vim-surround'
 Plug 'junegunn/vim-slash'
 Plug 'fatih/vim-go'
 
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+
+" Haskell
+Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
+Plug 'enomsg/vim-haskellConcealPlus', { 'for': 'haskell' }
+Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
+Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
+Plug 'Twinside/vim-hoogle', { 'for': 'haskell' }
+Plug 'mpickering/hlint-refactor-vim', { 'for': 'haskell' }
+
 call plug#end()
 filetype plugin indent on    " required
 
