@@ -3,22 +3,25 @@ filetype off                  " required
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
-" Snippets are separated from the engine. Add this if you want them:
-Plug 'honza/vim-snippets'
+" Vim Unimpaired
+Plug 'tpope/vim-unimpaired'
 
 " Vim Ruby
 Plug 'vim-ruby/vim-ruby'
 
-" Vim Unimpaired
-Plug 'tpope/vim-unimpaired'
+" Vim Rbenv
+Plug 'tpope/vim-rbenv'
 
 " Vim Rails
 Plug 'tpope/vim-rails'
 
 " Haml support
 Plug 'tpope/vim-haml'
+
+" Rabl Syntax
+Plug 'yaymukund/vim-rabl'
 
 " Vim Matchit
 Plug 'tmhedberg/matchit'
@@ -32,19 +35,10 @@ Plug 'tpope/vim-endwise'
 " Vim Fugitive
 Plug 'tpope/vim-fugitive'
 
-" Vim Rbenv
-Plug 'tpope/vim-rbenv'
-
-" Coffeescript Support
-Plug 'kchmck/vim-coffee-script'
-
 Plug 'Shougo/neocomplete.vim'
 
 " Ag helper
 Plug 'rking/ag.vim'
-
-" Rabl Syntax
-Plug 'yaymukund/vim-rabl'
 
 " JSON Syntax
 Plug 'elzr/vim-json'
@@ -184,7 +178,6 @@ set encoding=utf-8 " universal text encoding, compatible with ascii
 set showbreak=↪
 set fillchars=diff:⣿,vert:│
 set showcmd
-
 
 
 " keep more context when scrolling off the end of a buffer
