@@ -5,3 +5,4 @@ vim/bundle/
 vim/plugged/
 vim/autoload/
 vim/local.vim
+.DS_Store
