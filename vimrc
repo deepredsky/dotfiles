@@ -43,9 +43,6 @@ Plug 'rking/ag.vim'
 " JSON Syntax
 Plug 'elzr/vim-json'
 
-" tagbar
-Plug 'majutsushi/tagbar'
-
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
