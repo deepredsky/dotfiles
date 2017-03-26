@@ -34,6 +34,9 @@ set __fish_git_prompt_char_stashstate '↩'
 set __fish_git_prompt_char_upstream_ahead '+'
 set __fish_git_prompt_char_upstream_behind '-'
 
+function fish_greeting
+end
+
 function __fzf_ctrl_r
   history | fzf-tmux -d30% +s --tiebreak=index --toggle-sort=ctrl-r -q (commandline) | read -l select
 
