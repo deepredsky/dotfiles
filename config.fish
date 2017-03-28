@@ -2,6 +2,7 @@ set -gx EDITOR vim
 set -gx FORWARDS true
 set -gx JAVA_HOME (/usr/libexec/java_home)
 set -gx GOPATH ~/dev/go
+set -gx FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git -g ""'
 
 alias be="bundle exec"
 alias b="bundle"
