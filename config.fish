@@ -9,6 +9,7 @@ alias b="bundle"
 alias s="bundle exec rails s"
 alias c="bundle exec rails c"
 alias gd="git diff"
+alias l="ls -l"
 alias tmux="env TERM=xterm-256color tmux"
 
 set normal (set_color normal)
