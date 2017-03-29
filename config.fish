@@ -99,5 +99,3 @@ set PATH $HOME/.rbenv/shims $PATH
 set PATH /usr/local/sbin $PATH
 set PATH $HOME/bin $PATH
 rbenv rehash >/dev/null ^&1
-
-test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
