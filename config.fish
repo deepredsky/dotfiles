@@ -92,8 +92,6 @@ function hybrid_bindings --description "Vi-style bindings that inherit emacs-sty
 end
 set -g fish_key_bindings hybrid_bindings
 
-hybrid_bindings
-
 set PATH $HOME/.rbenv/bin $PATH
 set PATH $HOME/.rbenv/shims $PATH
 set PATH /usr/local/sbin $PATH
