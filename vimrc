@@ -14,8 +14,9 @@ Plug 'vim-ruby/vim-ruby'
 " Vim Rbenv
 Plug 'tpope/vim-rbenv'
 
-" Vim Rails
 Plug 'tpope/vim-rails'
+Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-rake'
 
 " Haml support
 Plug 'tpope/vim-haml'
