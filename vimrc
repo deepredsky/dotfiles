@@ -52,7 +52,7 @@ Plug 'rhysd/committia.vim'
 
 Plug 'flazz/vim-colorschemes'
 
-Plug 'ngmy/vim-rubocop'
+Plug 'deepredsky/vim-rubocop'
 
 Plug 'elixir-lang/vim-elixir'
 
