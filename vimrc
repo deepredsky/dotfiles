@@ -10,6 +10,8 @@ Plug 'tpope/vim-unimpaired'
 
 " Vim Ruby
 Plug 'vim-ruby/vim-ruby'
+Plug 'kana/vim-textobj-user'
+Plug 'nelstrom/vim-textobj-rubyblock'
 
 " Vim Rbenv
 Plug 'tpope/vim-rbenv'
