@@ -19,9 +19,6 @@ set green (set_color green)
 set red (set_color red)
 set gray (set_color -o black)
 
-set-option -g history-limit 100000
-
-
 # Fish git prompt
 set __fish_git_prompt_showdirtystate 'yes'
 set __fish_git_prompt_showstashstate 'yes'
