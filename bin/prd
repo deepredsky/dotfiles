@@ -1,0 +1,102 @@
+#!/usr/bin/env ruby
+
+require 'git'
+require 'octokit'
+
+def github_project
+  if(match = g.remote.url.match(/git@github.com:(?<project>\S+).git/))
+    match[:project]
+  end
+end
+
+def github_client
+  @github_client ||= Octokit::Client.new(access_token: ENV['GITHUB_PR_TOKEN'])
+end
+
+def g
+  @git ||= Git.open '.'
+end
+
+def fetch_pr_description(id)
+  github_client.pull_request(github_project, id.to_i)
+rescue
+  puts "Did u setup github access token yet?"
+  nil
+end
+
+def test
+  messages = g.log.between('staging', 'integration').select do |commit|
+    commit.message.include?('Merge') || commit.message.include?('jira') || commit.message.include?('GEN')
+    true
+  end
+
+  puts messages.map(&:message).join("\n\n")
+end
+
+def extract_details(from, to='master')
+  from = g.current_branch unless from
+  to = 'master' unless to
+
+  messages = g.log.between(to, from).select do |commit|
+    commit.message.include?('Merge') || commit.message.include?('jira') || commit.message.include?('GEN')
+  end.map do |commit|
+    title, description = commit.message.squeeze("\n").split("\n", 2)
+
+    if title.include?('Merge')
+      github_pr = extract_pr(title)
+      if github_pr && !github_pr.deploy_merge?
+        heading = github_pr.title
+        subheading = title
+        tickets = extract_tickets(github_pr.body)
+      else
+        heading = description.split("\n").first
+        subheading = title
+      end
+    else
+      heading = title
+      subheading = nil
+      tickets = extract_tickets(description)
+    end
+
+    [heading, subheading, tickets].compact.join("\n")
+  end
+
+  puts messages.join("\n\n")
+end
+
+def extract_tickets(description)
+  description.to_s.scan(/https?:\/\/jira[\S]+/).join(', ')
+end
+
+def extract_pr(title)
+  if(pr_id = title.match(/\d+/))
+    if(pr = fetch_pr_description(pr_id.to_s))
+      PullRequest.new(pr)
+    end
+  end
+end
+
+class PullRequest
+  extend Forwardable
+
+  def_delegators :@github_pull_request, :title, :body
+
+  attr_reader :github_pull_request
+
+  def initialize(github_pull_request)
+    @github_pull_request = github_pull_request
+  end
+
+  def deploy_merge?
+    excluded_refs.include?(github_pull_request.head.ref) &&
+      excluded_refs.include?(github_pull_request.base.ref)
+  end
+
+  private
+
+  def excluded_refs
+    ['integration', 'staging', 'master']
+  end
+end
+#test
+extract_details(ARGV[0], ARGV[1])
