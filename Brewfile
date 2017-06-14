@@ -75,3 +75,9 @@ cask 'haskell-platform'
 cask 'macdown'
 cask 'vagrant'
 cask 'virtualbox'
+cask 'slack'
+cask 'skype'
+cask 'firefox'
+cask "google-chrome"
+cask "opera"
+cask "iterm2"
