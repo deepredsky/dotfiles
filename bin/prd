@@ -24,15 +24,6 @@ rescue
   nil
 end
 
-def test
-  messages = g.log.between('staging', 'integration').select do |commit|
-    commit.message.include?('Merge') || commit.message.include?('jira') || commit.message.include?('GEN')
-    true
-  end
-
-  puts messages.map(&:message).join("\n\n")
-end
-
 def extract_details(from, to='master')
   from = g.current_branch unless from
   to = 'master' unless to
@@ -49,7 +40,7 @@ def extract_details(from, to='master')
         subheading = title
         tickets = extract_tickets(github_pr.body)
       else
-        heading = description.split("\n").first
+        heading = description.to_s.split("\n").first
         subheading = title
       end
     else
