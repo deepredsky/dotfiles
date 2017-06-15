@@ -3,10 +3,9 @@ require 'erb'
 
 desc "install the dot files into user's home directory"
 task :install do
-  install_fish
   switch_to_fish
   replace_all = false
-  files = Dir['*'] - %w[Rakefile README.md LICENSE]
+  files = Dir['*'] - %w[Rakefile README.md LICENSE Brewfile]
   files.each do |file|
     system %Q{mkdir -p "$HOME/.#{File.dirname(file)}"} if file =~ /\//
     if File.exist?(File.join(ENV['HOME'], ".#{file.sub(/\.erb$/, '')}"))
@@ -64,6 +63,7 @@ def switch_to_fish
     case $stdin.gets.chomp
     when 'y'
       puts "switching to fish"
+      install_fish
       system %Q{chsh -s `which fish`}
     when 'q'
       exit
