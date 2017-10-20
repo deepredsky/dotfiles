@@ -43,9 +43,7 @@ end
 
 width = `tput cols`.strip.to_i / 2
 json  = JSON.load File.read File.expand_path FILE
-items = json['roots']
-        .values_at(*%w(bookmark_bar synced other))
-        .compact
+items = [json['roots']['bookmark_bar'], json['roots']['custom_root']['userRoot']]
         .map { |e| build nil, e }
         .flatten
 
