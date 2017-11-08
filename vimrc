@@ -8,6 +8,8 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " Vim Unimpaired
 Plug 'tpope/vim-unimpaired'
 
+Plug 'tpope/vim-commentary'
+
 " Vim Ruby
 Plug 'vim-ruby/vim-ruby'
 Plug 'kana/vim-textobj-user'
