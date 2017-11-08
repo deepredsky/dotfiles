@@ -92,6 +92,8 @@ Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 Plug 'Twinside/vim-hoogle', { 'for': 'haskell' }
 Plug 'mpickering/hlint-refactor-vim', { 'for': 'haskell' }
 
+Plug 'lifepillar/vim-solarized8'
+
 call plug#end()
 filetype plugin indent on    " required
 
@@ -137,8 +139,7 @@ augroup vimrcEx
   autocmd! FileType *.slim set sw=2 sts=2 et
 augroup END
 
-color molokai
-color flattened_dark
+color solarized8_dark_flat
 
 set background=dark
 
