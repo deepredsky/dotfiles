@@ -65,8 +65,7 @@ Plug 'mattn/gist-vim'
 
 Plug 'mattn/webapi-vim'
 
-" RSpec test runner
-Plug 'thoughtbot/vim-rspec'
+Plug 'janko-m/vim-test'
 
 Plug 'airblade/vim-gitgutter'
 
@@ -302,8 +301,8 @@ nmap <leader>ew :e <C-R>=expand('%:h').'/'<cr>
 map <leader>r :w<cr>:RuboCop<cr>
 
 " RSpec.vim mappings
-map <Leader>t :w<cr>:call RunNearestSpec()<CR>
-let g:rspec_command = "!clear && bundle exec rspec {spec}"
+nmap <silent> <leader>t :w<CR>:TestNearest<CR>
+nmap <silent> <leader>T :w<CR>:TestFile<CR>
 
 " Project vimrc support
 if filereadable('.local.vim')
