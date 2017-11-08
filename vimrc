@@ -40,7 +40,9 @@ Plug 'tpope/vim-endwise'
 " Vim Fugitive
 Plug 'tpope/vim-fugitive'
 
-Plug 'Shougo/neocomplete.vim'
+Plug 'Shougo/deoplete.nvim'
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
 
 " Ag helper
 Plug 'rking/ag.vim'
