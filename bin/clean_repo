@@ -23,7 +23,7 @@ _EOF
 cmd_clean() {
   default_branch=$1
 
-  if [ $default_branch == '' ]
+  if [[ $default_branch == "" ]]
   then
     default_branch=master
   fi
