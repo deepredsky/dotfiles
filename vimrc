@@ -50,9 +50,6 @@ Plug 'rking/ag.vim'
 " JSON Syntax
 Plug 'elzr/vim-json'
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-
 Plug 'slim-template/vim-slim'
 
 Plug 'rhysd/committia.vim'
@@ -93,6 +90,7 @@ Plug 'Twinside/vim-hoogle', { 'for': 'haskell' }
 Plug 'mpickering/hlint-refactor-vim', { 'for': 'haskell' }
 
 Plug 'lifepillar/vim-solarized8'
+Plug 'itchyny/lightline.vim'
 
 call plug#end()
 filetype plugin indent on    " required
@@ -103,8 +101,6 @@ let g:UltiSnipsExpandTrigger="<c-e>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
-
-let g:airline_powerline_fonts = 1
 
 ""
 "" Basic Setup
@@ -354,3 +350,10 @@ inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " Close popup by <Space>.
 inoremap <expr><Space> pumvisible() ? "\<C-y>\<Space>" : "\<Space>"
+
+let g:lightline = {
+      \   'active': {
+      \     'left': [ [ 'paste' ], [ 'readonly', 'filename', 'modified' ] ],
+      \     'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'filetype' ] ]
+      \   },
+      \ }
