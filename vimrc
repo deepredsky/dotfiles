@@ -39,6 +39,7 @@ Plug 'tpope/vim-endwise'
 
 " Vim Fugitive
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 
 Plug 'Shougo/deoplete.nvim'
 Plug 'roxma/nvim-yarp'
