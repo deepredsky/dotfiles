@@ -92,6 +92,8 @@ Plug 'mpickering/hlint-refactor-vim', { 'for': 'haskell' }
 
 Plug 'lifepillar/vim-solarized8'
 Plug 'itchyny/lightline.vim'
+Plug 'xolox/vim-notes'
+Plug 'xolox/vim-misc'
 
 call plug#end()
 filetype plugin indent on    " required
@@ -358,3 +360,5 @@ let g:lightline = {
       \     'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'filetype' ] ]
       \   },
       \ }
+
+let g:notes_directories = ['~/dev/notes']
