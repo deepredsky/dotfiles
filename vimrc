@@ -354,7 +354,7 @@ inoremap <expr><Space> pumvisible() ? "\<C-y>\<Space>" : "\<Space>"
 
 let g:lightline = {
       \   'active': {
-      \     'left': [ [ 'paste' ], [ 'readonly', 'filename', 'modified' ] ],
+      \     'left': [ [ 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
       \     'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'filetype' ] ]
       \   },
       \ }
