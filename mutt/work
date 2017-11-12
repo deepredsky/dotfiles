@@ -1,0 +1,16 @@
+set folder = ~/Mail/Work/
+set from = "rajesh.sharma@karnovgroup.com"
+set realname = "Rajesh Sharma"
+set spoolfile= +INBOX
+set postponed= +Drafts
+set record = +"Sent Items"
+set trash = +"Deleted Items"
+
+set header_cache = ~/.mutt/work/cache/headers
+set message_cachedir = ~/.mutt/work/cache/bodies
+# set certificate_file = ~/.mutt/work/certificates
+
+set smtp_url = "smtp://rajesh.sharma@karnovgroup.com@outlook.office365.com:587/"
+set smtp_pass = `get-password karnov`
+set ssl_force_tls = "yes"
+set smtp_authenticators = "login"
