@@ -1,0 +1,24 @@
+# Sample minimal config file.  Copy this to ~/.offlineimaprc and edit to
+# get started fast.
+
+[general]
+accounts = Work
+pythonfile = ~/.bin/getpassword.py
+
+[Account Work]
+localrepository = Local
+remoterepository = Remote
+
+[Repository Local]
+type = Maildir
+localfolders = ~/Mail/Work
+
+[Repository Remote]
+type = IMAP
+remotehost = outlook.office365.com
+remoteuser = get_username("work")
+remotepasseval = get_password("work")
+ssl = yes
+sslcacertfile = /usr/local/etc/openssl/cert.pem
+
+folderfilter = lambda folder: folder not in [ 'Calendar', 'Calendar/Birthdays', 'Calendar/Sub Folder 1', 'Calendar/Sub Folder 2', 'Calendar/United States holidays', 'Calendar/United Kingdom holidays', 'Deleted', 'Contacts' ]
