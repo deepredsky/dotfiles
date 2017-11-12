@@ -6,3 +6,5 @@ vim/plugged/
 vim/autoload/
 vim/local.vim
 .DS_Store
+__pycache__/
+*.py[cod]
