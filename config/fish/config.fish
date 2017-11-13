@@ -89,6 +89,27 @@ function hybrid_bindings --description "Vi-style bindings that inherit emacs-sty
 end
 set -g fish_key_bindings hybrid_bindings
 
+
+function fish_custom_mode_prompt --description "Display the default mode for the prompt"
+    # Do nothing if not in vi mode
+    if test "$fish_key_bindings" = "fish_vi_key_bindings"
+        or test "$fish_key_bindings" = "fish_hybrid_key_bindings"
+        switch $fish_bind_mode
+            case default
+                set_color 656
+                echo 'normal'
+            case insert
+                set_color 656
+                echo 'insert'
+            case visual
+                set_color 656
+                echo 'visual'
+        end
+        set_color normal
+        echo -n ' '
+    end
+end
+
 set PATH $HOME/.rbenv/bin $PATH
 set PATH $HOME/.rbenv/shims $PATH
 set PATH /usr/local/sbin $PATH
