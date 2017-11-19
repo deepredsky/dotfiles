@@ -45,8 +45,7 @@ Plug 'Shougo/deoplete.nvim'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 
-" Ag helper
-Plug 'rking/ag.vim'
+Plug 'mileszs/ack.vim'
 
 " JSON Syntax
 Plug 'elzr/vim-json'
@@ -350,3 +349,10 @@ let g:lightline = {
       \ }
 
 let g:notes_directories = ['~/dev/notes']
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+command! -bang -nargs=* -complete=file Ag           call ack#Ack('grep<bang>', <q-args>)
+command! -bang -nargs=* -complete=file AgFromSearch call ack#AckFromSearch('grep<bang>', <q-args>)
