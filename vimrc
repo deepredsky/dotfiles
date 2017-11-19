@@ -99,7 +99,7 @@ call plug#end()
 filetype plugin indent on    " required
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsUsePythonVersion = 2
+let g:UltiSnipsUsePythonVersion = 3
 let g:UltiSnipsExpandTrigger="<c-e>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
@@ -328,8 +328,6 @@ nnoremap <leader>. :BTags<cr>
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
-
-let g:UltiSnipsUsePythonVersion = 3
 
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_yarp = 1
