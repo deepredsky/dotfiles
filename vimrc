@@ -1,80 +1,60 @@
-set nocompatible              " be iMproved, required
 filetype off                  " required
 
+" Plugins {{{
 call plug#begin('~/.vim/plugged')
 
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+" Snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
-" Vim Unimpaired
 Plug 'tpope/vim-unimpaired'
-
 Plug 'tpope/vim-commentary'
+Plug 'tmhedberg/matchit'
+Plug 'godlygeek/tabular'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
 
 " Vim Ruby
 Plug 'vim-ruby/vim-ruby'
 Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock'
-
-" Vim Rbenv
 Plug 'tpope/vim-rbenv'
-
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-rake'
+Plug 'deepredsky/vim-rubocop'
 
-" Haml support
+" View helpers
 Plug 'tpope/vim-haml'
-
-" Rabl Syntax
+Plug 'slim-template/vim-slim'
 Plug 'yaymukund/vim-rabl'
+Plug 'elzr/vim-json'
 
-" Vim Matchit
-Plug 'tmhedberg/matchit'
-
-" Vim Tabular
-Plug 'godlygeek/tabular'
-
-" Vim Endwise
-Plug 'tpope/vim-endwise'
-
-" Vim Fugitive
+" Git helpers
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
+Plug 'airblade/vim-gitgutter'
+Plug 'mattn/gist-vim'
+Plug 'mattn/webapi-vim'
 
+" Autocompletion helpers
 Plug 'Shougo/deoplete.nvim'
 Plug 'roxma/nvim-yarp'
 Plug 'roxma/vim-hug-neovim-rpc'
 
 Plug 'mileszs/ack.vim'
 
-" JSON Syntax
-Plug 'elzr/vim-json'
-
-Plug 'slim-template/vim-slim'
-
 Plug 'rhysd/committia.vim'
 
-Plug 'flazz/vim-colorschemes'
-
-Plug 'deepredsky/vim-rubocop'
-
 Plug 'elixir-lang/vim-elixir'
-
-Plug 'mattn/gist-vim'
-
-Plug 'mattn/webapi-vim'
+Plug 'fatih/vim-go'
 
 Plug 'janko-m/vim-test'
 
-Plug 'airblade/vim-gitgutter'
-
-Plug 'tpope/vim-repeat'
-
-Plug 'junegunn/goyo.vim'
-
-Plug 'tpope/vim-surround'
+" Better search handling
 Plug 'junegunn/vim-slash'
-Plug 'fatih/vim-go'
+
 Plug 'walm/jshint.vim'
 
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -89,27 +69,23 @@ Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 Plug 'Twinside/vim-hoogle', { 'for': 'haskell' }
 Plug 'mpickering/hlint-refactor-vim', { 'for': 'haskell' }
 
+" Improved UI
+Plug 'flazz/vim-colorschemes'
 Plug 'lifepillar/vim-solarized8'
 Plug 'itchyny/lightline.vim'
+Plug 'junegunn/goyo.vim'
+
+" Vim notes
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'
 
 call plug#end()
 filetype plugin indent on    " required
+" }}}
 
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsUsePythonVersion = 3
-let g:UltiSnipsExpandTrigger="<c-e>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
-
-""
-"" Basic Setup
-""
+" Basic Setup {{{
 
 let mapleader = ","
-set t_Co=256
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM AUTOCMDS
@@ -120,9 +96,9 @@ augroup vimrcEx
   autocmd FileType text setlocal textwidth=78
   " Jump to last cursor position unless it's invalid or in an event handler
   autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal g`\"" |
+        \ endif
 
   "for ruby, autoindent with two spaces, always expand tabs
   autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
@@ -149,14 +125,13 @@ set colorcolumn=80
 syntax enable         " Turn on syntax highlighting allowing local overrides
 syntax on             " Enable syntax highlighting
 filetype on           " Enable filetype detection
-filetype indent on    " Enable filetype-specific indenting
-filetype plugin on    " Enable filetype-specific plugins
 
 set termguicolors
 
 " enable 24 bit color support
 set t_8f=[38;2;%lu;%lu;%lum
 set t_8b=[48;2;%lu;%lu;%lum
+set t_Co=256
 
 set viminfo='10,\"100,:20,%,n~/.viminfo
 
@@ -181,7 +156,6 @@ set showbreak=↪
 set fillchars=diff:⣿,vert:│
 set showcmd
 
-
 " keep more context when scrolling off the end of a buffer
 set scrolloff=3
 
@@ -200,9 +174,47 @@ set nowritebackup
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
+set lazyredraw
+
 " If a file is changed outside of vim, automatically reload it without asking
 set autoread
 
+set shell=bash
+
+" Wild settings {{{
+
+" Disable output and VCS files
+set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
+
+" Disable archive files
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
+
+" Ignore bundler and sass cache
+set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
+
+" Ignore rails temporary asset caches
+set wildignore+=*/tmp/cache/assets/*/sprockets/*,*/tmp/cache/assets/*/sass/*
+
+" Disable temp and backup files
+set wildignore+=*.swp,*~,._*
+
+" Ignore apiary
+set wildignore+=*.apid
+
+" }}}
+
+if has("statusline") && !&cp
+  set laststatus=2  " always show the status bar
+
+  set statusline=%f\ %m\ %r
+  set statusline+=Line:%l/%L[%p%%]
+  set statusline+=Col:%v
+  set statusline+=Buf:#%n
+  set statusline+=[%b][0x%B]
+endif
+" }}}
+
+" Mappings {{{
 nnoremap <up> <nop>
 nnoremap <down> <nop>
 nnoremap <left> <nop>
@@ -235,7 +247,26 @@ onoremap <C-@> <Esc>
 cnoremap <C-@> <C-c>
 inoremap <C-@> <Esc>`^
 
-set lazyredraw
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" Create the directory containing the file in the buffer
+nmap <silent> <leader>md :!mkdir -p %:p:h<CR>
+
+nmap <leader>ew :e <C-R>=expand('%:h').'/'<cr>
+
+map <leader>r :w<cr>:RuboCop<cr>
+
+" RSpec.vim mappings
+nmap <silent> <leader>t :w<CR>:TestNearest<CR>
+nmap <silent> <leader>T :w<CR>:TestFile<CR>
+
+nnoremap <silent> <C-p> :Files<CR>
+nnoremap <leader>. :BTags<cr>
+
+" }}}
+
+" Others {{{
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PROMOTE VARIABLE TO RSPEC LET
@@ -249,29 +280,6 @@ function! PromoteToLet()
 endfunction
 :command! PromoteToLet :call PromoteToLet()
 
-set shell=bash
-""
-"" Wild settings
-""
-
-" Disable output and VCS files
-set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
-
-" Disable archive files
-set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
-
-" Ignore bundler and sass cache
-set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
-
-" Ignore rails temporary asset caches
-set wildignore+=*/tmp/cache/assets/*/sprockets/*,*/tmp/cache/assets/*/sass/*
-
-" Disable temp and backup files
-set wildignore+=*.swp,*~,._*
-
-" Ignore apiary
-set wildignore+=*.apid
-
 " make private gist by default
 let g:gist_post_private = 1
 
@@ -279,31 +287,6 @@ if executable('ag')
   " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
 endif
-
-" bind K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-
-if has("statusline") && !&cp
-  set laststatus=2  " always show the status bar
-
-  " Start the status line
-  set statusline=%f\ %m\ %r
-  set statusline+=Line:%l/%L[%p%%]
-  set statusline+=Col:%v
-  set statusline+=Buf:#%n
-  set statusline+=[%b][0x%B]
-endif
-
-" Create the directory containing the file in the buffer
-nmap <silent> <leader>md :!mkdir -p %:p:h<CR>
-
-nmap <leader>ew :e <C-R>=expand('%:h').'/'<cr>
-
-map <leader>r :w<cr>:RuboCop<cr>
-
-" RSpec.vim mappings
-nmap <silent> <leader>t :w<CR>:TestNearest<CR>
-nmap <silent> <leader>T :w<CR>:TestFile<CR>
 
 " Project vimrc support
 if filereadable('.local.vim')
@@ -321,9 +304,6 @@ function! s:goyo_leave()
   GitGutterEnable
   set scrolloff=3
 endfunction
-
-nnoremap <silent> <C-p> :Files<CR>
-nnoremap <leader>. :BTags<cr>
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
@@ -356,3 +336,14 @@ endif
 
 command! -bang -nargs=* -complete=file Ag           call ack#Ack('grep<bang>', <q-args>)
 command! -bang -nargs=* -complete=file AgFromSearch call ack#AckFromSearch('grep<bang>', <q-args>)
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsUsePythonVersion = 3
+let g:UltiSnipsExpandTrigger="<c-e>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
+
+"}}}
+
+" vim: expandtab softtabstop=2 shiftwidth=2 foldmethod=marker
