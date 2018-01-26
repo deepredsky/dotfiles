@@ -110,9 +110,12 @@ function fish_custom_mode_prompt --description "Display the default mode for the
     end
 end
 
-set PATH $HOME/.rbenv/bin $PATH
 set PATH $HOME/.rbenv/shims $PATH
 set PATH /usr/local/sbin $PATH
 set PATH $HOME/.bin $PATH
 rbenv rehash >/dev/null ^&1
 status --is-interactive; and source (rbenv init -|psub)
+
+function nvm
+  bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
+end
