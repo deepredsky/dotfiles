@@ -2,23 +2,40 @@
 # get started fast.
 
 [general]
-accounts = Work
+accounts = Work, Personal
 pythonfile = ~/.bin/getpassword.py
 
 [Account Work]
-localrepository = Local
-remoterepository = Remote
+localrepository = LocalWork
+remoterepository = RemoteWork
+synclabels = yes
+labelsheader = X-Keywords
 
-[Repository Local]
+[Account Personal]
+localrepository = LocalPersonal
+remoterepository = RemotePersonal
+
+[Repository LocalWork]
 type = Maildir
 localfolders = ~/Mail/Work
 
-[Repository Remote]
+[Repository RemoteWork]
 type = IMAP
 remotehost = outlook.office365.com
 remoteuser = get_username("work")
 remotepasseval = get_password("work")
 ssl = yes
 sslcacertfile = /usr/local/etc/openssl/cert.pem
-
 folderfilter = lambda folder: folder not in [ 'Calendar', 'Calendar/Birthdays', 'Calendar/Sub Folder 1', 'Calendar/Sub Folder 2', 'Calendar/United States holidays', 'Calendar/United Kingdom holidays', 'Deleted', 'Contacts' ]
+
+[Repository LocalPersonal]
+type = GmailMaildir
+localfolders = ~/Mail/Personal
+
+[Repository RemotePersonal]
+type = Gmail
+remoteuser = rajesh@surf.net.np
+remotepasseval = get_password("personalmail")
+ssl = yes
+sslcacertfile = /usr/local/etc/openssl/cert.pem
+folderfilter = lambda folder: folder == 'INBOX'
