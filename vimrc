@@ -133,7 +133,9 @@ set t_8f=[38;2;%lu;%lu;%lum
 set t_8b=[48;2;%lu;%lu;%lum
 set t_Co=256
 
-set viminfo='10,\"100,:20,%,n~/.viminfo
+if !has('nvim')
+  set viminfo='10,\"100,:20,%,n~/.viminfo
+endif
 
 set encoding=utf-8    " Set default encoding to UTF-8
 
