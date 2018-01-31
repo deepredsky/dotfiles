@@ -41,7 +41,7 @@ bind editor ^T    complete
 # }}}
 # Basic Options {{{
 
-source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-16.muttrc
+source ~/.mutt/mutt-colors-solarized/mutt-colors-solarized-dark-256.muttrc
 
 set wait_key = no        # shut up, mutt
 set mbox_type = Maildir  # mailbox type
