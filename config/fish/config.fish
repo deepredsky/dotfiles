@@ -119,3 +119,11 @@ status --is-interactive; and source (rbenv init -|psub)
 function nvm
   bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
 end
+
+function fco -d "Fuzzy-find and checkout a branch"
+  git branch --all | grep -v HEAD | string trim | fzf | xargs echo | sed -E 's_remotes/origin/__g' | xargs git checkout
+end
+
+function fdb -d "Fuzzy-find and force delete a branch"
+  git branch | grep -v '*' | string trim | fzf -m | xargs echo | sed -E 's/^[[:space:]]*//g' | xargs git branch -D
+end
