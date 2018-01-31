@@ -10,3 +10,4 @@ __pycache__/
 *.py[cod]
 *.log
 **/logs/*
+weechat/script/plugins.xml.gz
