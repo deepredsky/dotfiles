@@ -359,6 +359,11 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 
+let g:committia_hooks = {}
+function! g:committia_hooks.edit_open(info)
+    setlocal spell
+endfunction
+
 "}}}
 
 " vim: expandtab softtabstop=2 shiftwidth=2 foldmethod=marker
