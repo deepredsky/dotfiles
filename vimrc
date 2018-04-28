@@ -56,6 +56,7 @@ Plug 'janko-m/vim-test'
 Plug 'junegunn/vim-slash'
 
 Plug 'walm/jshint.vim'
+Plug 'logico-dev/typewriter'
 
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
