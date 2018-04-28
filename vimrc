@@ -79,6 +79,8 @@ Plug 'junegunn/goyo.vim'
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'
 
+Plug 'FooSoft/vim-argwrap'
+
 call plug#end()
 filetype plugin indent on    " required
 " }}}
