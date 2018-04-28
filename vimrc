@@ -57,6 +57,21 @@ Plug 'junegunn/vim-slash'
 
 Plug 'walm/jshint.vim'
 
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
+
+let g:prettier#config#semi = 'false'
+
+" ES2015 code snippets (Optional)
+Plug 'epilande/vim-es2015-snippets'
+
+" React code snippets
+Plug 'epilande/vim-react-snippets'
+
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
