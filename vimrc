@@ -277,6 +277,7 @@ nmap <silent> <leader>T :w<CR>:TestFile<CR>
 
 nnoremap <silent> <C-p> :Files<CR>
 nnoremap <leader>. :BTags<cr>
+nnoremap <leader>b :Buffers<cr>
 
 " }}}
 
