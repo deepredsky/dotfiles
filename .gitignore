@@ -11,3 +11,11 @@ __pycache__/
 *.log
 **/logs/*
 weechat/script/plugins.xml.gz
+config/asciinema/
+config/configstore/
+config/gcloud/
+config/hub
+config/ranger/
+dump.rdb
+mutt/temp/
+vim/spell/
