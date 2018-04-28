@@ -129,3 +129,7 @@ end
 function fdb -d "Fuzzy-find and force delete a branch"
   git branch | grep -v '*' | string trim | fzf -m | xargs echo | sed -E 's/^[[:space:]]*//g' | xargs git branch -D
 end
+
+if test -f $HOME/.local.fish
+    source $HOME/.local.fish
+end
