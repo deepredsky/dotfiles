@@ -321,6 +321,11 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 endif
 
+" Local vim settings
+if filereadable(glob('~/.local.vim'))
+  source ~/.local.vim
+endif
+
 " Project vimrc support
 if filereadable('.local.vim')
   source .local.vim
