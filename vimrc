@@ -39,9 +39,14 @@ Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
 
 " Autocompletion helpers
-Plug 'Shougo/deoplete.nvim'
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
+"
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 
 Plug 'mileszs/ack.vim'
 
@@ -347,7 +352,11 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_yarp = 1
+
+if !has('nvim')
+  let g:deoplete#enable_yarp = 1
+endif
+
 let g:deoplete#max_list = 10
 
 " <C-h>, <BS>: close popup and delete backword char.
