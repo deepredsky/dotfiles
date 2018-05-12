@@ -2,7 +2,7 @@
 # get started fast.
 
 [general]
-accounts = Work, Personal
+accounts = Personal
 pythonfile = ~/.bin/getpassword.py
 
 [Account Work]
@@ -14,6 +14,7 @@ labelsheader = X-Keywords
 [Account Personal]
 localrepository = LocalPersonal
 remoterepository = RemotePersonal
+postsynchook = notmuch new
 
 [Repository LocalWork]
 type = Maildir

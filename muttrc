@@ -86,16 +86,32 @@ set sleep_time=0 # don't take for fucking ever to switch folders
 # }}}
 # Sidebar Patch {{{
 
-# set sidebar_divider_char   = '│'
-# set sidebar_visible = yes
-# set sidebar_width   = 25
-# color sidebar_new color221 color233
-# color sidebar_highlight brightcolor39 color233
-# color sidebar_indicator brightcolor7 color233
+set sidebar_divider_char   = '│'
+set sidebar_visible = yes
+set sidebar_width   = 25
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+set mail_check_stats
+color sidebar_new color221 color233
+color sidebar_highlight brightcolor39 color233
+color sidebar_indicator brightcolor7 color233
 
 # bind index,pager <down>   sidebar-next
 # bind index,pager <up>     sidebar-prev
-# bind index,pager <right>  sidebar-open
+# bind index,pager <space>  sidebar-open
+
+bind index,pager \CP sidebar-prev
+# Ctrl-Shift-P – Previous Mailbox
+bind index,pager \CN sidebar-next
+# Ctrl-Shift-N – Next Mailbox
+bind index,pager \CO sidebar-open
+# Ctrl-Shift-O – Open Highlighted Mailbox
+bind index,pager X change-vfolder
+
+macro index A "<modify-labels-then-hide>+archive -unread -inbox\<enter><sync-mailbox>"        # tag as Archived
+macro index I "<modify-labels-then-hide>-inbox -unread\<enter><sync-mailbox>"                 # removed from inbox
+# macro index S "<modify-labels-then-hide>-inbox -unread +junk\\n" # tag as Junk mail
+macro index + "<modify-labels>+*\<enter><sync-mailbox>"               # tag as starred
+macro index - "<modify-labels>-*\<enter><sync-mailbox>"               # tag as unstarred
 
 # set mail_check_stats
 # set sidebar_format = "%B %> %S "
@@ -170,8 +186,8 @@ set sendmail_wait = 0 # no please don't silently fail, email is important
 unset record
 
 # source ~/Dropbox/Settings/mail-accounts/accounts
-source ~/.mutt/work
-# source ~/.mutt/personal
+# source ~/.mutt/work
+source ~/.mutt/personal
 macro index <F9> '<sync-mailbox><enter-command>source ~/.mutt/work<enter><change-folder>!<enter>'
 macro index <F10> '<sync-mailbox><enter-command>source ~/.mutt/personal<enter><change-folder>!<enter>'
 

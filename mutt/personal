@@ -4,6 +4,15 @@ set realname = "Rajesh Sharma"
 set spoolfile= "+INBOX"
 set postponed= "+[Gmail]/Drafts"
 set record = "+[Gmail]/Sent Mail"
+set nm_default_uri="notmuch:///Users/rajesh/Mail/Personal"
+set virtual_spoolfile=yes
+
+virtual-mailboxes \
+        "INBOX"     "notmuch://?query=tag:inbox and NOT tag:archive"\
+        "Archive"     "notmuch://?query=tag:archive"\
+        "Unread"    "notmuch://?query=tag:unread"\
+        "Starred"   "notmuch://?query=tag:*"\
+        "Sent"      "notmuch://?query=tag:sent"
 
 set header_cache = ~/.mutt/personal/cache/headers
 set message_cachedir = ~/.mutt/personal/cache/bodies
