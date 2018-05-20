@@ -1,4 +1,4 @@
-set folder = ~/Mail/Personal/
+set folder = ~/Mail/
 set from = "rajesh@surf.net.np"
 set realname = "Rajesh Sharma"
 set spoolfile= "+INBOX"
@@ -8,11 +8,15 @@ set nm_default_uri="notmuch:///Users/rajesh/Mail/Personal"
 set virtual_spoolfile=yes
 
 virtual-mailboxes \
-        "INBOX"     "notmuch://?query=tag:inbox and NOT tag:archive"\
+        "Unread"      "notmuch://?query=tag:unread"\
+        "Today"       "notmuch://?query=date:today and NOT tag:archive"\
+        "Yesterday"   "notmuch://?query=date:yesterday and NOT tag:archive"\
+        "This Week"   "notmuch://?query=date:week and NOT tag:archive"\
+        "This Month"  "notmuch://?query=date:month and NOT tag:archive"\
+        "Inbox"       "notmuch://?query=tag:inbox and NOT tag:archive"\
         "Archive"     "notmuch://?query=tag:archive"\
-        "Unread"    "notmuch://?query=tag:unread"\
-        "Starred"   "notmuch://?query=tag:*"\
-        "Sent"      "notmuch://?query=tag:sent"
+        "Starred"     "notmuch://?query=tag:*"\
+        "Sent"        "notmuch://?query=tag:sent"
 
 set header_cache = ~/.mutt/personal/cache/headers
 set message_cachedir = ~/.mutt/personal/cache/bodies
