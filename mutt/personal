@@ -21,7 +21,4 @@ virtual-mailboxes \
 set header_cache = ~/.mutt/personal/cache/headers
 set message_cachedir = ~/.mutt/personal/cache/bodies
 
-set smtp_url = 'smtps://rajesh@surf.net.np@smtp.gmail.com'
-set smtp_pass = `get-password personalmail`
-# set ssl_force_tls = "yes"
-# set smtp_authenticators = "login"
+set sendmail="msmtp"
