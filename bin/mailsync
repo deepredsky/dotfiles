@@ -1,0 +1,37 @@
+#!/bin/sh
+
+check ()
+{
+    while pkill offlineimap
+    do
+        sleep 2
+    done
+}
+
+quick ()
+{
+  offlineimap -q
+
+}
+
+full ()
+{
+  offlineimap
+}
+
+# parse options
+while getopts "qf" OPTION
+do
+    case $OPTION in
+        q)
+            check
+            quick
+            exit 0
+            ;;
+        f)
+            check
+            full
+            exit 0
+            ;;
+    esac
+done
