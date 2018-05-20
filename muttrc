@@ -58,6 +58,8 @@ set thorough_search      # strip headers and eval mimes before searching
 set send_charset="us-ascii:utf-8:iso-8859-1"
 set use_from             # respect the From: address the editor sends back
 
+set new_mail_command="terminal-notifier -title '%v' -subtitle 'New Mail' -message '%n new messages, %u unread.'"
+
 set sleep_time=0 # don't take for fucking ever to switch folders
 
 # }}}
