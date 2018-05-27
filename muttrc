@@ -105,9 +105,11 @@ bind index,pager \CP sidebar-prev
 # Ctrl-Shift-P – Previous Mailbox
 bind index,pager \CN sidebar-next
 # Ctrl-Shift-N – Next Mailbox
-bind index,pager \CO sidebar-open
+bind index,pager ,o sidebar-open
 # Ctrl-Shift-O – Open Highlighted Mailbox
-bind index,pager X change-vfolder
+
+macro index ,b '<enter-command>toggle sidebar_visible<enter><refresh>'
+macro pager ,b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
 
 macro index A "<modify-labels-then-hide>+archive -unread -inbox\<enter><sync-mailbox>"        # tag as Archived
 macro index I "<modify-labels-then-hide>-inbox -unread\<enter><sync-mailbox>"                 # removed from inbox
@@ -116,6 +118,8 @@ macro index + "<modify-labels>+*\<enter><sync-mailbox>"               # tag as s
 macro index - "<modify-labels>-*\<enter><sync-mailbox>"               # tag as unstarred
 
 macro index S "<enter-command>unset wait_key<enter><shell-escape>mutt-notmuch-py ~/Mail/temporary/search<enter><change-folder-readonly>+temporary/search<enter>" "search mail (using notmuch)"
+
+macro index,pager ',c' '<change-vfolder>?<search>' 'open a different folder and search'
 
 # set mail_check_stats
 # set sidebar_format = "%B %> %S "
