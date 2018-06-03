@@ -1,20 +1,3 @@
-# WIP
-# A basic .muttrc for use with Gmail
-# http://lifehacker.com/5574557/how-to-use-the-fast-and-powerful-mutt-email-client-with-gmail
-# https://gist.github.com/miguelmota/9456162
-# https://github.com/narkoleptik/dotfiles/blob/master/.mutt/account.yahoo
-# http://profectium.blogspot.com/2013/12/how-to-set-up-hotmail-in-mutt.html
-
-# Folder hooks
-# folder-hook 'account.com.outlook.rajesh.sharma' 'source ~/.mutt/account.com.outlook.rajesh.sharma'
-# folder-hook 'account.com.yahoo.gotbletu' 'source ~/.mutt/account.com.yahoo.gotbletu'
-# folder-hook 'account.com.live.gotbletu' 'source ~/.mutt/account.com.live.gotbletu'
-# folder-hook 'account.com.hotmail.gotbletu' 'source ~/.mutt/account.com.hotmail.gotbletu'
-
-# Macros for switching accounts
-# macro index <F11> '<sync-mailbox><enter-command>source ~/.mutt/account.com.gmail.gotbletu<enter><change-folder>!<enter>'
-# macro index <F5> '<sync-mailbox><enter-command>source ~/.mutt/account.com.hotmail.gotbletu<enter><change-folder>!<enter>'
-
 # Paths {{{
 
 set alias_file       = ~/.mutt/alias         # where to store aliases
