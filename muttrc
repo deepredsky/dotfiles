@@ -115,6 +115,7 @@ bind index,pager ,o sidebar-open
 
 macro index ,b '<enter-command>toggle sidebar_visible<enter><refresh>'
 macro pager ,b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
+bind index,pager B sidebar-toggle-virtual
 
 macro index A "<modify-labels-then-hide>+archive -unread -inbox\<enter><sync-mailbox>"        # tag as Archived
 macro index I "<modify-labels-then-hide>-inbox -unread\<enter><sync-mailbox>"                 # removed from inbox
