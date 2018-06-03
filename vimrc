@@ -89,6 +89,7 @@ Plug 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
 Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 Plug 'Twinside/vim-hoogle', { 'for': 'haskell' }
 Plug 'mpickering/hlint-refactor-vim', { 'for': 'haskell' }
+Plug 'alx741/vim-stylishask', { 'for': 'haskell' }
 
 " Improved UI
 Plug 'flazz/vim-colorschemes'
