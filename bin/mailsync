@@ -1,37 +1,20 @@
 #!/bin/sh
 
-check ()
-{
-    while pkill offlineimap
-    do
-        sleep 2
-    done
-}
+MBSYNC=$(pgrep mbsync)
+NOTMUCH=$(pgrep notmuch)
 
-quick ()
-{
-  offlineimap -q
+if [ -n "$MBSYNC" -o -n "$NOTMUCH" ]; then
+   echo "Already running one instance of mail-sync. Exiting..."
+         exit 0
+fi
 
-}
+echo "Running mbsync"
 
-full ()
-{
-  offlineimap
-}
+mbsync -a
 
-# parse options
-while getopts "qf" OPTION
-do
-    case $OPTION in
-        q)
-            check
-            quick
-            exit 0
-            ;;
-        f)
-            check
-            full
-            exit 0
-            ;;
-    esac
-done
+echo "mbsync finished"
+echo "Running notmuch"
+
+notmuch new
+
+echo "Done"

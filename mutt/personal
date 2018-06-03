@@ -1,10 +1,8 @@
-set folder = ~/Mail/
+set folder = ~/.mail/
 set from = "rajesh@surf.net.np"
 set realname = "Rajesh Sharma"
-set spoolfile= "+INBOX"
-set postponed= "+[Gmail]/Drafts"
-set record = "+[Gmail]/Sent Mail"
-set nm_default_uri="notmuch:///Users/rajesh/Mail/Personal"
+
+set nm_default_uri="notmuch:///Users/rajesh/.mail"
 set virtual_spoolfile=yes
 
 virtual-mailboxes \
@@ -17,6 +15,22 @@ virtual-mailboxes \
         "Archive"     "notmuch://?query=tag:archive"\
         "Starred"     "notmuch://?query=tag:*"\
         "Sent"        "notmuch://?query=tag:sent"
+
+mailboxes \
+          +Work \
+          +Work/INBOX \
+          +Work/Archive \
+          +Work/Sent \
+          +Work/Drafts \
+          +Work/Trash \
+\
+          +Personal \
+          +Personal/INBOX \
+          +Personal/Archive \
+          +Personal/Sent \
+          +Personal/Drafts \
+          +Personal/Starred \
+          +Personal/Trash
 
 set header_cache = ~/.mutt/personal/cache/headers
 set message_cachedir = ~/.mutt/personal/cache/bodies

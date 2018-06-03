@@ -1,0 +1,124 @@
+# Global defaults
+Create Both
+# Expunge Both
+SyncState *
+
+IMAPAccount Personal
+Host imap.gmail.com
+User <personal-email>
+PassCmd "get-password personalmail"
+SSLType IMAPS
+AuthMechs LOGIN
+
+IMAPAccount Work
+Host outlook.office365.com
+User <work-email>
+PassCmd "get-password <work>"
+SSLType IMAPS
+AuthMechs LOGIN
+
+IMAPStore RemotePersonal
+Account Personal
+
+IMAPStore RemoteWork
+Account Work
+
+MaildirStore LocalPersonal
+Path ~/.mail/Personal/
+Inbox ~/.mail/Personal/INBOX
+
+MaildirStore LocalWork
+Path ~/.mail/Work/
+Inbox ~/.mail/Work/INBOX
+
+# {{{ Personal mailbox channels
+Channel Personal-INBOX
+Master :RemotePersonal:INBOX
+Slave :LocalPersonal:INBOX
+
+Channel Personal-Drafts
+Master :RemotePersonal:"[Gmail]/Drafts"
+Slave :LocalPersonal:Drafts
+
+Channel Personal-Sent
+Master :RemotePersonal:"[Gmail]/Sent Mail"
+Slave :LocalPersonal:Sent
+
+Channel Personal-Starred
+Master :RemotePersonal:"[Gmail]/Starred"
+Slave :LocalPersonal:Starred
+
+Channel Personal-Trash
+Master :RemotePersonal:"[Gmail]/Trash"
+Slave :LocalPersonal:Trash
+
+Channel Personal-Archive
+Master :RemotePersonal:"[Gmail]/All Mail"
+Slave :LocalPersonal:Archive
+
+Channel Personal-Download
+Master :RemotePersonal:INBOX
+Slave :LocalPersonal:INBOX
+Create Slave
+Expunge Slave
+Sync Pull
+# }}}
+
+# {{{ Work mailbox channels
+Channel Work-INBOX
+Master :RemoteWork:INBOX
+Slave :LocalWork:INBOX
+
+Channel Work-Sent
+Master :RemoteWork:"Sent Items"
+Slave :LocalWork:Sent
+
+Channel Work-Trash
+Master :RemoteWork:"Deleted Items"
+Slave :LocalWork:Trash
+
+Channel Work-Catchall
+Master :RemoteWork:
+Slave :LocalWork:
+Patterns *
+Patterns !INBOX
+Patterns !Search
+Patterns !Sent
+Patterns !Spam
+Patterns !Trash
+Patterns !"Conversation History"
+Patterns !"Deleted Items"
+Patterns !"Junk Email"
+Patterns !"Sent Items"
+Patterns !Archive1
+Patterns !Calendar*
+Patterns !Clutter
+Patterns !Contacts
+Patterns !Journal
+Patterns !Notes
+Patterns !Outbox
+Patterns !Tasks
+Patterns !"RSS Feeds"
+Patterns !"Sync Issues*"
+
+Channel Work-Download
+Master :RemoteWork:INBOX
+Slave :LocalWork:INBOX
+Create Slave
+Expunge Slave
+Sync Pull
+# }}}
+
+Group Personal-Everything
+Channel Personal-INBOX
+Channel Personal-Sent
+Channel Personal-Trash
+Channel Personal-Archive
+Channel Personal-Drafts
+Channel Personal-Starred
+
+Group Work-Everything
+Channel Work-INBOX
+Channel Work-Sent
+Channel Work-Trash
+Channel Work-Catchall
