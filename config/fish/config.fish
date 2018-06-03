@@ -113,6 +113,7 @@ end
 set PATH $HOME/.cargo/bin $PATH
 set PATH $HOME/.rbenv/shims $PATH
 set PATH $HOME/.bin $PATH
+set PATH $HOME/.local/bin $PATH
 set PATH /usr/local/sbin $PATH
 
 rbenv rehash >/dev/null ^&1
