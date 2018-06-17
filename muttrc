@@ -106,7 +106,7 @@ macro index I "<modify-labels-then-hide>-inbox -unread\<enter><sync-mailbox>"   
 macro index + "<modify-labels>+*\<enter><sync-mailbox>"               # tag as starred
 macro index - "<modify-labels>-*\<enter><sync-mailbox>"               # tag as unstarred
 
-macro index S "<enter-command>unset wait_key<enter><shell-escape>mutt-notmuch-py ~/Mail/temporary/search<enter><change-folder-readonly>+temporary/search<enter>" "search mail (using notmuch)"
+macro index S "<enter-command>unset wait_key<enter><shell-escape>mutt-notmuch-py ~/.mail/temporary/search<enter><change-folder-readonly>+temporary/search<enter>" "search mail (using notmuch)"
 
 macro index,pager ',v' '<change-vfolder>?<search>' 'open a different folder and search'
 macro index,pager ',f' '<change-folder>?<search>' 'open a different folder and search'
