@@ -12,6 +12,7 @@ __pycache__/
 **/logs/*
 weechat/script/plugins.xml.gz
 config/asciinema/
+config/fish/fishd.*
 config/configstore/
 config/gcloud/
 config/hub
