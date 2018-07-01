@@ -16,6 +16,7 @@ config/configstore/
 config/gcloud/
 config/hub
 config/ranger/
+config/yarn/
 dump.rdb
 mutt/temp/
 vim/spell/
