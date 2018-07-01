@@ -32,7 +32,4 @@ mailboxes \
           +Personal/Starred \
           +Personal/Trash
 
-set header_cache = ~/.mutt/personal/cache/headers
-set message_cachedir = ~/.mutt/personal/cache/bodies
-
 set sendmail="msmtp"
