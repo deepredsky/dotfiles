@@ -14,6 +14,7 @@ Plug 'godlygeek/tabular'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-abolish'
 
 " Vim Ruby
 Plug 'vim-ruby/vim-ruby'
@@ -80,6 +81,9 @@ Plug 'epilande/vim-es2015-snippets'
 " React code snippets
 Plug 'epilande/vim-react-snippets'
 
+" React html snippets
+Plug 'cristianoliveira/vim-react-html-snippets'
+
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
@@ -104,6 +108,7 @@ Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'
 
 Plug 'FooSoft/vim-argwrap'
+Plug 'tyrannicaltoucan/vim-quantum'
 
 call plug#end()
 filetype plugin indent on    " required
