@@ -51,6 +51,8 @@ set sidebar_divider_char   = '│'
 set sidebar_visible = yes
 set sidebar_width   = 25
 set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+# set sidebar_format = "%B %> %S "
+
 set sidebar_short_path
 set sidebar_delim_chars="/"
 set sidebar_folder_indent
@@ -61,16 +63,9 @@ color sidebar_new color221 color233
 color sidebar_highlight brightcolor39 color233
 color sidebar_indicator brightcolor7 color233
 
-# bind index,pager <down>   sidebar-next
-# bind index,pager <up>     sidebar-prev
-# bind index,pager <space>  sidebar-open
-
-bind index,pager \CP sidebar-prev
-# Ctrl-Shift-P – Previous Mailbox
-bind index,pager \CN sidebar-next
-# Ctrl-Shift-N – Next Mailbox
-bind index,pager ,o sidebar-open
-# Ctrl-Shift-O – Open Highlighted Mailbox
+bind index,pager \CP sidebar-prev             # Ctrl-Shift-P – Previous Mailbox
+bind index,pager \CN sidebar-next             # Ctrl-Shift-N – Next Mailbox
+bind index,pager ,o sidebar-open              # Ctrl-Shift-O – Open Highlighted Mailbox
 
 macro index ,b '<enter-command>toggle sidebar_visible<enter><refresh>'
 macro pager ,b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
@@ -87,8 +82,6 @@ macro index S "<enter-command>unset wait_key<enter><shell-escape>mutt-notmuch-py
 macro index,pager ',v' '<change-vfolder>?<search>' 'open a different folder and search'
 macro index,pager ',f' '<change-folder>?<search>' 'open a different folder and search'
 
-# set mail_check_stats
-# set sidebar_format = "%B %> %S "
 
 # }}}
 # Status Bar {{{
@@ -194,14 +187,6 @@ macro index O "<shell-escape>mailsysc<enter>"           "run mbsync wrapper to s
 # Saner copy/move dialogs
 macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
 macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
-
-# # Quickly change mailboxes
-# macro index c "<change-folder>?<toggle-mailboxes>"     "change folder"
-# macro index \' "<change-folder>+sjl/INBOX<enter>"   "go to INBOX"
-# macro index \" "<change-folder>+sjl/archive<enter>" "go to archive"
-
-# Search with notmuch
-#macro index S "<enter-command>unset wait_key<enter><shell-escape>mutt-notmuch-py -G ~/.mail/search<enter><change-folder-readonly>~/.mail/search<enter>" "search mail (using notmuch)"
 
 # Unlimit (show [a]ll)
 macro index a "<limit>all\n" "show all messages (undo limit)"
