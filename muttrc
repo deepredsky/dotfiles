@@ -158,7 +158,6 @@ set folder = ~/.mail/
 set from = "rajesh@surf.net.np"
 set realname = "Rajesh Sharma"
 
-set nm_default_uri="notmuch:///Users/rajesh/.mail"
 set virtual_spoolfile=yes
 
 virtual-mailboxes \
@@ -170,7 +169,6 @@ virtual-mailboxes \
         "Inbox"       "notmuch://?query=tag:inbox and NOT tag:archive"\
         "Archive"     "notmuch://?query=tag:archive"\
         "Starred"     "notmuch://?query=tag:*"\
-        "Sent"        "notmuch://?query=tag:sent"
 
 mailboxes \
           +Work \
@@ -262,6 +260,6 @@ macro index,pager V "|vim -c 'setlocal ft=mail' -c 'setlocal buftype=nofile' -<e
 # }}}
 
 
-source ~/.muttrc_local  # local overrides
+source ~/.muttrc_local  # local configuration
 
 #  vim: expandtab softtabstop=2 shiftwidth=2 foldmethod=marker
