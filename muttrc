@@ -214,7 +214,7 @@ macro index s "<pipe-message>cat > ~/Desktop/"  "save message as"
 macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
 
 # Sync email
-macro index O "<shell-escape>mailsysc<enter>"           "run mbsync wrapper to sync all mail"
+macro index O "<shell-escape>mailsync<enter>"           "run mbsync wrapper to sync all mail"
 
 # Saner copy/move dialogs
 macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
