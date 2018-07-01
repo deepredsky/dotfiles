@@ -187,11 +187,7 @@ hdr_order from: to: cc: date: subject:  # and in this order
 set sendmail_wait = 0 # no please don't silently fail, email is important
 unset record
 
-# source ~/Dropbox/Settings/mail-accounts/accounts
-# source ~/.mutt/work
 source ~/.mutt/personal
-macro index <F9> '<sync-mailbox><enter-command>source ~/.mutt/work<enter><change-folder>!<enter>'
-macro index <F10> '<sync-mailbox><enter-command>source ~/.mutt/personal<enter><change-folder>!<enter>'
 
 # }}}
 # Key Bindings {{{
