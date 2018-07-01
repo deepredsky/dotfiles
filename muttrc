@@ -185,7 +185,7 @@ hdr_order from: to: cc: date: subject:  # and in this order
 # Accounts {{{
 
 set sendmail_wait = 0 # no please don't silently fail, email is important
-unset record
+unset record # sent mails saved using fcc-hook per account
 
 source ~/.mutt/personal
 
