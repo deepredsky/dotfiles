@@ -1,5 +1,7 @@
 filetype off                  " required
 
+let g:vimwiki_map_prefix = ',v'
+
 " Plugins {{{
 call plug#begin('~/.vim/plugged')
 
@@ -106,6 +108,10 @@ Plug 'junegunn/goyo.vim'
 " Vim notes
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'
+
+Plug 'vimwiki/vimwiki'
+let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md'}]
+
 
 Plug 'FooSoft/vim-argwrap'
 Plug 'tyrannicaltoucan/vim-quantum'
