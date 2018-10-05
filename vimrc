@@ -105,10 +105,6 @@ Plug 'lifepillar/vim-solarized8'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/goyo.vim'
 
-" Vim notes
-Plug 'xolox/vim-notes'
-Plug 'xolox/vim-misc'
-
 Plug 'vimwiki/vimwiki'
 let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md'}]
 
