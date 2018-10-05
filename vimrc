@@ -300,6 +300,7 @@ inoremap <C-@> <Esc>`^
 
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+vnoremap K "ay:Ag "<C-r>a"<CR>
 
 " Create the directory containing the file in the buffer
 nmap <silent> <leader>md :!mkdir -p %:p:h<CR>
