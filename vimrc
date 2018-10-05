@@ -384,6 +384,7 @@ inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><Space> pumvisible() ? "\<C-y>\<Space>" : "\<Space>"
 
 let g:lightline = {
+      \ 'colorscheme': 'solarized',
       \   'active': {
       \     'left': [ [ 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
       \     'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'filetype' ] ]
