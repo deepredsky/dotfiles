@@ -131,6 +131,18 @@ function fdb -d "Fuzzy-find and force delete a branch"
   git branch | grep -v '*' | string trim | fzf -m | xargs echo | sed -E 's/^[[:space:]]*//g' | xargs git branch -D
 end
 
+function t -d "Edit todos"
+  vim -u ~/.vimrc_minimal ~/notes/Todos.md -c ':Goyo'
+end
+
+function n -d "Edit note"
+  vim -u ~/.vimrc_minimal ~/notes/scratch.md -c ':Goyo'
+end
+
+function j -d "Edit today's journal"
+  vim -u ~/.vimrc_minimal ~/notes/diary/(date "+%Y-%m-%d").md -c ':Goyo'
+end
+
 if test -f $HOME/.local.fish
     source $HOME/.local.fish
 end
