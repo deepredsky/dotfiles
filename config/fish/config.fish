@@ -1,4 +1,4 @@
-set -gx EDITOR vim
+set -gx EDITOR "vim -u ~/.vimrc_minimal"
 set -gx FORWARDS true
 set -gx JAVA_HOME (/usr/libexec/java_home)
 set -gx GOPATH ~/dev/go

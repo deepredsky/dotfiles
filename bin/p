@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if ! [ -x "$(command -v $EDITOR)" ]; then
+if [ -z "$EDITOR" ]; then
 echo 'Error: $EDITOR is not set.' >&2
 exit 1
 fi
