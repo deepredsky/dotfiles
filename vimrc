@@ -143,6 +143,7 @@ let g:lightline = {
 
 
 Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 
 Plug 'vimwiki/vimwiki'
 let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md'}]
@@ -385,17 +386,20 @@ endif
 function! s:goyo_enter()
   silent !tmux set status off
   GitGutterDisable
+  Limelight
   set scrolloff=10
 endfunction
 
 function! s:goyo_leave()
   silent !tmux set status on
   GitGutterEnable
+  Limelight
   set scrolloff=3
 endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
 
 let g:committia_hooks = {}
 function! g:committia_hooks.edit_open(info)

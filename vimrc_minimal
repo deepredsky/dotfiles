@@ -21,6 +21,7 @@ Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'lifepillar/vim-solarized8'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 Plug 'vimwiki/vimwiki'
 let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md'}]
 
@@ -220,11 +221,13 @@ endif
 
 function! s:goyo_enter()
   silent !tmux set status off
+  Limelight
   set scrolloff=10
 endfunction
 
 function! s:goyo_leave()
   silent !tmux set status on
+  Limelight
   set scrolloff=3
 endfunction
 
