@@ -8,6 +8,11 @@ call plug#begin('~/.vim/plugged')
 " Snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+" Trigger configuration.
+let g:UltiSnipsUsePythonVersion = 3
+let g:UltiSnipsExpandTrigger="<c-e>"
+let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
+
 
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
@@ -40,6 +45,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
+let g:gist_post_private = 1 " make private gist by default
 
 " Autocompletion helpers
 "
@@ -51,7 +57,31 @@ else
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
+let g:deoplete#enable_at_startup = 1
+
+if !has('nvim')
+  let g:deoplete#enable_yarp = 1
+endif
+
+let g:deoplete#max_list = 10
+
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
+
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" Close popup by <Space>.
+inoremap <expr><Space> pumvisible() ? "\<C-y>\<Space>" : "\<Space>"
+
+
 Plug 'mileszs/ack.vim'
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+command! -bang -nargs=* -complete=file Ag           call ack#Ack('grep<bang>', <q-args>)
+command! -bang -nargs=* -complete=file AgFromSearch call ack#AckFromSearch('grep<bang>', <q-args>)
 
 Plug 'rhysd/committia.vim'
 
@@ -103,6 +133,15 @@ Plug 'alx741/vim-stylishask', { 'for': 'haskell' }
 Plug 'flazz/vim-colorschemes'
 Plug 'lifepillar/vim-solarized8'
 Plug 'itchyny/lightline.vim'
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \   'active': {
+      \     'left': [ [ 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
+      \     'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'filetype' ] ]
+      \   },
+      \ }
+
+
 Plug 'junegunn/goyo.vim'
 
 Plug 'vimwiki/vimwiki'
@@ -209,16 +248,12 @@ set smartcase   " ... unless they contain at least one capital letter
 " Don't make backups at all
 set nobackup
 set nowritebackup
-set backupdir=~/.vim-tmp/backup//
 set undodir=~/.vim-tmp/undo//
 set directory=~/.vim-tmp/swap//
 
 " Make those folders automatically if they don't already exist.
 if !isdirectory(expand(&undodir))
     call mkdir(expand(&undodir), "p")
-endif
-if !isdirectory(expand(&backupdir))
-    call mkdir(expand(&backupdir), "p")
 endif
 if !isdirectory(expand(&directory))
     call mkdir(expand(&directory), "p")
@@ -332,9 +367,6 @@ function! PromoteToLet()
 endfunction
 :command! PromoteToLet :call PromoteToLet()
 
-" make private gist by default
-let g:gist_post_private = 1
-
 if executable('ag')
   " Use ag over grep
   set grepprg=ag\ --nogroup\ --nocolor
@@ -364,45 +396,6 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
-
-let g:deoplete#enable_at_startup = 1
-
-if !has('nvim')
-  let g:deoplete#enable_yarp = 1
-endif
-
-let g:deoplete#max_list = 10
-
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
-
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" Close popup by <Space>.
-inoremap <expr><Space> pumvisible() ? "\<C-y>\<Space>" : "\<Space>"
-
-let g:lightline = {
-      \ 'colorscheme': 'solarized',
-      \   'active': {
-      \     'left': [ [ 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
-      \     'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'filetype' ] ]
-      \   },
-      \ }
-
-let g:notes_directories = ['~/dev/notes']
-
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
-
-command! -bang -nargs=* -complete=file Ag           call ack#Ack('grep<bang>', <q-args>)
-command! -bang -nargs=* -complete=file AgFromSearch call ack#AckFromSearch('grep<bang>', <q-args>)
-
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsUsePythonVersion = 3
-let g:UltiSnipsExpandTrigger="<c-e>"
-let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 
 let g:committia_hooks = {}
 function! g:committia_hooks.edit_open(info)
