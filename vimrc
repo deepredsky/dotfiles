@@ -112,6 +112,9 @@ let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md'}]
 Plug 'FooSoft/vim-argwrap'
 Plug 'tyrannicaltoucan/vim-quantum'
 
+Plug 'ElmCast/elm-vim'
+let g:elm_setup_keybindings = 0
+
 call plug#end()
 filetype plugin indent on    " required
 " }}}
