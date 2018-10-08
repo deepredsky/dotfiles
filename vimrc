@@ -393,7 +393,7 @@ endfunction
 function! s:goyo_leave()
   silent !tmux set status on
   GitGutterEnable
-  Limelight
+  Limelight!
   set scrolloff=3
 endfunction
 

@@ -227,7 +227,7 @@ endfunction
 
 function! s:goyo_leave()
   silent !tmux set status on
-  Limelight
+  Limelight!
   set scrolloff=3
 endfunction
 
