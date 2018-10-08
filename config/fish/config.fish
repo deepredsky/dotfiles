@@ -143,6 +143,10 @@ function j -d "Edit today's journal"
   vim -u ~/.vimrc_minimal ~/notes/diary/(date "+%Y-%m-%d").md -c ':Goyo'
 end
 
+function ns -d "Fuzzy-find a note"
+  vim -u ~/.vimrc_minimal (fd '.md' ~/notes | string trim | fzf) -c ':lcd ~/notes' -c ':Goyo'
+end
+
 if test -f $HOME/.local.fish
     source $HOME/.local.fish
 end
