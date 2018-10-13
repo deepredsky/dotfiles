@@ -76,9 +76,16 @@ inoremap <expr><Space> pumvisible() ? "\<C-y>\<Space>" : "\<Space>"
 
 
 Plug 'mileszs/ack.vim'
-if executable('ag')
+
+"{{{ Config 'mileszs/ack.vim'
+if executable('rg')
+  set grepprg=rg\ --vimgrep
+  let g:ackprg = 'rg --vimgrep'
+elseif executable('ag')
+  set grepprg=ag\ --vimgrep
   let g:ackprg = 'ag --vimgrep'
 endif
+"}}}
 
 command! -bang -nargs=* -complete=file Ag           call ack#Ack('grep<bang>', <q-args>)
 command! -bang -nargs=* -complete=file AgFromSearch call ack#AckFromSearch('grep<bang>', <q-args>)
@@ -367,11 +374,6 @@ function! PromoteToLet()
   :normal ==
 endfunction
 :command! PromoteToLet :call PromoteToLet()
-
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
-endif
 
 " Local vim settings
 if filereadable(glob('~/.local.vim'))
