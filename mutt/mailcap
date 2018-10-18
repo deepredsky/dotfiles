@@ -31,6 +31,9 @@ application/pdf; ~/.mutt/view_attachment.sh %s pdf
 text/html; ~/.mutt/view_attachment.sh %s html
 text/html; w3m -I %{charset} -T text/html; copiousoutput;
 
+# Plain text
+text/plain; view %s
+
 # Unidentified.
 application/octet-stream; ~/.mutt/view_attachment.sh %s "-" 
 
