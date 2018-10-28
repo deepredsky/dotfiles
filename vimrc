@@ -408,6 +408,13 @@ function! g:committia_hooks.edit_open(info)
     setlocal spell
 endfunction
 
+
+" Shortcut for expanding to the directory of the currently displayed file
+cnoremap %% <C-R>=expand('%:h').'/'<CR>
+
+" Shortcut for expanding to full filename of the currently displayed file
+cnoremap $$ <C-R>=expand('%')<CR>
+
 "}}}
 
 " vim: expandtab softtabstop=2 shiftwidth=2 foldmethod=marker
