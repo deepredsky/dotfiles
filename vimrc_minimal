@@ -203,7 +203,7 @@ nmap <silent> <leader>md :!mkdir -p %:p:h<CR>
 
 nmap <leader>ew :e <C-R>=expand('%:h').'/'<cr>
 
-nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <leader>f :Files<CR>
 nnoremap <leader>b :Buffers<cr>
 
 " }}}

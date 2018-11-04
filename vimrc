@@ -162,6 +162,8 @@ Plug 'tyrannicaltoucan/vim-quantum'
 Plug 'ElmCast/elm-vim'
 let g:elm_setup_keybindings = 0
 
+Plug 'romainl/vim-qf'
+
 call plug#end()
 filetype plugin indent on    " required
 " }}}
@@ -340,6 +342,12 @@ onoremap <C-@> <Esc>
 cnoremap <C-@> <C-c>
 inoremap <C-@> <Esc>`^
 
+" Space mappings
+
+nmap <Space><Space> <Plug>(qf_qf_toggle)
+nmap <C-n> <Plug>(qf_qf_next)
+nmap <C-p> <Plug>(qf_qf_previous)
+
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 vnoremap K "ay:Ag "<C-r>a"<CR>
@@ -355,7 +363,7 @@ map <leader>r :w<cr>:RuboCop<cr>
 nmap <silent> <leader>t :w<CR>:TestNearest<CR>
 nmap <silent> <leader>T :w<CR>:TestFile<CR>
 
-nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <leader>f :Files<CR>
 nnoremap <leader>. :BTags<cr>
 nnoremap <leader>b :Buffers<cr>
 
