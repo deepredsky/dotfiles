@@ -319,6 +319,21 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
+" Function keys
+
+nnoremap <silent> <F5> :call StripTrailingWhitespace()<cr>
+
+function! StripTrailingWhitespace()
+  let _save_pos=getpos(".")
+  let _s=@/
+  silent! %s/\s\+$//
+  let @/=_s
+  nohl
+  unlet _s
+  call setpos('.', _save_pos)
+  unlet _save_pos
+endfunction
+
 vnoremap <Leader>c "+y
 nnoremap <leader>p :r!pbpaste<cr>
 
