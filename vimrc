@@ -196,7 +196,7 @@ augroup vimrcEx
   autocmd! FileType *.slim set sw=2 sts=2 et
 augroup END
 
-color solarized8_dark_flat
+color solarized8_flat
 
 set background=dark
 
