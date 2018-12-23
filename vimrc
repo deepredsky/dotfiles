@@ -355,12 +355,6 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
-
-let g:committia_hooks = {}
-function! g:committia_hooks.edit_open(info)
-    setlocal spell
-endfunction
-
 "}}}
 
 " vim: expandtab softtabstop=2 shiftwidth=2 foldmethod=marker

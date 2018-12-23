@@ -210,11 +210,6 @@ let g:lightline = {
       \   },
       \ }
 
-let g:committia_hooks = {}
-function! g:committia_hooks.edit_open(info)
-    setlocal spell
-endfunction
-
 "}}}
 
 color solarized8_flat
