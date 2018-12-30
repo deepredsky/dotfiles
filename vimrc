@@ -48,32 +48,17 @@ Plug 'mattn/webapi-vim'
 let g:gist_post_private = 1 " make private gist by default
 
 " Autocompletion helpers
-"
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
 
-let g:deoplete#enable_at_startup = 0
+Plug 'lifepillar/vim-mucomplete'
 
-if !has('nvim')
-  let g:deoplete#enable_yarp = 1
-endif
+  "{{{ Config 'lifepillar/vim-mucomplete'
+  set completeopt+=menuone,noselect
+  let g:mucomplete#enable_auto_at_startup = 1
 
-let g:deoplete#max_list = 10
+  " Prevent µcomplete from mapping <c-h>
+  imap <plug>Unused <plug>(MUcompleteCycBwd)
 
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
-
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" Close popup by <Space>.
-inoremap <expr><Space> pumvisible() ? "\<C-y>\<Space>" : "\<Space>"
-
+  "}}}
 
 Plug 'mileszs/ack.vim'
 
