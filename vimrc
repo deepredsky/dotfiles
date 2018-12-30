@@ -214,7 +214,6 @@ set termguicolors
 " enable 24 bit color support
 set t_8f=[38;2;%lu;%lu;%lum
 set t_8b=[48;2;%lu;%lu;%lum
-set t_Co=256
 
 if !has('nvim')
   set viminfo='10,\"100,:20,%,n~/.viminfo
