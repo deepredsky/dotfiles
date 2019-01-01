@@ -1,5 +1,3 @@
-filetype off                  " required
-
 let g:vimwiki_map_prefix = ',v'
 
 " Plugins {{{
@@ -150,7 +148,6 @@ let g:elm_setup_keybindings = 0
 Plug 'romainl/vim-qf'
 
 call plug#end()
-filetype plugin indent on    " required
 " }}}
 
 " Basic Setup {{{

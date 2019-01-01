@@ -1,5 +1,3 @@
-filetype off                  " required
-
 let g:vimwiki_map_prefix = ',v'
 
 " Plugins {{{
@@ -26,7 +24,6 @@ Plug 'vimwiki/vimwiki'
 let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md'}]
 
 call plug#end()
-filetype plugin indent on    " required
 " }}}
 
 " Basic Setup {{{
