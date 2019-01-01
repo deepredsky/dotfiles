@@ -187,9 +187,6 @@ set relativenumber    " Show line numbers
 set number            " Show line numbers
 set ruler             " Show line and column number
 set colorcolumn=80
-syntax enable         " Turn on syntax highlighting allowing local overrides
-syntax on             " Enable syntax highlighting
-filetype on           " Enable filetype detection
 
 set termguicolors
 
