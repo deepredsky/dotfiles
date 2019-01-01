@@ -15,7 +15,6 @@ Plug 'mattn/webapi-vim'
 Plug 'rhysd/committia.vim'
 Plug 'junegunn/vim-slash'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'lifepillar/vim-solarized8'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/goyo.vim'
