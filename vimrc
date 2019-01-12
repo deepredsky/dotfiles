@@ -134,6 +134,7 @@ let g:lightline = {
 
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'nightsense/snow'
 
 Plug 'vimwiki/vimwiki'
 let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md'}]
