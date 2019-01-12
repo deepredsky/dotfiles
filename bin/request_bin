@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+ruby -rrack -rpp -e 'p Rack::Server.start(app: -> e {[200,{}, [e.pretty_inspect]]}, Port: 9292)'
