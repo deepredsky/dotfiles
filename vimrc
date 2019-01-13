@@ -148,6 +148,8 @@ let g:elm_setup_keybindings = 0
 
 Plug 'romainl/vim-qf'
 
+Plug 'deepredsky/vim-pivotal'
+
 call plug#end()
 " }}}
 
