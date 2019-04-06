@@ -11,6 +11,7 @@ alias c="bundle exec rails c"
 alias gd="git diff"
 alias l="ls -l"
 alias tmux="env TERM=xterm-256color tmux"
+alias k="kubectl"
 
 set normal (set_color normal)
 set magenta (set_color magenta)
