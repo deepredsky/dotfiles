@@ -4,8 +4,22 @@ MBSYNC=$(pgrep mbsync)
 NOTMUCH=$(pgrep notmuch)
 
 if [ -n "$MBSYNC" -o -n "$NOTMUCH" ]; then
-   echo "Already running one instance of mail-sync. Exiting..."
-         exit 0
+   curtime=$(date +%s)
+   time=$(date -j -f '%c' "$(ps -o lstart= -p $MBSYNC)" "+%s")
+   SECONDS=$(expr $curtime - $time)
+   KILL_TIME=600
+
+   echo "Already running one instance of mail-sync"
+
+   if [ $SECONDS -gt $KILL_TIME ]; then
+     echo "MBSYNC seems to be stuck. Time to KILL it"
+
+     kill -9 $MBSYNC
+
+     exit 0
+   fi
+
+  exit 0
 fi
 
 echo "Running mbsync"
