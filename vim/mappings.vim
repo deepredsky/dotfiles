@@ -52,3 +52,6 @@ cnoremap %% <C-R>=expand('%:h').'/'<CR>
 " Shortcut for expanding to full filename of the currently displayed file
 cnoremap $$ <C-R>=expand('%')<CR>
 
+nmap <Space> <Plug>VimwikiToggleListItem
+vmap <Space> <Plug>VimwikiToggleListItem
+
