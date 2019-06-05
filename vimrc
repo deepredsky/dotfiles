@@ -339,4 +339,22 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 "}}}
 
+function! QuickCommands(...)
+  let cmds = [
+        \ 'RuboCopFix',
+        \ 'PromoteToLet',
+        \ 'GitGutterUndoHunk',
+        \ 'Prettier',
+        \ ]
+
+  return fzf#run({
+  \ 'source':  cmds,
+  \ 'sink':  '',
+  \ 'options': '+m --prompt="QuickCommands> "'
+  \})
+endfunction
+command! -nargs=0 QuickCommands call QuickCommands()
+
+map <leader>n :QuickCommands<cr>
+
 " vim: expandtab softtabstop=2 shiftwidth=2 foldmethod=marker
