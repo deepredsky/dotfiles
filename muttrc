@@ -213,6 +213,10 @@ macro index s "<pipe-message>cat > ~/Desktop/"  "save message as"
 # Mark all as read
 macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
 
+macro index \Ca \
+  "T~A<enter><tag-prefix><clear-flag>N<tag-prefix><modify-labels-then-hide>-inbox -unread +archive\<enter><untag-pattern>.<enter><sync-mailbox>" \
+  "Archive tagged messages"
+
 # Sync email
 macro index O "<shell-escape>mailsync<enter>"           "run mbsync wrapper to sync all mail"
 
