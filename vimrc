@@ -208,6 +208,7 @@ if !has('nvim')
 endif
 
 set encoding=utf-8    " Set default encoding to UTF-8
+scriptencoding utf-8
 
 set tags=./tags,tags,.git/tags
 
@@ -223,7 +224,6 @@ set list                          " Show invisible characters
 set listchars=tab:▸\ ,extends:❯,precedes:❮,trail:☠" ,eol:¬
 set backspace=indent,eol,start    " backspace through everything in insert mode
 
-set encoding=utf-8 " universal text encoding, compatible with ascii
 set showbreak=↪
 set fillchars=diff:⣿,vert:│
 set showcmd
