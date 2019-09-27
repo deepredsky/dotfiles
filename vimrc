@@ -45,6 +45,10 @@ Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
 let g:gist_post_private = 1 " make private gist by default
 
+Plug 'tpope/vim-dispatch'
+Plug 'rhysd/git-messenger.vim'
+Plug 'jgdavey/tslime.vim'
+
 " Autocompletion helpers
 
 Plug 'lifepillar/vim-mucomplete'
@@ -52,6 +56,7 @@ Plug 'lifepillar/vim-mucomplete'
   "{{{ Config 'lifepillar/vim-mucomplete'
   set completeopt+=menuone,noselect
   let g:mucomplete#enable_auto_at_startup = 1
+  let g:mucomplete#chains = { 'default': [ 'c-p' ] }
 
   " Prevent µcomplete from mapping <c-h>
   imap <plug>Unused <plug>(MUcompleteCycBwd)
@@ -356,5 +361,6 @@ endfunction
 command! -nargs=0 QuickCommands call QuickCommands()
 
 map <leader>n :QuickCommands<cr>
+nmap <Leader>g <Plug>(git-messenger)
 
 " vim: expandtab softtabstop=2 shiftwidth=2 foldmethod=marker
