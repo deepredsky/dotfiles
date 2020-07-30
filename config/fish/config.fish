@@ -111,7 +111,7 @@ function fco -d "Fuzzy-find and checkout a branch"
 end
 
 function fdb -d "Fuzzy-find and force delete a branch"
-  git branch | grep -v '*' | string trim | fzf -m | xargs echo | sed -E 's/^[[:space:]]*//g' | xargs git branch -D
+  git branch | grep -v '*' | string trim | fzf -m --reverse | xargs echo | sed -E 's/^[[:space:]]*//g' | xargs git branch -D
 end
 
 function t -d "Edit todos"
