@@ -30,5 +30,7 @@ echo "mbsync finished"
 echo "Running notmuch"
 
 notmuch new
+notmuch tag -inbox -unread -- from:'*@dtdg.co'
+notmuch tag -inbox -unread -- from:'*@github.com'
 
 echo "Done"
