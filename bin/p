@@ -11,5 +11,5 @@ exit 1
 fi
 
 TMP=$(mktemp -t vimclip)
-$EDITOR $TMP
+vim -u ~/.vimrc_minimal $TMP -c ':Goyo'
 pbcopy < $TMP
