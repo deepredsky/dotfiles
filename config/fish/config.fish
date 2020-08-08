@@ -98,9 +98,6 @@ set PATH $HOME/.bin $PATH
 set PATH $HOME/.local/bin $PATH
 set PATH /usr/local/sbin $PATH
 
-rbenv rehash >/dev/null ^&1
-status --is-interactive; and source (rbenv init -|psub)
-
 function nvm
   bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
 end
