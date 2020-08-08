@@ -1,6 +1,5 @@
 set -gx EDITOR vim -u ~/.vimrc_minimal
 set -gx FORWARDS true
-set -gx JAVA_HOME (/usr/libexec/java_home)
 set -gx GOPATH ~/dev/go
 set -gx FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git -g ""'
 
