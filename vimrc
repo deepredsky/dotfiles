@@ -187,9 +187,6 @@ augroup vimrcEx
   autocmd! FileType *.slim set sw=2 sts=2 et
 augroup END
 
-color solarized8_flat
-
-set background=dark
 
 set nocompatible      " Use vim, no vi defaults
 set relativenumber    " Show line numbers
@@ -362,5 +359,8 @@ command! -nargs=0 QuickCommands call QuickCommands()
 
 map <leader>n :QuickCommands<cr>
 nmap <Leader>g <Plug>(git-messenger)
+
+set background=dark
+color solarized8_flat
 
 " vim: expandtab softtabstop=2 shiftwidth=2 foldmethod=marker
