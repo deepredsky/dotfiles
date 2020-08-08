@@ -312,16 +312,6 @@ nmap <C-p> <Plug>(qf_qf_previous)
 
 " Others {{{
 
-" Local vim settings
-if filereadable(glob('~/.local.vim'))
-  source ~/.local.vim
-endif
-
-" Project vimrc support
-if filereadable('.local.vim')
-  source .local.vim
-endif
-
 function! s:goyo_enter()
   silent !tmux set status off
   GitGutterDisable
@@ -362,5 +352,16 @@ nmap <Leader>g <Plug>(git-messenger)
 
 set background=dark
 color solarized8_flat
+
+" Local vim settings
+if filereadable(glob('~/.local.vim'))
+  source ~/.local.vim
+endif
+
+" Project vimrc support
+if filereadable('.local.vim')
+  source .local.vim
+endif
+
 
 " vim: expandtab softtabstop=2 shiftwidth=2 foldmethod=marker
