@@ -29,7 +29,7 @@ set __fish_git_prompt_color_upstream_ahead green
 set __fish_git_prompt_color_upstream_behind red
 
 # Status Chars
-set __fish_git_prompt_char_dirtystate '⚡'
+set __fish_git_prompt_char_dirtystate '⌾'
 set __fish_git_prompt_char_cleanstate '✔'
 set __fish_git_prompt_char_stagedstate '→'
 set __fish_git_prompt_char_untrackedfiles '…'
