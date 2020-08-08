@@ -1,0 +1,110 @@
+#!/usr/bin/env bash
+# Archives notmuch email by year and month
+#
+# © 2015 Nicolás Reynolds <fauno@parabola.nu>
+#
+# Copying and distribution of this file, with or without modification,
+# are permitted in any medium without royalty provided the copyright
+# notice and this notice are preserved.  This file is offered as-is,
+# without any warranty.
+set -e
+
+last_december() {
+  local year=$(gdate +%Y)
+  let year-- || true
+
+  echo "${year}-12"
+}
+
+DRYRUN=${DRYRUN:-false}
+# TODO accept start month
+from="${1:-2010-01}"
+to="${2:-$(last_december)}"
+
+get_unix_timestamp() {
+  gdate --date="$(printf "%d-%0.2d-01" "${1}" "${2}") $3" +%s
+}
+
+# search read email in inbox on the given range
+_notmuch() {
+  local from=${1}; shift
+  local to=${1}; shift
+  local extra=$@
+  notmuch ${extra} \
+    tag:archive \
+    to:rajesh@surf.net.np \
+    and not tag:unread \
+    and ${from}..${to}
+}
+
+move_files() {
+  xargs -I% mv "%" "${cur_dir}"
+}
+
+remove_files() {
+  xargs rm -f
+}
+
+prepend_tab () {
+  xargs printf "%s\t"
+}
+
+echo "Archiving..."
+echo "From: ${from}"
+echo "To: ${to}"
+echo "***"
+echo -e "period\tarchive\tdelete\tkill"
+for year in $(seq ${from%-*} ${to%-*}); do
+  for month in {1..12}; do
+    padded_month="$(printf "%0.2d" "${month}")"
+    cur_dir="${HOME}/.mail/Personal/Archive/${year}/${padded_month}/cur"
+    tag="${year}-${padded_month}"
+
+    echo $cur_dir
+
+    # run up to this year-month
+    test "${to}" == "${tag}" && break
+
+    ${DRYRUN} || mkdir -p "${cur_dir}"
+
+    # Get the start of the month
+    unix_from="$(get_unix_timestamp "${year}" "${month}")"
+
+    # If current month is december, next month is january of next year
+    if test ${month} -eq 12 ; then
+      month=1
+      let year++ || true
+    else
+      # Increment month to get the next month
+      let month++ || true
+    fi
+
+    # next month minus one second to get the full monthly period
+    unix_to="$(get_unix_timestamp "${year}" "${month}" "- 1 second")"
+
+    echo "${tag}" | prepend_tab
+    _notmuch "${unix_from}" "${unix_to}" count | prepend_tab
+    notmuch count --exclude=false tag:deleted and ${unix_from}..${unix_to} | prepend_tab
+    notmuch count --exclude=false tag:killed and ${unix_from}..${unix_to}
+
+    # skip moving if we're dry running
+    ${DRYRUN} && continue
+
+    # move the files
+    # and tag as archived
+    _notmuch "${unix_from}" "${unix_to}" search --output=files \
+    | move_files \
+    && _notmuch "${unix_from}" "${unix_to}" tag -inbox +archive +${tag}
+
+    notmuch search --output=files --exclude=false tag:deleted \
+      and ${unix_from}..${unix_to} \
+    | remove_files
+
+    notmuch search --output=files --exclude=false tag:killed \
+      and ${unix_from}..${unix_to} \
+    | remove_files
+  done
+done
+
+# finds the moved files
+# ${DRYRUN} || notmuch new
