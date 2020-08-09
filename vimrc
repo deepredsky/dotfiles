@@ -28,7 +28,6 @@ Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-projectionist'
-Plug 'tpope/vim-rake'
 Plug 'deepredsky/vim-rubocop'
 
 " View helpers
