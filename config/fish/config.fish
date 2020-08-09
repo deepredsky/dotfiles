@@ -1,7 +1,7 @@
 set -gx EDITOR vim -u ~/.vimrc_minimal
 set -gx FORWARDS true
 set -gx GOPATH ~/dev/go
-set -gx FZF_DEFAULT_COMMAND 'ag --hidden --ignore .git -g ""'
+set -gx FZF_DEFAULT_COMMAND 'fd --hidden --exclude .git'
 
 alias be="bundle exec"
 alias b="bundle"
