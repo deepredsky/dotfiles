@@ -371,4 +371,7 @@ function! Redir(cmd) abort
 endfunction
 command! -nargs=1 Redir silent call Redir(<f-args>)
 
+
+command! -bar -nargs=* Jump cexpr system('git jump ' . expand(<q-args>))
+
 " vim: expandtab softtabstop=2 shiftwidth=2 foldmethod=marker
