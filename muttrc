@@ -175,19 +175,6 @@ virtual-mailboxes \
         "DataDog"     "notmuch://?query=from:*@dtdg.co and NOT tag:archive"\
         "Archive"     "notmuch://?query=tag:archive"\
 
-named-mailboxes    "Work" +Work/INBOX
-mailboxes          +Work/Archive
-mailboxes          +Work/Sent
-mailboxes          +Work/Drafts
-mailboxes          +Work/Trash
-
-named-mailboxes    "Personal" +Personal/INBOX
-mailboxes          +Personal/Archive
-mailboxes          +Personal/Sent
-mailboxes          +Personal/Drafts
-mailboxes          +Personal/Starred
-mailboxes          +Personal/Trash
-
 set sendmail="msmtp"
 
 # }}}
