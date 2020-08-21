@@ -50,8 +50,9 @@ set sleep_time=0 # don't take for fucking ever to switch folders
 set sidebar_divider_char   = '│'
 set sidebar_visible = yes
 set sidebar_width   = 25
-set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+set sidebar_format = "%D%?F? [%F]?%* %?N?%N/?%S"
 # set sidebar_format = "%B %> %S "
+# set sidebar_format = "%D%* %n"
 
 set sidebar_short_path
 set sidebar_delim_chars="/"
@@ -120,7 +121,7 @@ set display_filter = "clean_mail" # clean up shitty mail
 # }}}
 # Compose View Options {{{
 
-set envelope_from                    # which from?
+set use_envelope_from                # which from?
 set sig_dashes                       # dashes before sig
 set edit_headers                     # show headers when composing
 set fast_reply                       # skip to compose when replying
