@@ -349,7 +349,7 @@ command! -nargs=0 QuickCommands call QuickCommands()
 map <leader>n :QuickCommands<cr>
 nmap <Leader>g <Plug>(git-messenger)
 
-let g:fzf_layout = { 'window': { 'width': 0.5, 'height': 0.5 } }
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5 } }
 
 set background=dark
 color solarized8_flat
