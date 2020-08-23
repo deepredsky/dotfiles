@@ -141,7 +141,14 @@ Plug 'junegunn/limelight.vim'
 Plug 'nightsense/snow'
 
 Plug 'vimwiki/vimwiki'
-let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md'}]
+
+let g:vimwiki_list = [{
+      \  'path': '~/notes/',
+      \  'syntax': 'markdown',
+      \  'ext': '.md',
+      \  'template_path': '',
+      \  'custom_wiki2html': '$HOME/.bin/wiki2html.sh'
+      \ }]
 
 
 Plug 'FooSoft/vim-argwrap'
