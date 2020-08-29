@@ -55,3 +55,8 @@ cnoremap $$ <C-R>=expand('%')<CR>
 nmap <Space> <Plug>VimwikiToggleListItem
 vmap <Space> <Plug>VimwikiToggleListItem
 
+" Space mappings
+nmap <Space><Space> <Plug>(qf_qf_toggle)
+nmap <C-n> <Plug>(qf_qf_next)
+nmap <C-p> <Plug>(qf_qf_previous)
+
