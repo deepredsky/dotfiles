@@ -1,3 +1,3 @@
 setlocal spell
 setlocal textwidth=79
-setlocal formatoptions=tcroqn2a
+setlocal formatoptions=tcroqn2
