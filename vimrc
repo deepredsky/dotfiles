@@ -205,4 +205,9 @@ let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5 } }
 
 command! -bar -nargs=* Jump cexpr system('git jump ' . expand(<q-args>))
 
+if has('timers')
+  " Blink 2 times with 50ms interval
+  noremap <expr> <plug>(slash-after) slash#blink(2, 50)
+endif
+
 " vim: expandtab softtabstop=2 shiftwidth=2 foldmethod=marker
