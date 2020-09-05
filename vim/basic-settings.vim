@@ -136,7 +136,7 @@ set background=dark
 color solarized8_flat
 
 let g:lightline = {
-      \ 'colorscheme': 'solarized',
+      \ 'colorscheme': 'gruvbox',
       \   'active': {
       \     'left': [ [ 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
       \     'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'filetype' ] ]
