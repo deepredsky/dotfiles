@@ -96,15 +96,8 @@ set wildignore+=*.apid
 
 " }}}
 
-if has("statusline") && !&cp
-  set laststatus=2  " always show the status bar
+source ~/.vim/statusline.vim
 
-  set statusline=%f\ %m\ %r
-  set statusline+=Line:%l/%L[%p%%]
-  set statusline+=Col:%v
-  set statusline+=Buf:#%n
-  set statusline+=[%b][0x%B]
-endif
 " }}}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -132,16 +125,9 @@ augroup vimrcEx
   " indent slim two spaces, not four
   autocmd! FileType *.slim set sw=2 sts=2 et
 augroup END
+
 set background=dark
 color solarized8_flat
-
-let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
-      \   'active': {
-      \     'left': [ [ 'paste' ], [ 'readonly', 'absolutepath', 'modified' ] ],
-      \     'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'filetype' ] ]
-      \   },
-      \ }
 
 " Redirect the output of a Vim or external command into a scratch buffer
 function! Redir(cmd) abort

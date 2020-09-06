@@ -125,7 +125,6 @@ Plug 'alx741/vim-stylishask', { 'for': 'haskell' }
 " Improved UI
 Plug 'flazz/vim-colorschemes'
 Plug 'lifepillar/vim-solarized8'
-Plug 'itchyny/lightline.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 
