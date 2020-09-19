@@ -19,6 +19,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-vinegar'
 
 " Vim Ruby
 Plug 'vim-ruby/vim-ruby'

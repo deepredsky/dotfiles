@@ -11,6 +11,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
 Plug 'mattn/gist-vim'
 Plug 'mattn/webapi-vim'
+Plug 'tpope/vim-vinegar'
 let g:gist_post_private = 1 " make private gist by default
 
 Plug 'rhysd/committia.vim'
