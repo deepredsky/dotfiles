@@ -66,7 +66,7 @@ echo $pandoc_template
 #     -M root_path:$ROOT_PATH"
 
 # Searches for markdown links (without extension or .md) and appends a .html
-regex1='s/[^!()[]]*(\[[^]]+\])\(([^.)]+)(\.md)?\)/\1(\2.html)/g'
+regex1='s/[^!()[]]*(\[[^]]+\])\(([^.)]+)(\.md)?\)/ \1(\2.html)/g'
 # [^!\[\])(]*(\[[^\]]+\])\(([^).]+)(\.md)?\)
 # Removes placeholder title from vimwiki markdown file. Not needed if you use a
 # correct YAML header.
