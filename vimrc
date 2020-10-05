@@ -205,8 +205,6 @@ command! -nargs=0 QuickCommands call QuickCommands()
 map <leader>n :QuickCommands<cr>
 nmap <Leader>g <Plug>(git-messenger)
 
-let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.5 } }
-
 command! -bar -nargs=* Jump cexpr system('git jump ' . expand(<q-args>))
 
 if has('timers')
