@@ -13,6 +13,12 @@ application/msexcel; ~/.mutt/view_attachment.sh %s
 application/vnd.ms-exc; ~/.mutt/view_attachment.sh %s
 application/vnd.ms-excel; ~/.mutt/view_attachment.sh %s
 
+# calendar attachments
+text/calendar; ~/.mutt/view_attachment.sh %s "-"
+application/ics; ~/.mutt/view_attachment.sh %s "-"
+text/calendar; mutt-ics; copiousoutput
+application/ics; mutt-ics; copiousoutput 
+
 # MS Word
 # use textedit to open .doc files as it's more light-weight
 application/msword; ~/.mutt/view_attachment.sh %s "-" '/Applications/TextEdit.app'
