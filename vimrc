@@ -128,6 +128,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'lifepillar/vim-solarized8'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'junegunn/gv.vim'
 
 Plug 'vimwiki/vimwiki'
 
