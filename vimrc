@@ -170,6 +170,7 @@ function! s:goyo_enter()
   GitGutterDisable
   Limelight
   set scrolloff=10
+  set nocursorline
 endfunction
 
 function! s:goyo_leave()
@@ -177,6 +178,7 @@ function! s:goyo_leave()
   GitGutterEnable
   Limelight!
   set scrolloff=3
+  set cursorline
 endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
