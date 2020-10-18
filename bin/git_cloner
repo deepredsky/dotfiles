@@ -4,53 +4,65 @@ require 'json'
 require 'http'
 require 'pp'
 
-cmd = ARGV[0]
-username = ARGV[1]
+def repos(username)
+  url = "https://api.github.com/users/#{username}/repos?per_page=300"
 
-def clone
-  url = "https://api.github.com/users/#{username}/repos?per_page=200"
-  repos.each { |repo| %x[git clone #{repo["ssh_url"]} ]}
+  puts url
+  response = HTTP
+             .basic_auth(user: username, pass: ENV['GITHUB_PR_TOKEN'])
+             .get(url)
+
+  unless response.status.ok?
+    puts "Error accessing github api. Status: #{response.status}"
+    exit
+  end
+
+  response.parse
 end
 
-def update
-  repos
-    .select {|repo| repo["fork"] }
-    .each do |repo|
+username = ARGV[0]
+
+if !username || username.empty?
+  puts "Username is required"
+  exit
+end
+
+repos(username)
+  .each do |repo|
     name = repo['name']
     url = repo['url']
-    p repo["fork"]
 
     source = HTTP
-      .basic_auth(user: username, pass: ENV["GITHUB_PR_TOKEN"])
-      .get(url).parse
+             .basic_auth(user: username, pass: ENV['GITHUB_PR_TOKEN'])
+             .get(url).parse
 
-    source_ssh_url = source.dig('source','ssh_url') || source.dig('parent','ssh_url')
+    source_ssh_url = source.dig('ssh_url')
+    parent_ssh_url = source.dig('parent', 'ssh_url')
+
     if source_ssh_url
-      unless system("cd #{name} && git remote | grep upstream")
-        p "Setting upstream to #{source_ssh_url}"
-        system("cd #{name} && git remote add upstream #{source_ssh_url}")
+      puts "processing #{name}"
+      if File.directory?(name)
+        if source["fork"]
+          puts "Setting upstream to #{parent_ssh_url}"
+          if system("cd #{name} && git remote | grep upstream")
+            puts 'upstream already set'
+          else
+            system("cd #{name} && git remote add upstream #{parent_ssh_url}")
+          end
+        end
       else
-        p "upstream already set"
+        puts "cloning repo #{source_ssh_url}"
+        system("git clone #{source_ssh_url}")
+
+        if source["fork"]
+          puts "Setting upstream to #{parent_ssh_url}"
+
+          if parent_ssh_url
+            system("cd #{name} && git remote add upstream #{parent_ssh_url}")
+          end
+        end
       end
     else
-      p "Skipping #{name}: Source & parent has no ssh url"
-      pp source
-      exit
+      puts "Skipping #{name}: Source has no ssh url"
     end
   end
-end
-
-def repos
-  @repos ||= HTTP
-    .basic_auth(user: 'deepredsky', pass: ENV["GITHUB_PR_TOKEN"])
-    .get(url).parse
-end
-
-case cmd
-when "create"
-  create
-when "update"
-  update
-else
-  p "USAGE: repo_cloner [create|update] username"
-end
