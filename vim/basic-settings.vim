@@ -138,6 +138,8 @@ function! Redir(cmd) abort
 endfunction
 command! -nargs=1 Redir silent call Redir(<f-args>)
 
+let g:fzf_layout = { 'down': '40%' }
+
 " Local vim settings
 if filereadable(glob('~/.local.vim'))
   source ~/.local.vim
