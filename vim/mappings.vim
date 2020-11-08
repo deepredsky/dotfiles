@@ -52,8 +52,8 @@ cnoremap %% <C-R>=expand('%:h').'/'<CR>
 " Shortcut for expanding to full filename of the currently displayed file
 cnoremap $$ <C-R>=expand('%')<CR>
 
-nmap <Space> <Plug>VimwikiToggleListItem
-vmap <Space> <Plug>VimwikiToggleListItem
+nmap <Leader><Space> <Plug>VimwikiToggleListItem
+vmap <Leader><Space> <Plug>VimwikiToggleListItem
 
 " Space mappings
 nmap <Space><Space> <Plug>(qf_qf_toggle)
