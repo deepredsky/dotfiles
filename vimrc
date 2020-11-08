@@ -94,6 +94,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'AndrewRadev/switch.vim'
 
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
