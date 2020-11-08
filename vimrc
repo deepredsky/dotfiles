@@ -205,6 +205,8 @@ command! -nargs=0 QuickCommands call QuickCommands()
 map <leader>n :QuickCommands<cr>
 nmap <Leader>g <Plug>(git-messenger)
 
+nmap <leader>v- <Plug>VimwikiRemoveHeaderLevel
+
 command! -bar -nargs=* Jump cexpr system('git jump ' . expand(<q-args>))
 
 if has('timers')
