@@ -175,6 +175,7 @@ virtual-mailboxes \
         "Starred"     "notmuch://?query=tag:*"\
         "Github"     "notmuch://?query=from:*@github.com and NOT tag:archive"\
         "DataDog"     "notmuch://?query=from:*@dtdg.co and NOT tag:archive"\
+        "Deleted"     "notmuch://?query=tag:delete and NOT tag:inbox and NOT tag:unread"\
         "Archive"     "notmuch://?query=tag:archive"\
 
 set sendmail="msmtp"
