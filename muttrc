@@ -64,9 +64,9 @@ color sidebar_new color221 color233
 color sidebar_highlight brightcolor39 color233
 color sidebar_indicator brightcolor7 color233
 
-bind index,pager \CP sidebar-prev             # Ctrl-Shift-P – Previous Mailbox
-bind index,pager \CN sidebar-next             # Ctrl-Shift-N – Next Mailbox
-bind index,pager ,o sidebar-open              # Ctrl-Shift-O – Open Highlighted Mailbox
+bind index,pager ,p sidebar-prev
+bind index,pager ,n sidebar-next
+bind index,pager ,o sidebar-open
 
 macro index ,b '<enter-command>toggle sidebar_visible<enter><refresh>'
 macro pager ,b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
@@ -225,6 +225,8 @@ bind pager \# noop
 bind pager g noop
 bind pager k  previous-line
 bind pager j  next-line
+bind pager \Cn next-entry
+bind pager \Cp previous-entry
 bind pager gg top
 bind pager G  bottom
 
