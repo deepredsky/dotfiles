@@ -54,6 +54,7 @@ cnoremap $$ <C-R>=expand('%')<CR>
 
 nmap <Leader><Space> <Plug>VimwikiToggleListItem
 vmap <Leader><Space> <Plug>VimwikiToggleListItem
+nmap <F23> <Plug>VimwikiRemoveHeaderLevel
 
 " Space mappings
 nmap <Space><Space> <Plug>(qf_qf_toggle)
