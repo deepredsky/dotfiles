@@ -146,6 +146,7 @@ Plug 'romainl/vim-qf'
 Plug 'deepredsky/vim-pivotal'
 Plug 'deepredsky/vim-jira'
 Plug 'dag/vim-fish'
+Plug 'markonm/traces.vim'
 
 call plug#end()
 " }}}
