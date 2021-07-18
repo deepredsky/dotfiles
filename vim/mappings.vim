@@ -61,3 +61,5 @@ nmap <Space><Space> <Plug>(qf_qf_toggle)
 nmap <C-n> <Plug>(qf_qf_next)
 nmap <C-p> <Plug>(qf_qf_previous)
 
+" fix broken newrw gx
+nnoremap <silent> gx :execute 'silent! !open ' . shellescape(expand('<cWORD>'), 1)<cr>
