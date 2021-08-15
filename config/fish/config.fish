@@ -96,6 +96,7 @@ set PATH $HOME/.cargo/bin $PATH
 set PATH $HOME/.rbenv/shims $PATH
 set PATH $HOME/.bin $PATH
 set PATH $HOME/.local/bin $PATH
+set PATH $HOME/.cabal/bin $PATH
 set PATH /usr/local/sbin $PATH
 
 function nvm
@@ -129,3 +130,58 @@ end
 if test -f $HOME/.local.fish
     source $HOME/.local.fish
 end
+
+function cleanup_dead_docker -d "Remove dead docker images"
+  docker ps --filter status=dead --filter status=exited | awk '/weeks ago/ { print $1 }' | xargs docker rm -v
+
+  docker volume ls -qf "dangling=true" | egrep -v "^$_" | xargs docker volume rm
+
+  docker images -qf "dangling=true" | egrep -v "^$_" | xargs docker rmi -f
+end
+
+function apps -d "Fuzzy-find and open apps"
+  kubectl get ing -o jsonpath='{range .items[*]}{.spec.rules[0].host}{"\n"}{end}' | fzf | xargs -I % open "https://%"
+end
+
+function ssh_pods -d "Fuzzy-find ssh pods"
+  kubectl get pods -o name | cut -d'/' -f2 | fzf | xargs -o -I % kubectl exec -it % -c app -- bash
+end
+
+function update-tmux
+  for name in (tmux list-sessions -F '#{session_name}')
+    for wix in (tmux list-windows -t $name -F '#{window_index}')
+      echo $wix
+      for pix in (tmux list-panes -F '$name:#{window_index}.#{pane_index}' -t $wix)
+        set -l is_vim "ps -o state= -o comm= -t '#{pane_tty}'  | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?\$'"
+        tmux if-shell -t "$pix" "$is_vim" "send-keys -t $pix escape ENTER"
+        tmux if-shell -t "$pix" "$is_vim" "send-keys -t $pix ':call UpdateBackground()' ENTER"
+      end
+    end
+  end
+end
+
+function theme-switch -d "Switch tmux theme"
+  if test "$argv[1]" = "Light"
+    echo -e "\033]50;SetProfile=Light\a"
+    touch /tmp/light-theme
+    if tmux info &> /dev/null
+      tmux source-file ~/.tmux/light.conf
+    end
+  else
+    echo -e "\033]50;SetProfile=Default\a"
+    rm -f /tmp/light-theme
+    if tmux info &> /dev/null
+      tmux source-file ~/.tmux/dark.conf
+    end
+ end
+end
+
+function jira -d "Open vim jira"
+  vi +JiraSprint
+end
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+# eval /usr/local/anaconda3/bin/conda "shell.fish" "hook" $argv | source
+# <<< conda initialize <<<
+
