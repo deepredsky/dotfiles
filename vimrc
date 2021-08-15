@@ -142,6 +142,7 @@ Plug 'ElmCast/elm-vim'
 let g:elm_setup_keybindings = 0
 
 Plug 'romainl/vim-qf'
+Plug 'romainl/vim-devdocs'
 
 Plug 'deepredsky/vim-pivotal'
 Plug 'deepredsky/vim-jira'
@@ -215,5 +216,16 @@ if has('timers')
   " Blink 2 times with 50ms interval
   noremap <expr> <plug>(slash-after) slash#blink(2, 50)
 endif
+
+function! UpdateBackground()
+  if filereadable('/tmp/light-theme')
+    set background=light
+  else
+    " colorscheme gruvbox
+    set background=dark
+  endif
+endfunction
+
+call UpdateBackground()
 
 " vim: expandtab softtabstop=2 shiftwidth=2 foldmethod=marker
