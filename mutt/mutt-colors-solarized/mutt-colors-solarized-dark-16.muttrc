@@ -149,3 +149,6 @@ color body          red             default         "([a-z][a-z0-9+-]*://(((([a-
 #folder-hook gmail/inbox        "color status        J_black         yellow          "
 #folder-hook gmail/important    "color status        J_black         yellow          "
 
+color sidebar_new color221 color233
+color sidebar_highlight brightcolor39 color233
+color sidebar_indicator brightcolor7 color233
