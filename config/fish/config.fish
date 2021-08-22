@@ -168,7 +168,7 @@ function theme-switch -d "Switch tmux theme"
       tmux source-file ~/.tmux/light.conf
     end
   else
-    echo -e "\033]50;SetProfile=Default\a"
+    echo -e "\033]50;SetProfile=Dark\a"
     rm -f /tmp/light-theme
     if tmux info &> /dev/null
       tmux source-file ~/.tmux/dark.conf
