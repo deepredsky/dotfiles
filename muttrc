@@ -152,6 +152,7 @@ unset record # sent mails saved using fcc-hook per account
 set folder = ~/.mail/
 set from = "rajesh@surf.net.np"
 set realname = "Rajesh Sharma"
+set attach_save_dir = ~/.mail_attachments
 
 set virtual_spoolfile=yes
 
@@ -193,7 +194,7 @@ bind index N        search-opposite
 bind index,pager \Cd half-down
 bind index,pager \Cu half-up
 
-macro index s "<pipe-message>cat > ~/Desktop/"  "save message as"
+macro index s "<pipe-message>cat > ~/.mail_attachments/"  "save message as"
 
 # Mark all as read
 macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
@@ -228,7 +229,7 @@ bind pager R  group-reply
 bind pager N  search-opposite
 
 macro pager gu "|urlview<enter>" "call urlview to open links"
-macro pager s "<pipe-message>cat > ~/Desktop/"  "save message as"
+macro pager s "<pipe-message>cat > ~/.mail_attachments/"  "save message as"
 
 # }}}
 # Compose {{{
