@@ -151,3 +151,13 @@ if filereadable('.local.vim')
   source .local.vim
 endif
 
+function! UpdateBackground()
+  if filereadable('/tmp/light-theme')
+    set background=light
+  else
+    " colorscheme gruvbox
+    set background=dark
+  endif
+endfunction
+
+call UpdateBackground()

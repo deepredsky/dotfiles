@@ -217,15 +217,4 @@ if has('timers')
   noremap <expr> <plug>(slash-after) slash#blink(2, 50)
 endif
 
-function! UpdateBackground()
-  if filereadable('/tmp/light-theme')
-    set background=light
-  else
-    " colorscheme gruvbox
-    set background=dark
-  endif
-endfunction
-
-call UpdateBackground()
-
 " vim: expandtab softtabstop=2 shiftwidth=2 foldmethod=marker
