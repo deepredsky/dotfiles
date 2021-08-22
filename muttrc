@@ -172,6 +172,19 @@ virtual-mailboxes \
         "Deleted"     "notmuch://?query=tag:delete and NOT tag:inbox and NOT tag:unread"\
         "Archive"     "notmuch://?query=tag:archive"\
 
+named-mailboxes    "Work" +Work/INBOX
+named-mailboxes    " Archive"      +Work/Archive
+named-mailboxes    " Sent"      +Work/Sent
+named-mailboxes    " Drafts"      +Work/Drafts
+named-mailboxes    " Trash"      +Work/Trash
+
+named-mailboxes    "Personal" +Personal/INBOX
+named-mailboxes    " Archive"      +Personal/Archive
+named-mailboxes    " Sent"      +Personal/Sent
+named-mailboxes    " Drafts"      +Personal/Drafts
+named-mailboxes    " Starred"      +Personal/Starred
+named-mailboxes    " Trash"      +Personal/Trash
+
 set sendmail="msmtp"
 
 # }}}
