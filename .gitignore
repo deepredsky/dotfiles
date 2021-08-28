@@ -23,8 +23,10 @@ mutt/temp/
 mutt/cache/
 vim/spell/
 config/karabiner/assets/
+config/karabiner/automatic_backups/
 mbsyncrc
 msmtprc
 config/gh
 config/iterm2/
 config/fish/fish_variables
+
