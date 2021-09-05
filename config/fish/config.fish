@@ -2,6 +2,7 @@ set -gx EDITOR vim -u ~/.vimrc_minimal
 set -gx FORWARDS true
 set -gx GOPATH ~/dev/go
 set -gx FZF_DEFAULT_COMMAND 'fd --type=file --hidden --exclude .git'
+set -gx MANPAGER "col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -"
 
 alias be="bundle exec"
 alias b="bundle"
