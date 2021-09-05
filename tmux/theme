@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+if [[ -f /tmp/light-theme ]]; then
+  echo "light theme enabled"
+  tmux source-file ~/.tmux/light.conf
+else
+  echo "dark theme enabled"
+  tmux source-file ~/.tmux/dark.conf
+fi
+
