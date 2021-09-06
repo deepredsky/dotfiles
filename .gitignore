@@ -29,4 +29,4 @@ msmtprc
 config/gh
 config/iterm2/
 config/fish/fish_variables
-
+tmux/plugins/
