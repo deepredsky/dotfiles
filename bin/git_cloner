@@ -1,68 +1,90 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 require 'json'
 require 'http'
 require 'pp'
 
-def repos(username)
-  url = "https://api.github.com/users/#{username}/repos?per_page=300"
+def process(repos, client, base_path)
+  repos
+    .each do |repo|
+      name           = repo['name']
+      url            = repo['url']
+      source         = client.get(url).parse
+      source_ssh_url = source['ssh_url']
+      path           = "#{base_path}/#{name}"
 
-  puts url
-  response = HTTP
-             .basic_auth(user: username, pass: ENV['GITHUB_PR_TOKEN'])
-             .get(url)
+      if !source_ssh_url
+        puts "Skipping #{name}: Source has no ssh url"
+        next
+      end
+
+      puts "Processing #{path}"
+
+      if !File.directory?(path)
+        puts "cloning repo #{source_ssh_url}"
+        system("cd #{base_path} && git clone #{source_ssh_url}")
+      end
+
+      setup_upstream(source, path)
+    end
+end
+
+def rels(headers)
+  links = (headers['Link'] || '').split(', ').map do |link|
+    href, name = link.match(/<(.*?)>; rel="(\w+)"/).captures
+
+    [name.to_sym, href]
+  end
+
+  Hash[*links.flatten]
+end
+
+def setup_upstream(source, path)
+  return unless source['fork']
+
+  source_ssh_url = source['ssh_url']
+  parent_ssh_url = source.dig('parent', 'ssh_url')
+
+  return puts 'No upstream url' unless parent_ssh_url
+
+  puts "Setting upstream to #{parent_ssh_url}"
+
+  return puts 'upstream already set' if system("cd #{path} && git remote | grep upstream")
+
+  system("cd #{path} && git remote add upstream #{parent_ssh_url}")
+end
+
+username = ARGV[0]
+
+if !username || username.empty?
+  puts 'Username is required'
+  exit
+end
+
+client = HTTP
+  .basic_auth(user: username, pass: ENV['GITHUB_PR_TOKEN'])
+
+base_path = File.expand_path("~/dev/github/#{username}")
+
+require 'fileutils'
+FileUtils.mkdir_p base_path
+
+url = "https://api.github.com/users/#{username}/repos?per_page=20"
+
+loop do
+  response = client.get(url)
 
   unless response.status.ok?
     puts "Error accessing github api. Status: #{response.status}"
     exit
   end
 
-  response.parse
+  process(response.parse, client, base_path)
+
+  rels = rels(response.headers)
+
+  break if rels[:next].nil?
+
+  url = rels[:next]
 end
-
-username = ARGV[0]
-
-if !username || username.empty?
-  puts "Username is required"
-  exit
-end
-
-repos(username)
-  .each do |repo|
-    name = repo['name']
-    url = repo['url']
-
-    source = HTTP
-             .basic_auth(user: username, pass: ENV['GITHUB_PR_TOKEN'])
-             .get(url).parse
-
-    source_ssh_url = source.dig('ssh_url')
-    parent_ssh_url = source.dig('parent', 'ssh_url')
-
-    if source_ssh_url
-      puts "processing #{name}"
-      if File.directory?(name)
-        if source["fork"]
-          puts "Setting upstream to #{parent_ssh_url}"
-          if system("cd #{name} && git remote | grep upstream")
-            puts 'upstream already set'
-          else
-            system("cd #{name} && git remote add upstream #{parent_ssh_url}")
-          end
-        end
-      else
-        puts "cloning repo #{source_ssh_url}"
-        system("git clone #{source_ssh_url}")
-
-        if source["fork"]
-          puts "Setting upstream to #{parent_ssh_url}"
-
-          if parent_ssh_url
-            system("cd #{name} && git remote add upstream #{parent_ssh_url}")
-          end
-        end
-      end
-    else
-      puts "Skipping #{name}: Source has no ssh url"
-    end
-  end
