@@ -50,14 +50,17 @@
                         ]
                     },
                     {
-                        "description": "Change Command + e to Command + tab",
+                        "description": "Change Hyper + e to Command + tab",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "e",
                                     "modifiers": {
                                         "mandatory": [
-                                            "right_command"
+                                            "left_command",
+                                            "left_shift",
+                                            "left_control",
+                                            "left_option"
                                         ],
                                         "optional": []
                                     }
