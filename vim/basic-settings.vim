@@ -138,7 +138,9 @@ function! Redir(cmd) abort
 endfunction
 command! -nargs=1 Redir silent call Redir(<f-args>)
 
-let g:fzf_layout = { 'down': '40%' }
+let g:fzf_layout = { 'down': '50%' }
+let g:fzf_preview_window = ['up:50%', 'ctrl-/']
+
 let g:vimwiki_conceal_pre = 0
 
 " Local vim settings
