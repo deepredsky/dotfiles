@@ -118,9 +118,9 @@ augroup vimrcEx
   autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
   autocmd FileType python set sw=4 sts=4 et
 
-  autocmd BufRead *.mkd set ai tw=79 spell formatoptions=tcroqn2 comments=n:&gt;
-  autocmd BufRead *.markdown set ai spell formatoptions=tcroqn2 comments=n:&gt;
-  autocmd BufRead *.md set ai spell formatoptions=tcroqn2 comments=n:&gt;
+  autocmd BufRead *.mkd setlocal ai tw=79 spell formatoptions=tcroqn2 comments=n:&gt;
+  autocmd BufRead *.markdown setlocal ai spell formatoptions=tcroqn2 comments=n:&gt;
+  autocmd BufRead *.md setlocal ai spell formatoptions=tcroqn2 comments=n:&gt;
 
   " indent slim two spaces, not four
   autocmd! FileType *.slim set sw=2 sts=2 et
