@@ -122,6 +122,9 @@ augroup vimrcEx
   autocmd BufRead *.markdown setlocal ai spell formatoptions=tcroqn2 comments=n:&gt;
   autocmd BufRead *.md setlocal ai spell formatoptions=tcroqn2 comments=n:&gt;
 
+  # Don't spellcheck urls
+  au BufReadPost * syn match UrlNoSpell '\w\+:\/\/[^[:space:]]\+' contains=@NoSpell
+
   " indent slim two spaces, not four
   autocmd! FileType *.slim set sw=2 sts=2 et
 augroup END
