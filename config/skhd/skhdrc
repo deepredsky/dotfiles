@@ -148,16 +148,38 @@
 #           yabai -m window --toggle pip
 #
 
+# Dvorak right side arrow cluster
+#   c
+# h t n
+#
+#
+# mwvz
+
+# focus window
+ctrl + alt - h : yabai -m window --focus west || yabai -m window --focus east
+ctrl + alt - t : yabai -m window --focus south || yabai -m window --focus north
+ctrl + alt - c : yabai -m window --focus north || yabai -m window --focus south
+ctrl + alt - n : yabai -m window --focus east || yabai -m window --focus west
+
+# move window
+cmd + alt - h : yabai -m window --warp west || yabai -m window --warp east
+cmd + alt - t : yabai -m window --warp south || yabai -m window --warp north
+cmd + alt - c : yabai -m window --warp north || yabai -m window --warp south
+cmd + alt - n : yabai -m window --warp east || yabai -m window --warp west
+
+## rotate tree 90
+cmd + alt  - r : yabai -m space --rotate 90
+
+## full screen focused app
+cmd + alt  - f : yabai -m window --toggle zoom-fullscreen
 
 # ',.py
 # aoeui
 # ;qjkx
-## rotate tree 90
-cmd + alt  - r : yabai -m space --rotate 90
-cmd + alt  - f : yabai -m window --toggle zoom-fullscreen
 
 # balance size of windows
 hyper - u : yabai -m space --balance
+# hyper - x : yabai -m space --balance
 
 # move window to space
 # hyper - o : yabai -m space --focus recent
@@ -165,15 +187,12 @@ hyper - 1 : yabai -m window --space 1
 hyper - 2 : yabai -m window --space 2
 hyper - 3 : yabai -m window --space 3
 hyper - 4 : yabai -m window --space 4
+hyper - 5 : yabai -m window --space 5
 
 
 # toggle float
 hyper - a : yabai -m window --toggle float
 
 # increase window size
-cmd + alt - l : yabai -m window --resize right:20:0
-cmd + alt - h : yabai -m window --resize left:-20:0
-
-# decrease window size
-ctrl + alt - l : yabai -m window --resize right:-20:0
-ctrl + alt - h : yabai -m window --resize left:20:0
+ctrl + alt + shift - h : yabai -m window --resize right:50:0 & yabai -m window --resize left:-50:0
+ctrl + alt + shift - l : yabai -m window --resize left:50:0 & yabai -m window --resize right:-50:0
