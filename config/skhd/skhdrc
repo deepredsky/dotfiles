@@ -182,7 +182,7 @@ hyper - u : yabai -m space --balance
 # hyper - x : yabai -m space --balance
 
 # move window to space
-# hyper - o : yabai -m space --focus recent
+hyper - o : yabai -m space --focus recent
 hyper - 1 : yabai -m window --space 1
 hyper - 2 : yabai -m window --space 2
 hyper - 3 : yabai -m window --space 3
@@ -196,3 +196,7 @@ hyper - a : yabai -m window --toggle float
 # increase window size
 ctrl + alt + shift - h : yabai -m window --resize right:50:0 & yabai -m window --resize left:-50:0
 ctrl + alt + shift - l : yabai -m window --resize left:50:0 & yabai -m window --resize right:-50:0
+
+
+# move window to next screen
+hyper - i : yabai -m window --display next | yabai -m window --display prev
