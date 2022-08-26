@@ -148,33 +148,33 @@ function ssh_pods -d "Fuzzy-find ssh pods"
   kubectl get pods -o name | cut -d'/' -f2 | fzf | xargs -o -I % kubectl exec -it % -c app -- bash
 end
 
-function update-tmux
-  for name in (tmux list-sessions -F '#{session_name}')
-    for wix in (tmux list-windows -t $name -F '#{window_index}')
-      echo $wix
-      for pix in (tmux list-panes -F '$name:#{window_index}.#{pane_index}' -t $wix)
-        set -l is_vim "ps -o state= -o comm= -t '#{pane_tty}'  | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?\$'"
-        tmux if-shell -t "$pix" "$is_vim" "send-keys -t $pix escape ENTER"
-        tmux if-shell -t "$pix" "$is_vim" "send-keys -t $pix ':call UpdateBackground()' ENTER"
-      end
-    end
-  end
-end
-
 function theme-switch -d "Switch tmux theme"
-  if test "$argv[1]" = "Light"
-    echo -e "\033]50;SetProfile=Light\a"
-    touch /tmp/light-theme
-    if tmux info &> /dev/null
-      tmux source-file ~/.tmux/light.conf
+    if test "$argv[1]" = light
+        echo -e "\033Ptmux;\033\033]1337;SetProfile=light\007\a\033\\"
+        touch /tmp/light-theme
+        if tmux info &>/dev/null
+            tmux source-file ~/.tmux/light.conf
+        end
+    else
+        echo -e "\033Ptmux;\033\033]1337;SetProfile=dark\007\a\033\\"
+        rm -f /tmp/light-theme
+        if tmux info &>/dev/null
+            tmux source-file ~/.tmux/dark.conf
+        end
     end
-  else
-    echo -e "\033]50;SetProfile=Dark\a"
-    rm -f /tmp/light-theme
-    if tmux info &> /dev/null
-      tmux source-file ~/.tmux/dark.conf
+
+    if tmux info &>/dev/null
+        for session in (tmux list-sessions -F '#{session_id}')
+            for window in (tmux list-windows -t "$session" -F '#{window_index}')
+                for pane in (tmux list-panes -t "$session:$window" -F "#{pane_index}")
+                    set -l pix "$session:$window.$pane"
+                    set -l is_vim "ps -o state= -o comm= -t '#{pane_tty}'  | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?\$'"
+                    tmux if-shell -t "$pix" "$is_vim" "send-keys -t $pix escape ENTER"
+                    tmux if-shell -t "$pix" "$is_vim" "send-keys -t $pix ':call UpdateBackground()' ENTER"
+                end
+            end
+        end
     end
- end
 end
 
 function jira -d "Open vim jira"
