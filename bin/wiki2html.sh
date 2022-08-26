@@ -46,14 +46,9 @@ OUTPUT=$OUTPUTDIR$FILENAME
 # MATHJAX="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
 MATHJAX="/usr/share/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
 
+TITLE="$(grep -m1 '^# ' "$INPUT" | sed 's/# //g')"
+
 # PREPANDOC PROCESSING AND PANDOC
-pandoc_template="pandoc \
-    --mathjax=$MATHJAX \
-    --template=$HOME/dev/pandoc-test/template.html \
-    -f $SYNTAX \
-    -t html \
-    -c $HOME/dev/pandoc-test/public/css/main.css \
-    -M root_path:$ROOT_PATH"
 
 echo $pandoc_template
 
@@ -72,15 +67,18 @@ regex1='s/[^!()[]]*(\[[^]]+\])\(([^.)]+)(\.md)?\)/ \1(\2.html)/g'
 # correct YAML header.
 # regex2='s/^%title (.+)$/---\ntitle: \1\n---/'
 
-pandoc_input=$(cat "$INPUT" | sed -E "$regex1")
-pandoc_output=$(echo "$pandoc_input" | $pandoc_template)
-
 # POSTPANDOC PROCESSING
 
 # Removes "file" from ![pic of sharks](file:../sharks.jpg)
 regex3='s/file://g'
 
-echo "$pandoc_output" | sed -E $regex3 > "$OUTPUT.html"
+cat "$INPUT" | sed -E "$regex1" | pandoc \
+    --template=$HOME/dev/pandoc-test/template.html \
+    -f $SYNTAX \
+    -t html \
+    -c $HOME/dev/pandoc-test/public/css/main.css \
+    -M root_path:$ROOT_PATH \
+    --metadata "title=${TITLE}" | sed -E $regex3 > "$OUTPUT.html"
 
 # With this you can have ![pic of sharks](file:../sharks.jpg) in your markdown file and it removes "file"
 # and the unnecesary dot html that the previous command added to the image.
