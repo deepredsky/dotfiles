@@ -21,10 +21,10 @@ set red (set_color red)
 set gray (set_color -o black)
 
 # Fish git prompt
-set __fish_git_prompt_showdirtystate 'yes'
-set __fish_git_prompt_showstashstate 'yes'
-set __fish_git_prompt_showuntrackedfiles 'yes'
-set __fish_git_prompt_showupstream 'auto'
+set __fish_git_prompt_showdirtystate yes
+set __fish_git_prompt_showstashstate yes
+set __fish_git_prompt_showuntrackedfiles yes
+set __fish_git_prompt_showupstream auto
 set __fish_git_prompt_color_branch yellow
 set __fish_git_prompt_color_upstream_ahead green
 set __fish_git_prompt_color_upstream_behind red
@@ -38,44 +38,44 @@ set __fish_git_prompt_char_stashstate '↩'
 set __fish_git_prompt_char_upstream_ahead '⇡'
 set __fish_git_prompt_char_upstream_behind '⇣'
 set ___fish_git_prompt_char_upstream_prefix ' '
-set __fish_git_prompt_showcolorhints 'yes'
+set __fish_git_prompt_showcolorhints yes
 
 function fish_greeting
 end
 
 function fish_prompt_cwd
-  if test $PWD = $HOME
-    echo "~"
-  else
-    echo (basename $PWD)
-  end
+    if test $PWD = $HOME
+        echo "~"
+    else
+        echo (basename $PWD)
+    end
 end
 
 function _prompt_color_for_status
-  if test $argv[1] -eq 0
-    echo green
-  else
-    echo red
-  end
+    if test $argv[1] -eq 0
+        echo green
+    else
+        echo red
+    end
 end
 
 function fish_prompt
-  set last_status $status
+    set last_status $status
 
-  set_color $fish_color_cwd
-  printf '%s' (fish_prompt_cwd)
-  set_color normal
+    set_color $fish_color_cwd
+    printf '%s' (fish_prompt_cwd)
+    set_color normal
 
-  printf ' %s' (__fish_git_prompt '%s ')
+    printf ' %s' (__fish_git_prompt '%s ')
 
-  set_color (_prompt_color_for_status $last_status)
-  printf "❯ "
+    set_color (_prompt_color_for_status $last_status)
+    printf "❯ "
 
-  set_color normal
+    set_color normal
 end
 
 function g --wraps=git
-    if count $argv > /dev/null
+    if count $argv >/dev/null
         command git $argv
     else
         command git status
@@ -101,31 +101,31 @@ set PATH $HOME/.cabal/bin $PATH
 set PATH /usr/local/sbin $PATH
 
 function nvm
-  bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
+    bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
 end
 
 function fco -d "Fuzzy-find and checkout a branch"
-  git branch --all | grep -v HEAD | string trim | fzf | xargs echo | sed -E 's_remotes/origin/__g' | xargs git checkout
+    git branch --all | grep -v HEAD | string trim | fzf | xargs echo | sed -E s_remotes/origin/__g | xargs git checkout
 end
 
 function fdb -d "Fuzzy-find and force delete a branch"
-  git branch | grep -v '*' | string trim | fzf -m --reverse | xargs echo | sed -E 's/^[[:space:]]*//g' | xargs git branch -D
+    git branch | grep -v '*' | string trim | fzf -m --reverse | xargs echo | sed -E 's/^[[:space:]]*//g' | xargs git branch -D
 end
 
 function t -d "Edit todos"
-  vim -u ~/.vimrc_minimal ~/notes/Todos.md -c ':Goyo'
+    vim -u ~/.vimrc_minimal ~/notes/Todos.md -c ':Goyo'
 end
 
 function n -d "Edit note"
-  vim -u ~/.vimrc_minimal ~/notes/scratch.md -c ':Goyo'
+    vim -u ~/.vimrc_minimal ~/notes/scratch.md -c ':Goyo'
 end
 
 function j -d "Edit today's journal"
-  vim -u ~/.vimrc_minimal ~/notes/diary/(date "+%Y-%m-%d").md -c ':Goyo'
+    vim -u ~/.vimrc_minimal ~/notes/diary/(date "+%Y-%m-%d").md -c ':Goyo'
 end
 
 function ns -d "Fuzzy-find a note"
-  vim -u ~/.vimrc_minimal (fd '.md' ~/notes | string trim | fzf) -c ':lcd ~/notes' -c ':Goyo'
+    vim -u ~/.vimrc_minimal (fd '.md' ~/notes | string trim | fzf) -c ':lcd ~/notes' -c ':Goyo'
 end
 
 if test -f $HOME/.local.fish
@@ -133,19 +133,19 @@ if test -f $HOME/.local.fish
 end
 
 function cleanup_dead_docker -d "Remove dead docker images"
-  docker ps --filter status=dead --filter status=exited | awk '/weeks ago/ { print $1 }' | xargs docker rm -v
+    docker ps --filter status=dead --filter status=exited | awk '/weeks ago/ { print $1 }' | xargs docker rm -v
 
-  docker volume ls -qf "dangling=true" | egrep -v "^$_" | xargs docker volume rm
+    docker volume ls -qf "dangling=true" | egrep -v "^$_" | xargs docker volume rm
 
-  docker images -qf "dangling=true" | egrep -v "^$_" | xargs docker rmi -f
+    docker images -qf "dangling=true" | egrep -v "^$_" | xargs docker rmi -f
 end
 
 function apps -d "Fuzzy-find and open apps"
-  kubectl get ing -o jsonpath='{range .items[*]}{.spec.rules[0].host}{"\n"}{end}' | fzf | xargs -I % open "https://%"
+    kubectl get ing -o jsonpath='{range .items[*]}{.spec.rules[0].host}{"\n"}{end}' | fzf | xargs -I % open "https://%"
 end
 
 function ssh_pods -d "Fuzzy-find ssh pods"
-  kubectl get pods -o name | cut -d'/' -f2 | fzf | xargs -o -I % kubectl exec -it % -c app -- bash
+    kubectl get pods -o name | cut -d/ -f2 | fzf | xargs -o -I % kubectl exec -it % -c app -- bash
 end
 
 function theme-switch -d "Switch tmux theme"
@@ -178,11 +178,10 @@ function theme-switch -d "Switch tmux theme"
 end
 
 function jira -d "Open vim jira"
-  vi +JiraSprint
+    vi +JiraSprint
 end
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 # eval /usr/local/anaconda3/bin/conda "shell.fish" "hook" $argv | source
 # <<< conda initialize <<<
-
