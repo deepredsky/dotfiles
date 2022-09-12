@@ -16,7 +16,7 @@ let g:gist_post_private = 1 " make private gist by default
 
 Plug 'rhysd/committia.vim'
 Plug 'junegunn/vim-slash'
-Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+Plug '/opt/homebrew/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'lifepillar/vim-solarized8'
 Plug 'flazz/vim-colorschemes'
 Plug 'junegunn/goyo.vim'

@@ -111,7 +111,7 @@ Plug 'epilande/vim-react-snippets'
 " React html snippets
 Plug 'cristianoliveira/vim-react-html-snippets'
 
-Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+Plug '/opt/homebrew/opt/fzf' | Plug 'junegunn/fzf.vim'
 
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
