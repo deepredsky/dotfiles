@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 MBSYNC=$(pgrep mbsync)
 NOTMUCH=$(pgrep notmuch)
@@ -30,7 +30,11 @@ echo "mbsync finished"
 echo "Running notmuch"
 
 notmuch new
-notmuch tag -inbox -unread -- from:'*@dtdg.co'
-notmuch tag -inbox -unread -- from:'*@github.com'
+
+NOTMUCH_FILTERS=~/.notmuch-filters
+
+if test -f "$NOTMUCH_FILTERS"; then
+  . $NOTMUCH_FILTERS
+fi
 
 echo "Done"
