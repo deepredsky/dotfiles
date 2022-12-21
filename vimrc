@@ -251,6 +251,9 @@ function! s:on_lsp_buffer_enabled() abort
   vnoremap <buffer> gQ :LspDocumentRangeFormat<CR>
   nnoremap <buffer> <leader>cl :LspCodeLens<CR>
   autocmd! BufWritePre *.rs call execute('LspDocumentFormatSync')
+
+  nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
+  nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
 endfunction
 
 augroup configure_lsp
