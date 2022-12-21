@@ -55,7 +55,7 @@ Plug 'lifepillar/vim-mucomplete'
   "{{{ Config 'lifepillar/vim-mucomplete'
   set completeopt+=menuone,noselect
   let g:mucomplete#enable_auto_at_startup = 1
-  let g:mucomplete#chains = { 'default': [ 'c-p' ] }
+  let g:mucomplete#chains = { 'default': [ 'c-p' ], 'rust': ['omni'] }
 
   " Prevent µcomplete from mapping <c-h>
   imap <plug>Unused <plug>(MUcompleteCycBwd)
@@ -73,6 +73,11 @@ elseif executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 "}}}
+
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'thomasfaingnaert/vim-lsp-snippets'
+Plug 'thomasfaingnaert/vim-lsp-ultisnips'
 
 command! -bang -nargs=* -complete=file Ag           call ack#Ack('grep<bang>', <q-args>)
 command! -bang -nargs=* -complete=file AgFromSearch call ack#AckFromSearch('grep<bang>', <q-args>)
@@ -215,5 +220,42 @@ if has('timers')
   " Blink 2 times with 50ms interval
   noremap <expr> <plug>(slash-after) slash#blink(2, 50)
 endif
+
+let g:lsp_settings_enable_suggestions = 0
+let g:lsp_inlay_hints_enabled = 1
+let g:lsp_inlay_hints_mode = {
+      \ 'normal': ['always', 'always'],
+      \ 'insert': ['always', 'always'],
+      \ }
+
+hi! link lspInlayHintsType LineNr
+hi! link lspInlayHintsParameter LineNr
+
+function! s:on_lsp_buffer_enabled() abort
+  setlocal omnifunc=lsp#complete
+  setlocal signcolumn=yes
+  if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+  nmap <buffer> gd <plug>(lsp-definition)
+  " nmap <buffer> gs <plug>(lsp-document-symbol-search)
+  " nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+  nmap <buffer> gr <plug>(lsp-references)
+  nmap <buffer> gi <plug>(lsp-implementation)
+  nmap <buffer> gt <plug>(lsp-type-definition)
+  nmap <buffer> <leader>rn <plug>(lsp-rename)
+  nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
+  nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
+  nmap <buffer> K <plug>(lsp-hover)
+  nmap <buffer> ca <Plug>(lsp-code-action-float)
+
+  nnoremap <buffer> gQ :<C-u>LspDocumentFormat<CR>
+  vnoremap <buffer> gQ :LspDocumentRangeFormat<CR>
+  nnoremap <buffer> <leader>cl :LspCodeLens<CR>
+  autocmd! BufWritePre *.rs call execute('LspDocumentFormatSync')
+endfunction
+
+augroup configure_lsp
+  au!
+  autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
 
 " vim: expandtab softtabstop=2 shiftwidth=2 foldmethod=marker
