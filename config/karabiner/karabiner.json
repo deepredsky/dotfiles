@@ -106,13 +106,12 @@
                         ]
                     },
                     {
-                        "description": "Fix firefox ctrl-n",
+                        "description": "Fix slack ctrl-n",
                         "manipulators": [
                             {
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                            "org.mozilla.firefox",
                                             "com.tinyspeck.slackmacgap"
                                         ],
                                         "type": "frontmost_application_if"
@@ -144,13 +143,12 @@
                         ]
                     },
                     {
-                        "description": "Fix firefox ctrl-p",
+                        "description": "Fix slack ctrl-p",
                         "manipulators": [
                             {
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                            "org.mozilla.firefox",
                                             "com.tinyspeck.slackmacgap"
                                         ],
                                         "type": "frontmost_application_if"
@@ -182,13 +180,12 @@
                         ]
                     },
                     {
-                        "description": "Fix firefox ctrl-n",
+                        "description": "Fix slack ctrl-n",
                         "manipulators": [
                             {
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                            "org.mozilla.firefox",
                                             "com.tinyspeck.slackmacgap"
                                         ],
                                         "type": "frontmost_application_if"
@@ -220,13 +217,12 @@
                         ]
                     },
                     {
-                        "description": "Fix firefox ctrl-p",
+                        "description": "Fix slack ctrl-p",
                         "manipulators": [
                             {
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                            "org.mozilla.firefox",
                                             "com.tinyspeck.slackmacgap"
                                         ],
                                         "type": "frontmost_application_if"
