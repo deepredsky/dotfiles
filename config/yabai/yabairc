@@ -47,11 +47,11 @@ yabai -m config window_border off
 yabai -m config auto_balance off
 yabai -m config split_ratio 0.50
 # # set mouse interaction modifier key (default: fn)
-yabai -m config mouse_modifier alt
+# yabai -m config mouse_modifier alt
 # set modifier + right-click drag to resize window (default: resize)
-yabai -m config mouse_action2 resize
+# yabai -m config mouse_action2 resize
 # set modifier + left-click drag to move window (default: move)
-yabai -m config mouse_action1 move
+# yabai -m config mouse_action1 move
 
 ## Change how yabai looks
 yabai -m config layout bsp
