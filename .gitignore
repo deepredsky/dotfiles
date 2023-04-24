@@ -32,3 +32,5 @@ config/fish/fish_variables
 tmux/plugins/
 tmp
 config/containers/
+config/github-copilot/hosts.json
+config/nvim/plugin/packer_compiled.lua
