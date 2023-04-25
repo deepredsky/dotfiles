@@ -44,21 +44,17 @@ OUTPUT=$OUTPUTDIR$FILENAME
 
 # If you have Mathjax locally use this:
 # MATHJAX="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
-MATHJAX="/usr/share/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+# MATHJAX="/usr/share/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
 
 TITLE="$(grep -m1 '^# ' "$INPUT" | sed 's/# //g')"
 
 # PREPANDOC PROCESSING AND PANDOC
-
-echo $pandoc_template
-
-# pandoc_template="pandoc \
-#     --mathjax=$MATHJAX \
-#     --template=$TEMPLATE_PATH$TEMPLATE_DEFAULT$TEMPLATE_EXT \
-#     -f $SYNTAX \
-#     -t html \
-#     -c $CSSFILENAME \
-#     -M root_path:$ROOT_PATH"
+pandoc_template=( pandoc \
+    --template=$HOME/dev/wiki/template.html \
+    -f $SYNTAX \
+    -t html \
+    -c $HOME/dev/wiki/public/css/main.css \
+    -M root_path:$ROOT_PATH )
 
 # Searches for markdown links (without extension or .md) and appends a .html
 regex1='s/[^!()[]]*(\[[^]]+\])\(([^.)]+)(\.md)?\)/ \1(\2.html)/g'
@@ -72,13 +68,7 @@ regex1='s/[^!()[]]*(\[[^]]+\])\(([^.)]+)(\.md)?\)/ \1(\2.html)/g'
 # Removes "file" from ![pic of sharks](file:../sharks.jpg)
 regex3='s/file://g'
 
-cat "$INPUT" | sed -E "$regex1" | pandoc \
-    --template=$HOME/dev/pandoc-test/template.html \
-    -f $SYNTAX \
-    -t html \
-    -c $HOME/dev/pandoc-test/public/css/main.css \
-    -M root_path:$ROOT_PATH \
-    --metadata "title=${TITLE}" | sed -E $regex3 > "$OUTPUT.html"
+cat "$INPUT" | sed -E "$regex1" | "${pandoc_template[@]}" | sed -E $regex3 > "$OUTPUT.html"
 
 # With this you can have ![pic of sharks](file:../sharks.jpg) in your markdown file and it removes "file"
 # and the unnecesary dot html that the previous command added to the image.
