@@ -1,6 +1,6 @@
 #!/bin/bash
 
-bin=/usr/local/bin/notmuch
+bin=/opt/homebrew/bin/notmuch
 
 function notmuch {
   echo $1
