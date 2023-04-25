@@ -108,7 +108,6 @@ vim.cmd 'command! -bang -nargs=* -complete=file Ag           call ack#Ack(\'grep
 ----------------------------------
 -- global
 vim.opt_global.completeopt = { "menuone", "noinsert", "noselect" }
-vim.opt_global.shortmess:remove("F"):append("c")
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.ruler = true
