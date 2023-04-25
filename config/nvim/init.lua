@@ -29,7 +29,12 @@ vim.keymap.set('v','<C-Space>', '<Esc>gV')
 vim.keymap.set('o','<C-Space>', '<Esc>')
 vim.keymap.set('c','<C-Space>', '<C-c>')
 vim.keymap.set('i','<C-Space>', '<Esc>`^')
-
+-- Terminal sees <C-@> as <C-space>
+vim.api.nvim_set_keymap('n', '<C-@>', '<Esc>:noh<CR>', { noremap = true })
+vim.api.nvim_set_keymap('v', '<C-@>', '<Esc>gV', { noremap = true })
+vim.api.nvim_set_keymap('o', '<C-@>', '<Esc>', { noremap = true })
+vim.api.nvim_set_keymap('c', '<C-@>', '<C-c>', { noremap = true })
+vim.api.nvim_set_keymap('i', '<C-@>', '<Esc>`^', { noremap = true })
 
 local api = vim.api
 local cmd = vim.cmd
@@ -86,6 +91,7 @@ use 'mileszs/ack.vim'
 use 'romainl/vim-qf'
 use '/opt/homebrew/opt/fzf'
 use 'junegunn/fzf.vim'
+use 'lifepillar/vim-solarized8'
 end)
 
 vim.opt.grepprg = 'rg --vimgrep'
@@ -168,10 +174,21 @@ map("n", "<leader>dl", [[<cmd>lua require"dap".run_last()<CR>]])
 map("n", "<leader>f", [[<cmd>Files<cr>]])
 map("n", "<leader>F", [[<cmd>lua require('telescope.builtin').find_files( { cwd = vim.fn.expand('%:p:h') })<cr>]])
 map("n", "<leader>b", [[<cmd>Buffers<cr>]])
+map("n", "<leader>.", [[<cmd>BTags<cr>]])
 
 map("n", "<Space><Space>", "<Plug>(qf_qf_toggle)")
 map("n", "<C-n>", "<Plug>(qf_qf_next)")
 map("n", "<C-p>", "<Plug>(qf_qf_previous)")
+vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true })
+vim.api.nvim_set_keymap('v', '<leader>c', '"+y', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>p', ':r!pbpaste<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', 'j', 'gj', { noremap = true })
+vim.api.nvim_set_keymap('n', 'k', 'gk', { noremap = true })
+vim.api.nvim_set_keymap('n', 'cd', ':lcd %:h<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader><leader>', ':', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>w', ':update<CR>', { noremap = true })
+vim.api.nvim_set_keymap('v', '<leader>c', '"+y', { noremap = true })
+vim.api.nvim_set_keymap('n', '<leader>p', ':r!pbpaste<CR>', { noremap = true })
 
 -- Configure LSP through rust-tools.nvim plugin.
 -- rust-tools will configure and enable certain LSP features for us.
@@ -268,7 +285,7 @@ metals_config.settings = {
 
 -- Example if you are using cmp how to make sure the correct capabilities for snippets are set
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-metals_config.capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 -- Debug settings if you're using nvim-dap
 local dap = require("dap")
@@ -310,5 +327,5 @@ api.nvim_create_autocmd("FileType", {
   group = nvim_metals_group,
 })
 
-map("n", "<leader>h", [[<cmd>lua require"rust-tools".inlay_hints.enable()<CR>]])
+map("n", "<neader>h", [[<cmd>lua require"rust-tools".inlay_hints.enable()<CR>]])
 map("n", "<leader>H", [[<cmd>lua require"rust-tools".inlay_hints.disable()<CR>]])
