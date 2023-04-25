@@ -250,7 +250,7 @@ function! s:on_lsp_buffer_enabled() abort
   nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
   nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
   nmap <buffer> K <plug>(lsp-hover)
-  nmap <buffer> ca <Plug>(lsp-code-action-float)
+  nmap <buffer> <leader>ca <Plug>(lsp-code-action-float)
 
   nnoremap <buffer> gQ :<C-u>LspDocumentFormat<CR>
   vnoremap <buffer> gQ :LspDocumentRangeFormat<CR>
