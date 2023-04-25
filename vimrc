@@ -21,6 +21,8 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-vinegar'
 
+Plug 'github/copilot.vim'
+
 " Vim Ruby
 Plug 'vim-ruby/vim-ruby'
 Plug 'kana/vim-textobj-user'
@@ -132,11 +134,14 @@ Plug 'alx741/vim-stylishask', { 'for': 'haskell' }
 " Improved UI
 Plug 'flazz/vim-colorschemes'
 Plug 'lifepillar/vim-solarized8'
+Plug 'sainnhe/everforest'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/gv.vim'
 
 Plug 'vimwiki/vimwiki'
+" Plug 'https://github.com/lervag/wiki.vim'
+" let g:wiki_root = '~/wiki'
 
 let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md', 'template_path': '', 'custom_wiki2html': '$HOME/.bin/wiki2html.sh' }]
 
@@ -156,15 +161,16 @@ Plug 'markonm/traces.vim'
 call plug#end()
 " }}}
 
+let &t_ZH="\e[3m"
+let &t_ZR="\e[23m"
 source ~/.vim/basic-settings.vim
 
 source ~/.vim/mappings.vim
 
-map <leader>r :w<cr>:RuboCop<cr>
+map <leader>r :update<cr>:RuboCop<cr>
 
-" RSpec.vim mappings
-nmap <silent> <leader>t :w<CR>:TestNearest<CR>
-nmap <silent> <leader>T :w<CR>:TestFile<CR>
+nmap <silent> <leader>t :update<CR>:TestNearest<CR>
+nmap <silent> <leader>T :update<CR>:TestFile<CR>
 
 nnoremap <leader>. :BTags<cr>
 
@@ -230,6 +236,7 @@ let g:lsp_inlay_hints_mode = {
 
 hi! link lspInlayHintsType LineNr
 hi! link lspInlayHintsParameter LineNr
+hi! link LspErrorHighlight Comment
 
 function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
@@ -257,5 +264,15 @@ augroup configure_lsp
   au!
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
+
+function! SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+imap <F23> <plug>(MUcompleteFwd)
+imap <F24> <plug>(MUcompleteBwd)
 
 " vim: expandtab softtabstop=2 shiftwidth=2 foldmethod=marker
