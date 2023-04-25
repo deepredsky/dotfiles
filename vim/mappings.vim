@@ -7,7 +7,7 @@ inoremap <down> <nop>
 inoremap <left> <nop>
 inoremap <right> <nop>
 
-" Function keys
+nnoremap Y  y$
 
 nmap <silent> <F5> <Plug>StripTrailingWhitespace
 
@@ -16,9 +16,10 @@ nnoremap <leader>p :r!pbpaste<cr>
 
 nnoremap j gj
 nnoremap k gk
+nmap cd :lcd %:h<cr>
 
 map <Leader><Leader> :
-map <Leader>w :w<CR>
+map <Leader>w :update<CR>
 
 " Do not use <Ctrl-c> to break out to normal mode
 " Use C-Space to Esc out of any mode
@@ -40,10 +41,9 @@ vnoremap K "ay:Ag "<C-r>a"<CR>
 
 " Create the directory containing the file in the buffer
 nmap <silent> <leader>md :!mkdir -p %:p:h<CR>
-
 nmap <leader>ew :e <C-R>=expand('%:h').'/'<cr>
 
-nnoremap <silent> <leader>f :Files<CR>
+nnoremap <leader>f :Files<CR>
 nnoremap <leader>b :Buffers<cr>
 
 " Shortcut for expanding to the directory of the currently displayed file
