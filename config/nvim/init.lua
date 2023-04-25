@@ -190,6 +190,47 @@ vim.api.nvim_set_keymap('n', '<leader>w', ':update<CR>', { noremap = true })
 vim.api.nvim_set_keymap('v', '<leader>c', '"+y', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>p', ':r!pbpaste<CR>', { noremap = true })
 
+-- Copy to system clipboard
+vim.api.nvim_set_keymap('v', '<leader>c', '"+y', { noremap = true })
+-- Paste from system clipboard
+vim.api.nvim_set_keymap('n', '<leader>p', ':r!pbpaste<CR>', { noremap = true })
+
+-- Move up and down by display line
+vim.api.nvim_set_keymap('n', 'j', 'gj', { noremap = true })
+vim.api.nvim_set_keymap('n', 'k', 'gk', { noremap = true })
+
+-- Map <Leader><Leader> to command-line mode
+vim.api.nvim_set_keymap('n', '<Leader><Leader>', ':', { noremap = true })
+-- Save file with <Leader>w
+vim.api.nvim_set_keymap('n', '<Leader>w', ':w<CR>', { noremap = true })
+
+-- Do not use <Ctrl-c> to break out to normal mode
+-- Use C-Space to Esc out of any mode
+vim.api.nvim_set_keymap('n', '<C-Space>', '<Esc>:noh<CR>', { noremap = true })
+vim.api.nvim_set_keymap('v', '<C-Space>', '<Esc>gV', { noremap = true })
+vim.api.nvim_set_keymap('o', '<C-Space>', '<Esc>', { noremap = true })
+vim.api.nvim_set_keymap('c', '<C-Space>', '<C-c>', { noremap = true })
+vim.api.nvim_set_keymap('i', '<C-Space>', '<Esc>`^', { noremap = true })
+-- Terminal sees <C-@> as <C-space>
+vim.api.nvim_set_keymap('n', '<C-@>', '<Esc>:noh<CR>', { noremap = true })
+vim.api.nvim_set_keymap('v', '<C-@>', '<Esc>gV', { noremap = true })
+vim.api.nvim_set_keymap('o', '<C-@>', '<Esc>', { noremap = true })
+vim.api.nvim_set_keymap('c', '<C-@>', '<C-c>', { noremap = true })
+vim.api.nvim_set_keymap('i', '<C-@>', '<Esc>`^', { noremap = true })
+
+-- Grep word under cursor
+vim.api.nvim_set_keymap('n', 'K', ':grep! "\\b<C-R><C-W>\\b"<CR>:cw<CR>', { noremap = true })
+vim.api.nvim_set_keymap('v', 'K', '"ay:Ag "<C-r>a"<CR>', { noremap = true })
+
+-- Create the directory containing the file in the buffer
+vim.api.nvim_set_keymap('n', '<leader>md', ':!mkdir -p %:p:h<CR>', { silent = true })
+
+-- Edit new file in the same directory as the current file
+vim.api.nvim_set_keymap('n', '<leader>ew', ':e <C-R>=expand("%:h").\'/\'<CR>', { silent = true })
+
+-- Open FZF's tag selector
+vim.api.nvim_set_keymap('n', '<leader>.', ':BTags<CR>', { noremap = true })
+
 -- Configure LSP through rust-tools.nvim plugin.
 -- rust-tools will configure and enable certain LSP features for us.
 -- See https://github.com/simrat39/rust-tools.nvim#configuration
