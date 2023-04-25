@@ -232,6 +232,11 @@ let g:lsp_inlay_hints_mode = {
       \ 'insert': ['always', 'always'],
       \ }
 
+ let g:lsp_settings = {
+ \  'ruby-languageserver': {
+ \    'disabled': 1,
+ \  },
+ \}
 hi! link lspInlayHintsType LineNr
 hi! link lspInlayHintsParameter LineNr
 hi! link LspErrorHighlight Comment
