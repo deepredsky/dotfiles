@@ -23,12 +23,9 @@ yabai -m rule --add app="^Finder$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Disk Utility$" sticky=on layer=above manage=off
 yabai -m rule --add app="^System Information$" sticky=on layer=above manage=off
 yabai -m rule --add app="^Activity Monitor$" sticky=on layer=above manage=off
+yabai -m rule --add app="^kitty$" sticky=on layer=above manage=off
 yabai -m rule --add app="^console$" manage=off
-yabai -m rule --add app="^iTerm2$" space=1
-yabai -m rule --add app="^Firefox$" space=1
-yabai -m rule --add app="^Slack$" space=4
-yabai -m rule --add app="^Discord$" space=4
-yabai -m rule --add app="^Safari$" space=5
+yabai -m rule --add app="^FUJIFILM X Webcam$" manage=off
 
 #find ~/Library/Parallels/Applications\ Menus/ -maxdepth 3 -type f | awk -F'/' '{ print $NF; }' | awk '{$1=$1};1' | sort | uniq | tr "\n" "\0" | xargs -0 -I{} yabai -m rule --add app="^{}\$" title=".*" manage=on
 
