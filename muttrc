@@ -150,7 +150,6 @@ set sendmail_wait = 0 # no please don't silently fail, email is important
 unset record # sent mails saved using fcc-hook per account
 
 set folder = ~/.mail/
-set from = "rajesh@surf.net.np"
 set realname = "Rajesh Sharma"
 set attach_save_dir = ~/.mail_attachments
 
@@ -160,30 +159,14 @@ unmailboxes *
 unvirtual-mailboxes *
 
 virtual-mailboxes \
-        "Unread"      "notmuch://?query=tag:unread"\
-        "Today"       "notmuch://?query=date:today and NOT tag:archive"\
-        "Yesterday"   "notmuch://?query=date:yesterday and NOT tag:archive"\
-        "This Week"   "notmuch://?query=date:week and NOT tag:archive"\
-        "This Month"  "notmuch://?query=date:month and NOT tag:archive"\
-        "Inbox"       "notmuch://?query=tag:inbox and NOT tag:archive"\
-        "Starred"     "notmuch://?query=tag:*"\
-        "Github"     "notmuch://?query=from:*@github.com and NOT tag:archive"\
-        "DataDog"     "notmuch://?query=from:*@dtdg.co and NOT tag:archive"\
-        "Deleted"     "notmuch://?query=tag:delete and NOT tag:inbox and NOT tag:unread"\
-        "Archive"     "notmuch://?query=tag:archive"\
-
-named-mailboxes    "Work" +Work/INBOX
-named-mailboxes    " Archive"      +Work/Archive
-named-mailboxes    " Sent"      +Work/Sent
-named-mailboxes    " Drafts"      +Work/Drafts
-named-mailboxes    " Trash"      +Work/Trash
-
-named-mailboxes    "Personal" +Personal/INBOX
-named-mailboxes    " Archive"      +Personal/Archive
-named-mailboxes    " Sent"      +Personal/Sent
-named-mailboxes    " Drafts"      +Personal/Drafts
-named-mailboxes    " Starred"      +Personal/Starred
-named-mailboxes    " Trash"      +Personal/Trash
+        "All Unread"      "notmuch://?query=tag:unread"\
+        "Today"           "notmuch://?query=date:today and NOT tag:archive"\
+        "Yesterday"       "notmuch://?query=date:yesterday and NOT tag:archive"\
+        "This Week"       "notmuch://?query=date:week and NOT tag:archive"\
+        "This Month"      "notmuch://?query=date:month and NOT tag:archive"\
+        "Inbox"           "notmuch://?query=tag:inbox and NOT tag:archive"\
+        "Starred"         "notmuch://?query=tag:*"\
+        "Archive"         "notmuch://?query=tag:archive"
 
 set sendmail="msmtp"
 
