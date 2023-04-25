@@ -57,15 +57,15 @@
 #
 # User editable parameters
 #
-home=/Users/u0157542
+home=$HOME
 lbdbdir=$home/.lbdb
-maildir=$home/.mail/Work
+maildir=$MAILDIR
 # Excluded_maildirs must be a regular expression understood by 'grep'
 # and enclosed in quotes
 excluded_maildirs="Trash\|Archive"
 # The value of max_age (the maximum age of the messages parsed)
 # is expressed in days
-max_age=7
+max_age=100
 #
 # No user editable parameters below this line
 #
