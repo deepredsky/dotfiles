@@ -100,6 +100,8 @@ set PATH $HOME/.bin $PATH
 set PATH $HOME/.local/bin $PATH
 set PATH $HOME/.cabal/bin $PATH
 set PATH /usr/local/sbin $PATH
+set -gx TERMINFO_DIRS $TERMINFO_DIRS:$HOME/.local/share/terminfo
+fish_add_path /opt/homebrew/bin
 
 function nvm
     bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
@@ -181,6 +183,8 @@ end
 function jira -d "Open vim jira"
     vi +JiraSprint
 end
+
+export GPG_TTY=$(tty)
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
