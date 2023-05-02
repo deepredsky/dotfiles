@@ -100,7 +100,7 @@ set PATH $HOME/.bin $PATH
 set PATH $HOME/.local/bin $PATH
 set PATH $HOME/.cabal/bin $PATH
 set PATH /usr/local/sbin $PATH
-set -gx TERMINFO_DIRS $TERMINFO_DIRS:$HOME/.local/share/terminfo
+set -gx TERMINFO_DIRS $HOME/.local/share/terminfo $TERMINFO_DIRS
 fish_add_path /opt/homebrew/bin
 
 function nvm
