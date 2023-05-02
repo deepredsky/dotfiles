@@ -179,7 +179,6 @@ nnoremap <leader>. :BTags<cr>
 function! s:goyo_enter()
   silent !tmux set status off
   GitGutterDisable
-  Limelight
   set scrolloff=10
   set nocursorline
 endfunction
@@ -187,7 +186,6 @@ endfunction
 function! s:goyo_leave()
   silent !tmux set status on
   GitGutterEnable
-  Limelight!
   set scrolloff=3
   set cursorline
 endfunction

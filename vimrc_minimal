@@ -45,13 +45,11 @@ function! s:goyo_enter()
   autocmd QuitPre <buffer> let b:quitting = 1
   cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
   silent !tmux set status off
-  Limelight
   set scrolloff=10
 endfunction
 
 function! s:goyo_leave()
   silent !tmux set status on
-  Limelight!
   set scrolloff=3
 
   " Quit Vim if this is the only remaining buffer
