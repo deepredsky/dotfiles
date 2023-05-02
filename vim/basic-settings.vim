@@ -6,6 +6,7 @@ set number            " Show line numbers
 set ruler             " Show line and column number
 set colorcolumn=80
 set wildmenu
+set wildoptions+=pum
 set cursorline
 
 set termguicolors
