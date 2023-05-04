@@ -129,6 +129,8 @@ Plug 'Twinside/vim-hoogle', { 'for': 'haskell' }
 Plug 'mpickering/hlint-refactor-vim', { 'for': 'haskell' }
 Plug 'alx741/vim-stylishask', { 'for': 'haskell' }
 
+Plug 'vmchale/dhall-vim'
+
 " Improved UI
 Plug 'flazz/vim-colorschemes'
 Plug 'lifepillar/vim-solarized8'
