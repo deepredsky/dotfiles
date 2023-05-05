@@ -199,12 +199,18 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 "}}}
 
 function! QuickCommands(...)
-  let cmds = [
-        \ 'RuboCopFix',
-        \ 'PromoteToLet',
+  let cmds_dicts_by_ft = {
+  \ 'ruby': [ 'RuboCopFix', 'TestNearest', 'TestFile' ],
+  \ 'javascript': [ 'Prettier' ],
+  \ 'markdown': [ 'Vimwiki2HTMLBrowse' ],
+  \ 'vimwiki': [ 'Vimwiki2HTMLBrowse' ]
+  \}
+
+  let global_cmds = [
         \ 'GitGutterUndoHunk',
-        \ 'Prettier',
         \ ]
+
+  let cmds = global_cmds + get(cmds_dicts_by_ft, &ft, [])
 
   return fzf#run({
   \ 'source':  cmds,
