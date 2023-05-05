@@ -1,3 +1,4 @@
+scriptencoding utf-8
 let g:vimwiki_map_prefix = ',v'
 
 " Plugins {{{
@@ -8,7 +9,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 " Trigger configuration.
 let g:UltiSnipsUsePythonVersion = 3
-let g:UltiSnipsExpandTrigger="<c-e>"
+let g:UltiSnipsExpandTrigger='<c-e>'
 let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 
 Plug 'tpope/vim-unimpaired'
@@ -281,7 +282,7 @@ augroup configure_lsp
 augroup END
 
 function! SynStack()
-  if !exists("*synstack")
+  if !exists('*synstack')
     return
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
