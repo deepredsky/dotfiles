@@ -138,6 +138,7 @@ Plug 'sainnhe/everforest'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/gv.vim'
+Plug 'tribela/vim-transparent'
 
 Plug 'vimwiki/vimwiki'
 " Plug 'https://github.com/lervag/wiki.vim'
@@ -277,5 +278,12 @@ endfunc
 
 imap <F23> <plug>(MUcompleteFwd)
 imap <F24> <plug>(MUcompleteBwd)
+" let g:transparent_groups =
+"       \['Normal', 'Comment', 'Constant', 'Special', 'Identifier',
+"       \'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String',
+"       \'Function', 'Conditional', 'Repeat', 'Operator', 'Structure',
+"       \'LineNr', 'NonText', 'SignColumn', 'CursorLineNr', 'EndOfBuffer',
+"       \'VertSplit']
+" let g:transparent_groups += ['StatusLineNC', 'StatusLine']
 
 " vim: expandtab softtabstop=2 shiftwidth=2 foldmethod=marker
