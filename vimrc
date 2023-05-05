@@ -221,7 +221,12 @@ endfunction
 command! -nargs=0 QuickCommands call QuickCommands()
 
 map <leader>n :QuickCommands<cr>
-nmap <Leader>g <Plug>(git-messenger)
+map <leader>gb :G blame<cr>
+map <leader>gc :G<cr>
+map <leader>gB :GBrowse<cr>
+vmap <leader>gB :GBrowse<cr>
+map <leader>gj :Jump diff head<cr>
+map <leader>gJ :Jump diff head^<cr>
 
 nmap <leader>v- <Plug>VimwikiRemoveHeaderLevel
 
