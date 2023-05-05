@@ -282,6 +282,9 @@ function! SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
+imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
+
 imap <F23> <plug>(MUcompleteFwd)
 imap <F24> <plug>(MUcompleteBwd)
 " let g:transparent_groups =
