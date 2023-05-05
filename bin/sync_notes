@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# set the path to the git repository
+REPO_PATH="$HOME/dev/notes.git"
+WORK_TREE="$HOME/notes"
+
+function git_notes {
+  git --git-dir=$REPO_PATH --work-tree=$WORK_TREE "$@"
+}
+
+COMMIT_MSG="Sync notes $(date +'%Y-%m-%d %H:%M:%S')"
+
+# check if there are any local changes
+if [ -n "$(git_notes status --porcelain)" ]; then
+  git_notes add .
+  git_notes commit -m "$COMMIT_MSG"
+else
+  echo "No changes to commit"
+fi
+
+git_notes pull origin master
+git_notes push origin master
+
+# check for errors and send notification if there are any
+if [ $? -ne 0 ]; then
+  terminal-notifier -title "Notes Sync Error" -message "There was an error syncing notes" -sound default
+  exit 1
+fi
