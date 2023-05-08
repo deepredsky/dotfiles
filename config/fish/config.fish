@@ -1,6 +1,4 @@
 set -gx EDITOR vim -u ~/.vimrc_minimal
-set -gx FORWARDS true
-set -gx GOPATH ~/dev/go
 set -gx HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK 1
 set -gx FZF_DEFAULT_COMMAND 'fd --type=file --hidden --exclude .git'
 set -gx MANPAGER "col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -"
@@ -11,7 +9,6 @@ alias s="bundle exec rails s"
 alias c="bundle exec rails c"
 alias gd="git diff"
 alias l="ls -l"
-alias tmux="env TERM=xterm-256color tmux"
 alias k="kubectl"
 
 set normal (set_color normal)
@@ -100,12 +97,8 @@ set PATH $HOME/.bin $PATH
 set PATH $HOME/.local/bin $PATH
 set PATH $HOME/.cabal/bin $PATH
 set PATH /usr/local/sbin $PATH
-set -gx TERMINFO_DIRS $HOME/.local/share/terminfo $TERMINFO_DIRS
+set -gx TERMINFO_DIRS $HOME/.local/share/terminfo
 fish_add_path /opt/homebrew/bin
-
-function nvm
-    bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
-end
 
 function fco -d "Fuzzy-find and checkout a branch"
     git branch --all | grep -v HEAD | string trim | fzf | xargs echo | sed -E s_remotes/origin/__g | xargs git checkout
@@ -185,8 +178,3 @@ function jira -d "Open vim jira"
 end
 
 export GPG_TTY=$(tty)
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-# eval /usr/local/anaconda3/bin/conda "shell.fish" "hook" $argv | source
-# <<< conda initialize <<<
