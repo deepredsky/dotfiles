@@ -2,6 +2,16 @@ let g:vimwiki_map_prefix = ',v'
 
 " Plugins {{{
 call plug#begin('~/.vim/plugged')
+
+" Snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
+" Trigger configuration.
+let g:UltiSnipsUsePythonVersion = 3
+let g:UltiSnipsExpandTrigger='<c-e>'
+let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
+
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
 Plug 'tmhedberg/matchit'
