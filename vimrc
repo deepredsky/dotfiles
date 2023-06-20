@@ -140,6 +140,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'junegunn/gv.vim'
 Plug 'tribela/vim-transparent'
+Plug 'google/vim-jsonnet'
 
 Plug 'vimwiki/vimwiki'
 " Plug 'https://github.com/lervag/wiki.vim'
