@@ -80,6 +80,14 @@ function g --wraps=git
     end
 end
 
+function cat --wraps=bat
+  if test -f /tmp/light-theme
+    command bat --theme "Solarized (light)" $argv
+  else
+    command bat --theme "Solarized (dark)" $argv
+  end
+end
+
 function hybrid_bindings --description "Vi-style bindings that inherit emacs-style bindings in all modes"
     for mode in default insert visual
         fish_default_key_bindings -M $mode
