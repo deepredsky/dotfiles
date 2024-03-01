@@ -15,6 +15,11 @@ set termguicolors
 set t_8f=[38;2;%lu;%lu;%lum
 set t_8b=[48;2;%lu;%lu;%lum
 
+let &t_Cs = "\e[4:3m"
+let &t_Ce = "\e[4:0m"
+let &t_ZH="\e[3m"
+let &t_ZR="\e[23m"
+
 set viminfo='10,\"100,:20,n~/.viminfo
 
 set encoding=utf-8    " Set default encoding to UTF-8

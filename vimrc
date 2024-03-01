@@ -167,8 +167,6 @@ Plug 'markonm/traces.vim'
 call plug#end()
 " }}}
 
-let &t_ZH="\e[3m"
-let &t_ZR="\e[23m"
 source ~/.vim/basic-settings.vim
 
 source ~/.vim/mappings.vim
