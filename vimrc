@@ -1,6 +1,9 @@
 scriptencoding utf-8
 let g:vimwiki_map_prefix = ',v'
 
+set shell=bash
+let $SHELL="bash"
+
 " Plugins {{{
 call plug#begin('~/.vim/plugged')
 
