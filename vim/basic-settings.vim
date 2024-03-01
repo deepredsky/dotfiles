@@ -8,6 +8,8 @@ set colorcolumn=80
 set wildmenu
 set wildoptions+=pum
 set cursorline
+let g:fzf_layout = { 'down': '50%' }
+let g:fzf_preview_window = []
 
 set termguicolors
 
