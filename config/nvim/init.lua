@@ -23,6 +23,7 @@
 vim.g.mapleader = ','
 vim.keymap.set('n', '<leader>w', '<cmd>write<cr>')
 vim.keymap.set('n', '<leader>,', ':')
+vim.keymap.set('v', '<leader>,', ':')
 vim.keymap.set('n', '<leader>p', '<cmd>r!pbpaste<cr>')
 vim.keymap.set('n','<C-Space>', '<Esc>:noh<CR>')
 vim.keymap.set('v','<C-Space>', '<Esc>gV')
@@ -89,8 +90,8 @@ use 'vim-ruby/vim-ruby'
 use 'tpope/vim-projectionist'
 use 'mileszs/ack.vim'
 use 'romainl/vim-qf'
-use '/opt/homebrew/opt/fzf'
 use 'junegunn/fzf.vim'
+use '/opt/homebrew/opt/fzf'
 use 'lifepillar/vim-solarized8'
 end)
 
@@ -142,7 +143,7 @@ cmd 'colorscheme everforest'
 
 -- LSP mappings
 map("n", "gD", "<cmd>lua vim.lsp.buf.definition()<CR>")
-map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
+map("n", ",k", "<cmd>lua vim.lsp.buf.hover()<CR>")
 map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
 map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
 map("n", "gds", "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
@@ -230,6 +231,13 @@ vim.api.nvim_set_keymap('n', '<leader>ew', ':e <C-R>=expand("%:h").\'/\'<CR>', {
 -- Open FZF's tag selector
 vim.api.nvim_set_keymap('n', '<leader>.', ':BTags<CR>', { noremap = true })
 
+vim.api.nvim_set_keymap('n', '<leader>gj', ':Jump diff head<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>gJ', ':Jump diff head^<CR>', { noremap = true, silent = true })
+
+-- Command definition
+vim.api.nvim_create_user_command('Jump', function(opts)
+  vim.cmd('cexpr system(\'git jump ' .. table.concat(opts.fargs, ' ') .. '\')')
+end, { nargs = '*' })
 -- Configure LSP through rust-tools.nvim plugin.
 -- rust-tools will configure and enable certain LSP features for us.
 -- See https://github.com/simrat39/rust-tools.nvim#configuration
@@ -367,5 +375,5 @@ api.nvim_create_autocmd("FileType", {
   group = nvim_metals_group,
 })
 
-map("n", "<neader>h", [[<cmd>lua require"rust-tools".inlay_hints.enable()<CR>]])
+map("n", "<leader>h", [[<cmd>lua require"rust-tools".inlay_hints.enable()<CR>]])
 map("n", "<leader>H", [[<cmd>lua require"rust-tools".inlay_hints.disable()<CR>]])
