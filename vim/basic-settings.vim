@@ -138,7 +138,8 @@ augroup vimrcEx
 augroup END
 
 set background=dark
-color solarized8_flat
+let g:everforest_background = 'hard'
+color everforest
 
 " Redirect the output of a Vim or external command into a scratch buffer
 function! Redir(cmd) abort
