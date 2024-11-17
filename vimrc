@@ -53,21 +53,6 @@ let g:gist_post_private = 1 " make private gist by default
 Plug 'tpope/vim-dispatch'
 Plug 'rhysd/git-messenger.vim'
 Plug 'jgdavey/tslime.vim'
-
-" Autocompletion helpers
-
-Plug 'lifepillar/vim-mucomplete'
-
-  "{{{ Config 'lifepillar/vim-mucomplete'
-  set completeopt+=menuone,noselect
-  let g:mucomplete#enable_auto_at_startup = 1
-  let g:mucomplete#chains = { 'default': [ 'c-p' ], 'rust': ['omni'] }
-
-  " Prevent µcomplete from mapping <c-h>
-  imap <plug>Unused <plug>(MUcompleteCycBwd)
-
-  "}}}
-
 Plug 'mileszs/ack.vim'
 
 "{{{ Config 'mileszs/ack.vim'
