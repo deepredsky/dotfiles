@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require 'active_support/all'
+require 'date'
+
+d = ARGV[0] || 10
+
+((Date.today - d.to_i.days)..Date.today).each do |day|
+  next unless day.on_weekday?
+
+  x = day.strftime "%Y-%m-%d %A"
+  puts "## #{x}"
+  puts "\n\n"
+end
