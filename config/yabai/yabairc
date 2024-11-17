@@ -15,17 +15,24 @@ yabai -m space 7 --label seven
 yabai -m space 8 --label eight
 
 # float system preferences. Most of these just diable Yabai form resizing them.
-yabai -m rule --add app="^System Preferences$" sticky=on layer=above manage=off
-yabai -m rule --add app="^System Settings$" sticky=on layer=above manage=off
-yabai -m rule --add app="^Karabiner-Elements$" sticky=on layer=above manage=off
-yabai -m rule --add app="^Karabiner-EventViewer$" sticky=on layer=above manage=off
-yabai -m rule --add app="^Finder$" sticky=on layer=above manage=off
-yabai -m rule --add app="^Disk Utility$" sticky=on layer=above manage=off
-yabai -m rule --add app="^System Information$" sticky=on layer=above manage=off
-yabai -m rule --add app="^Activity Monitor$" sticky=on layer=above manage=off
-yabai -m rule --add app="^kitty$" sticky=on layer=above manage=off
+yabai -m rule --add app="^System Preferences$" sticky=on sub-layer=above manage=off
+yabai -m rule --add app="^System Settings$" sticky=on sub-layer=above manage=off
+yabai -m rule --add app="^Karabiner-Elements$" sticky=on sub-layer=above manage=off
+yabai -m rule --add app="^Karabiner-EventViewer$" sticky=on sub-layer=above manage=off
+yabai -m rule --add app="^Disk Utility$" sticky=on sub-layer=above manage=off
+yabai -m rule --add app="^kitty$" manage=off
 yabai -m rule --add app="^console$" manage=off
 yabai -m rule --add app="^FUJIFILM X Webcam$" manage=off
+
+yabai -m rule --add label="Finder" app="^Finder$" manage=off
+yabai -m rule --add label="Settings" app="^Settings$" title=".*" manage=off
+yabai -m rule --add label="Activity Monitor" app="^Activity Monitor$" manage=off
+yabai -m rule --add label="Calculator" app="^Calculator$" manage=off
+yabai -m rule --add label="Dictionary" app="^Dictionary$" manage=off
+yabai -m rule --add label="mpv" app="^mpv$" manage=off
+yabai -m rule --add label="Software Update" title="Software Update" manage=off
+yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
+yabai -m rule --add label="System Information" app="System Information" title="System Information" manage=off
 
 #find ~/Library/Parallels/Applications\ Menus/ -maxdepth 3 -type f | awk -F'/' '{ print $NF; }' | awk '{$1=$1};1' | sort | uniq | tr "\n" "\0" | xargs -0 -I{} yabai -m rule --add app="^{}\$" title=".*" manage=on
 
@@ -34,7 +41,6 @@ yabai -m rule --add app="^FUJIFILM X Webcam$" manage=off
 #yabai -m config focus_follows_mouse          on
 # New window spawns to the right if vertical split, or bottom if horizontal split
 yabai -m config window_placement second_child
-yabai -m config window_topmost off
 #yabai -m config window_shadow float
 yabai -m config window_opacity off
 yabai -m config active_window_opacity 1.0
@@ -56,10 +62,10 @@ yabai -m config split_ratio 0.50
 
 ## Change how yabai looks
 yabai -m config layout bsp
-yabai -m config top_padding 2
-yabai -m config bottom_padding 2
-yabai -m config left_padding 2
-yabai -m config right_padding 2
+yabai -m config top_padding 0
+yabai -m config bottom_padding 0
+yabai -m config left_padding 0
+yabai -m config right_padding 0
 yabai -m config window_gap 10
 
 echo "yabai configuration loaded.."
