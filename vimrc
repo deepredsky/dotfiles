@@ -65,10 +65,7 @@ elseif executable('ag')
 endif
 "}}}
 
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
-Plug 'thomasfaingnaert/vim-lsp-snippets'
-Plug 'thomasfaingnaert/vim-lsp-ultisnips'
+Plug 'yegappan/lsp'
 
 command! -bang -nargs=* -complete=file Ag           call ack#Ack('grep<bang>', <q-args>)
 command! -bang -nargs=* -complete=file AgFromSearch call ack#AckFromSearch('grep<bang>', <q-args>)
@@ -275,17 +272,39 @@ function! SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
-let g:copilot_no_tab_map = v:true
+let lspServers = [#{
+	\	  name: 'clang',
+	\	  filetype: ['c', 'cpp'],
+	\	  path: '/usr/bin/clangd',
+	\	  args: ['--background-index']
+	\ },
+  \ #{
+	\	  name: 'ruby',
+	\	  filetype: 'ruby',
+	\	  path: '/Users/rajesh.sharma/.rbenv/shims/ruby-lsp'
+	\ }
+\]
 
-imap <F23> <plug>(MUcompleteFwd)
-imap <F24> <plug>(MUcompleteBwd)
-" let g:transparent_groups =
-"       \['Normal', 'Comment', 'Constant', 'Special', 'Identifier',
-"       \'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String',
-"       \'Function', 'Conditional', 'Repeat', 'Operator', 'Structure',
-"       \'LineNr', 'NonText', 'SignColumn', 'CursorLineNr', 'EndOfBuffer',
-"       \'VertSplit']
-" let g:transparent_groups += ['StatusLineNC', 'StatusLine']
+function! s:on_lsp_buffer_enabled()
+  setlocal omnifunc=g:LspOmniFunc
+  setlocal signcolumn=yes
 
-" vim: expandtab softtabstop=2 shiftwidth=2 foldmethod=marker
+  nnoremap <buffer> gd <Cmd>LspGotoDefinition<CR>
+  nnoremap <buffer> <C-W>gd <Cmd>topleft LspGotoDefinition<CR>
+  nmap <buffer> [g <Cmd>LspDiag prev<CR>
+  nmap <buffer> ]g <Cmd>LspDiag next<CR>
+  nmap <buffer> ,k <Cmd>LspHover<CR>
+  nmap <buffer> <leader>ca <Cmd>LspCodeAction<CR>
+  nnoremap <buffer> <leader>cl <Cmd>LspCodeLens<CR>
+endfunction
+
+autocmd User LspSetup call LspAddServer(lspServers)
+autocmd User LspAttached call s:on_lsp_buffer_enabled()
+
+let lspOpts = #{
+      \ autoHighlightDiags: v:true,
+      \ showDiagOnStatusLine: v:true,
+      \ showInlayHints: v:true
+      \}
+
+autocmd User LspSetup call LspOptionsSet(lspOpts)
