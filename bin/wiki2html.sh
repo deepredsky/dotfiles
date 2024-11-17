@@ -51,9 +51,15 @@ TITLE="$(grep -m1 '^# ' "$INPUT" | sed 's/# //g')"
 # PREPANDOC PROCESSING AND PANDOC
 pandoc_template=( pandoc \
     --template=$HOME/dev/wiki/template.html \
-    -f $SYNTAX \
-    -t html \
-    -c $HOME/dev/wiki/public/css/main.css \
+    --from gfm \
+    --filter d2-filter \
+    --filter pandoc-sidenote \
+    --to html5+smart \
+    --toc \
+    --wrap=none \
+    --css="/Users/rajesh.sharma/dev/pandoc-markdown-css-theme/public/css/theme.css" \
+    --css="/Users/rajesh.sharma/dev/pandoc-markdown-css-theme/public/css/solarized.css" \
+    --css="/Users/rajesh.sharma/dev/pandoc-markdown-css-theme/public/css/skylighting-solarized-theme.css" \
     -M root_path:$ROOT_PATH )
 
 # Searches for markdown links (without extension or .md) and appends a .html
