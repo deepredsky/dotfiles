@@ -165,6 +165,7 @@ virtual-mailboxes \
         "This Week"       "notmuch://?query=date:week and NOT tag:archive"\
         "This Month"      "notmuch://?query=date:month and NOT tag:archive"\
         "Inbox"           "notmuch://?query=tag:inbox and NOT tag:archive"\
+        "Lists"           "notmuch://?query=tag:list and NOT tag:archive"\
         "Starred"         "notmuch://?query=tag:*"\
         "Archive"         "notmuch://?query=tag:archive"
 
