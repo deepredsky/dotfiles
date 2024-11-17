@@ -35,3 +35,4 @@ config/containers/
 config/github-copilot/hosts.json
 config/nvim/plugin/packer_compiled.lua
 config/vifm/vifminfo.json
+config/github-copilot/
