@@ -81,7 +81,7 @@ Plug 'fatih/vim-go'
 Plug 'janko-m/vim-test'
 
 " Better search handling
-Plug 'junegunn/vim-slash'
+Plug 'bronson/vim-visual-star-search'
 
 Plug 'walm/jshint.vim'
 Plug 'logico-dev/typewriter'
