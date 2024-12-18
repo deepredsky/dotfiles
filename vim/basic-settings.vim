@@ -151,6 +151,14 @@ function! Redir(cmd) abort
     call setline(1, split(output, "\n"))
 endfunction
 command! -nargs=1 Redir silent call Redir(<f-args>)
+"
+" Redirect the output of a Vim or external command to a file
+function! WRedir(cmd) abort
+    let output = execute(a:cmd)
+    let fname = 'output.txt'
+    call writefile(split(output, "\n"), fname, "a")
+endfunction
+command! -nargs=1 WRedir silent call WRedir(<f-args>)
 
 let g:vimwiki_conceal_pre = 0
 
