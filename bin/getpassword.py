@@ -4,7 +4,7 @@ def get_password(account):
     cmd = "/usr/bin/security 2>&1 >/dev/null find-generic-password -l %s -g" % account
     line = os.popen(cmd).readline()
 
-    passwds = line.split()
+    passwds = line.split(':')
     if len(passwds) == 2:
         return passwds[1][1:-1]
     else:
