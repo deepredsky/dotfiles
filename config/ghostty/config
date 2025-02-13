@@ -1,0 +1,9 @@
+macos-option-as-alt = true
+background-opacity = 0.9
+
+font-family = "Input"
+font-size = 16
+
+adjust-cell-height = 20%
+
+copy-on-select = clipboard
