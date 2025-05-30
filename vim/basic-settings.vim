@@ -139,6 +139,7 @@ augroup END
 
 set background=dark
 let g:everforest_background = 'hard'
+let g:everforest_transparent_background = 2
 color everforest
 
 " Redirect the output of a Vim or external command into a scratch buffer
