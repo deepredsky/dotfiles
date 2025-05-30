@@ -32,7 +32,7 @@
                                 "from": {
                                     "key_code": "e",
                                     "modifiers": {
-                                        "mandatory": ["left_command", "left_shift", "left_control", "left_option"],
+                                        "mandatory": ["command"],
                                         "optional": []
                                     }
                                 },
@@ -70,10 +70,6 @@
                                             "com.tinyspeck.slackmacgap"
                                         ],
                                         "type": "frontmost_application_if"
-                                    },
-                                    {
-                                        "input_sources": [{ "input_source_id": "com.apple.keylayout.Dvorak" }],
-                                        "type": "input_source_if"
                                     }
                                 ],
                                 "from": {
@@ -2824,6 +2820,26 @@
                     }
                 ]
             },
+            "devices": [
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "product_id": 24926,
+                        "vendor_id": 7504
+                    },
+                    "ignore": false
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "product_id": 866,
+                        "vendor_id": 10730
+                    },
+                    "ignore": false
+                }
+            ],
             "fn_function_keys": [
                 {
                     "from": { "key_code": "f3" },
