@@ -4,6 +4,11 @@ return {
   "tpope/vim-vinegar",
   "ibhagwan/fzf-lua",
   'sainnhe/everforest',
+  {
+    "lervag/wiki.vim",
+    init = function()
+    end
+  },
   { "folke/neoconf.nvim", cmd = "Neoconf" },
   {
     "yetone/avante.nvim",
