@@ -12,8 +12,7 @@ nnoremap Y  y$
 nmap <silent> <F5> <Plug>StripTrailingWhitespace
 
 vnoremap <Leader>c "+y
-nnoremap <leader>p :r!pbpaste<cr>
-
+nnoremap <leader>p <Plug>SystemPasteLine
 nnoremap j gj
 nnoremap k gk
 nmap cd :lcd %:h<cr>

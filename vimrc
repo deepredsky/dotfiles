@@ -24,6 +24,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-vinegar'
+Plug 'christoomey/vim-system-copy'
 
 Plug 'github/copilot.vim'
 
