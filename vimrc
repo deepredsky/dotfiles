@@ -149,7 +149,6 @@ let g:elm_setup_keybindings = 0
 Plug 'romainl/vim-qf'
 Plug 'romainl/vim-devdocs'
 
-Plug 'deepredsky/vim-jira'
 Plug 'dag/vim-fish'
 Plug 'markonm/traces.vim'
 
