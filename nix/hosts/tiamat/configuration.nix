@@ -104,6 +104,7 @@
       ripgrep
       neovim
       hyprlock
+      hyprpaper
       btop
     ];
   };
