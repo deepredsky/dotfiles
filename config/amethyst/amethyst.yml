@@ -57,8 +57,6 @@ mod1:
 # Hyper
 mod2:
   - option
-  - shift
-  - control
   - command
 
 # Commands:
