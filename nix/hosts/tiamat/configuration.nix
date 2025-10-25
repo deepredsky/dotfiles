@@ -95,6 +95,15 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+
+  services.udev = {
+    # NOTE: Xremap requires the following:
+    # https://github.com/xremap/xremap?tab=readme-ov-file#running-xremap-without-sudo
+    extraRules = ''
+      KERNEL=="uinput", GROUP="input", TAG+="uaccess"
+    '';
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.rajesh = {
     isNormalUser = true;
@@ -158,6 +167,7 @@
 
   programs.fish.enable = true;
 
+  hardware.enableAllFirmware = true;
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
 

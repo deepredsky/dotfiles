@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     hyprland.url = "github:hyprwm/Hyprland";
+    xremap-flake.url = "github:xremap/nix-flake";
 
     # Add grub2 themes to your inputs ...
     grub2-themes = {
@@ -25,6 +26,8 @@
         modules = [
           ./hosts/tiamat/configuration.nix
           grub2-themes.nixosModules.default
+
+          ./modules/xremap.nix
         ];
       };
     };
@@ -33,7 +36,9 @@
       "rajesh" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
-        modules = [./home-manager/home.nix];
+        modules = [
+          ./home-manager/home.nix
+        ];
       };
     };
   };
