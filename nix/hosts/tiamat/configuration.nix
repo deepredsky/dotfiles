@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports =
@@ -56,22 +56,22 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
   # services.xserver.displayManager.gdm.enable = true;
   # services.xserver.desktopManager.gnome.enable = true;
 
-   services.displayManager.sddm.enable = true;
+   # services.displayManager.sddm.enable = true;
    # services.displayManager.sddm.wayland.enable = true;
-   services.displayManager.sddm.theme = "breeze";
-   services.displayManager.sddm.package = pkgs.kdePackages.sddm;
+   # services.displayManager.sddm.theme = "breeze";
+   # services.displayManager.sddm.package = pkgs.kdePackages.sddm;
 
   # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
+  # services.xserver.xkb = {
+  #   layout = "us";
+  #   variant = "";
+  # };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -144,8 +144,48 @@
 
   programs.hyprland = {
     enable = true;
-    xwayland.enable = true;
+    withUWSM = true;
+    # xwayland.enable = true;
   };
+
+  programs.uwsm.enable = true;
+
+  programs.regreet = {
+    enable = true;
+    theme = {
+      package = pkgs.tokyonight-gtk-theme;
+      name = "Tokyonight-Dark";
+    };
+
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+
+    settings = {
+      GTK.application_prefer_dark_theme = true;
+    };
+  };
+
+  services.greetd = {
+      enable = true;
+      restart = true;
+      settings.default_session =
+        let
+          hyprlandConfig =
+            pkgs.writeText "hyprlandGreeter.conf"
+              ''
+                exec-once = ${lib.meta.getExe config.programs.regreet.package}; hyprctl dispatch exit
+                misc {
+                    disable_hyprland_logo = true
+                    disable_splash_rendering = true
+                }
+              '';
+        in
+        {
+          command = "Hyprland --config ${hyprlandConfig}";
+        };
+    };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
