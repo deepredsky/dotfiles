@@ -125,6 +125,7 @@
       hyprlock
       hyprpaper
       btop
+      _1password-gui
     ];
   };
 
