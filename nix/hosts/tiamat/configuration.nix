@@ -156,9 +156,9 @@
     git
     ruby
     python3
-    fish    
+    fish
     waybar
-    rofi-wayland
+    rofi
     tmux
     wl-clipboard
     pavucontrol
