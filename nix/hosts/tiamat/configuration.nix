@@ -76,6 +76,8 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  services.usbmuxd.enable = true;
+
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -126,6 +128,17 @@
       hyprpaper
       btop
       _1password-gui
+      logseq
+      xwayland-satellite
+      foot
+      ghostty
+      emacs
+      libimobiledevice
+      gvfs
+      ifuse
+      gthumb
+      geeqie
+      asciidoctor
     ];
   };
 
@@ -147,6 +160,8 @@
     withUWSM = true;
     # xwayland.enable = true;
   };
+
+  programs.niri.enable = true;
 
   programs.uwsm.enable = true;
 
@@ -202,6 +217,9 @@
     tmux
     wl-clipboard
     pavucontrol
+    fuzzel
+    mako
+    swaybg
   ];
 
   environment.sessionVariables.GTK_THEME = "Tokyonight-Dark";
@@ -214,6 +232,7 @@
 
   services.blueman.enable = true;
 
+  services.udisks2.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
