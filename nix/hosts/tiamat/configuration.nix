@@ -112,7 +112,7 @@
     description = "Rajesh Sharma";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      firefox-wayland
+      firefox
       neofetch
       kitty
       tree
