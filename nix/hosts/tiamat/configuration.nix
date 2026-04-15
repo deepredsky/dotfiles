@@ -24,6 +24,19 @@
     footer = true;
   };
 
+
+  fileSystems."/mnt/shared" = {
+    device = "UUID=5CFAC2391FBCD763"; # /dev/nvme1n1p3
+    fsType = "ntfs3";
+    options = [
+      "rw"
+      "uid=1000"
+      "gid=100"
+      "umask=0022"
+      "windows_names"
+    ];
+  };
+
   networking.hostName = "tiamat"; # Define your hostname.
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
