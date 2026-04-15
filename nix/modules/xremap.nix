@@ -20,6 +20,7 @@
 config.keymap = [
   {
     name = "Emacs binding in input elements";
+    exact_match = true;
     remap = {
       "C-b" = "Left";
       "C-f" = "Right";
@@ -52,6 +53,7 @@ config.keymap = [
 
   {
     name = "Cmd shortcuts in GUI apps except Firefox";
+    exact_match = true;
     remap = {
       "Super-c" = "C-c";
       "Super-v" = "C-v";
@@ -60,7 +62,6 @@ config.keymap = [
       "Super-z" = "C-z";
       "Super-y" = "C-y";
       "Super-s" = "C-s";
-      "Super-f" = "C-f";
     };
     application.not = [
       "firefox"
@@ -77,6 +78,7 @@ config.keymap = [
 
   {
     name = "Cmd copy paste in terminals";
+    exact_match = true;
     remap = {
       "Super-c" = "C-Shift-c";
       "Super-v" = "C-Shift-v";
