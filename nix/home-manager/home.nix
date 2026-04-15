@@ -40,6 +40,8 @@
     # '')
     pkgs.vesktop
     pkgs.imv
+    pkgs.inkscape
+    pkgs.zathura
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
