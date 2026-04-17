@@ -126,7 +126,7 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       firefox
-      neofetch
+      fastfetch
       kitty
       tree
       nautilus
