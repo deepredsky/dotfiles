@@ -1,6 +1,5 @@
 let mapleader = ","
 
-set nocompatible      " Use vim, no vi defaults
 set relativenumber    " Show relative line numbers
 set number            " Show line numbers
 set ruler             " Show line and column number
@@ -12,20 +11,6 @@ let g:fzf_layout = { 'down': '50%' }
 let g:fzf_preview_window = []
 
 set termguicolors
-
-" enable 24 bit color support
-set t_8f=[38;2;%lu;%lu;%lum
-set t_8b=[48;2;%lu;%lu;%lum
-
-let &t_Cs = "\e[4:3m"
-let &t_Ce = "\e[4:0m"
-let &t_ZH="\e[3m"
-let &t_ZR="\e[23m"
-
-set viminfo='10,\"100,:20,n~/.viminfo
-
-set encoding=utf-8    " Set default encoding to UTF-8
-scriptencoding utf-8
 
 set tags=./tags,tags,.git/tags
 
@@ -39,7 +24,6 @@ set shiftwidth=2                  " an autoindent (with <<) is two spaces
 set expandtab                     " use spaces, not tabs
 set list                          " Show invisible characters
 set listchars=tab:▸\ ,extends:❯,precedes:❮,trail:☠" ,eol:¬
-set backspace=indent,eol,start    " backspace through everything in insert mode
 
 set showbreak=↪
 set fillchars=diff:⣿,vert:│
