@@ -5,6 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     hyprland.url = "github:hyprwm/Hyprland";
     xremap-flake.url = "github:xremap/nix-flake";
+    claude-code.url = "github:sadjow/claude-code-nix";
 
     # Add grub2 themes to your inputs ...
     grub2-themes = {

@@ -9,7 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-
+   
   # Bootloader.
   boot.loader.systemd-boot.enable = false;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -24,7 +24,6 @@
     footer = true;
   };
 
-
   fileSystems."/mnt/shared" = {
     device = "UUID=5CFAC2391FBCD763"; # /dev/nvme1n1p3
     fsType = "ntfs3";
@@ -34,6 +33,8 @@
       "gid=100"
       "umask=0022"
       "windows_names"
+      "nofail"
+      "x-systemd.device-timeout=5s"
     ];
   };
 
@@ -110,6 +111,10 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  boot.kernelParams = [
+    "usbcore.old_scheme_first=1"
+    "usbcore.initial_descriptor_timeout=5"
+  ];
 
   services.udev = {
     # NOTE: Xremap requires the following:
@@ -153,6 +158,10 @@
       geeqie
       asciidoctor
       steam-run
+      nmap
+      nfs-utils
+      chromium
+      xdg-desktop-portal-gnome
     ];
   };
 
@@ -212,7 +221,7 @@
           hyprlandConfig =
             pkgs.writeText "hyprlandGreeter.conf"
               ''
-                exec-once = ${lib.meta.getExe config.programs.regreet.package}; hyprctl dispatch exit
+                exec-once = ${lib.meta.getExe config.programs.regreet.package} && hyprctl dispatch exit
                 misc {
                     disable_hyprland_logo = true
                     disable_splash_rendering = true
@@ -224,6 +233,9 @@
         };
     };
 
+
+  nixpkgs.overlays = [ inputs.claude-code.overlays.default ];
+# environment.systemPackages = [ pkgs.claude-code ];
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -242,6 +254,7 @@
     fuzzel
     mako
     swaybg
+    claude-code
   ];
 
   environment.sessionVariables.GTK_THEME = "Tokyonight-Dark";
@@ -255,6 +268,8 @@
   services.blueman.enable = true;
 
   services.udisks2.enable = true;
+
+  services.flatpak.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
