@@ -162,6 +162,9 @@
       nfs-utils
       chromium
       xdg-desktop-portal-gnome
+      discord
+      freecad
+      digikam
     ];
   };
 
@@ -211,6 +214,19 @@
     settings = {
       GTK.application_prefer_dark_theme = true;
     };
+  };
+
+
+  fileSystems."/mnt/nas/photos" = {
+    device = "192.168.50.190:/mnt/Nas_Storage/Photos";
+    fsType = "nfs";
+    options = [
+      "nfsvers=4.2"
+      "_netdev"
+      "nofail"
+      "x-systemd.automount"
+      "x-systemd.idle-timeout=600"
+    ];
   };
 
   services.greetd = {
