@@ -111,6 +111,8 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
+  services.tailscale.enable = true;
+
   boot.kernelParams = [
     "usbcore.old_scheme_first=1"
     "usbcore.initial_descriptor_timeout=5"
@@ -128,7 +130,7 @@
   users.users.rajesh = {
     isNormalUser = true;
     description = "Rajesh Sharma";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       firefox
       fastfetch
@@ -146,7 +148,7 @@
       hyprpaper
       btop
       _1password-gui
-      logseq
+      # logseq
       xwayland-satellite
       foot
       ghostty
@@ -163,8 +165,9 @@
       chromium
       xdg-desktop-portal-gnome
       discord
-      freecad
+      # freecad
       digikam
+      icloudpd
     ];
   };
 
@@ -202,8 +205,8 @@
   programs.regreet = {
     enable = true;
     theme = {
-      package = pkgs.tokyonight-gtk-theme;
-      name = "Tokyonight-Dark";
+      name = "Adwaita";
+      package = pkgs.gnome-themes-extra;
     };
 
     iconTheme = {
@@ -271,9 +274,19 @@
     mako
     swaybg
     claude-code
+    visidata
+    duckdb
+    vlc
   ];
 
-  environment.sessionVariables.GTK_THEME = "Tokyonight-Dark";
+  environment.sessionVariables.GTK_THEME = "Adwaita:dark";
+
+  systemd.services.greetd.environment = {
+    GTK_THEME = "Adwaita:dark";
+  };
+
+
+  virtualisation.docker.enable = true;
 
   programs.fish.enable = true;
 
