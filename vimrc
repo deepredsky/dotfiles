@@ -139,6 +139,9 @@ Plug 'vimwiki/vimwiki'
 " let g:wiki_root = '~/wiki'
 
 let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md', 'template_path': '', 'custom_wiki2html': '$HOME/.bin/wiki2html.sh' }]
+" Without this, vimwiki claims filetype=vimwiki for *any* .md file, not
+" just files under ~/notes/ (its default "global_ext" behavior).
+let g:vimwiki_global_ext = 0
 
 Plug 'FooSoft/vim-argwrap'
 Plug 'tyrannicaltoucan/vim-quantum'
@@ -235,18 +238,25 @@ function! SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
-let lspServers = [#{
-	\	  name: 'clang',
-	\	  filetype: ['c', 'cpp'],
-	\	  path: '/usr/bin/clangd',
-	\	  args: ['--background-index']
-	\ },
-  \ #{
-	\	  name: 'ruby',
-	\	  filetype: 'ruby',
-	\	  path: '/Users/rajesh.sharma/.rbenv/shims/ruby-lsp'
-	\ }
-\]
+" Resolve LSP binaries dynamically so this works on any machine/OS this
+" dotfiles repo is checked out on, and skips servers that aren't installed.
+let s:lspCandidates = [
+      \ #{ name: 'clang', filetype: ['c', 'cpp'], bin: 'clangd', args: ['--background-index'] },
+      \ #{ name: 'ruby', filetype: 'ruby', bin: 'ruby-lsp' },
+      \ ]
+
+let lspServers = []
+for s:cand in s:lspCandidates
+  let s:path = exepath(s:cand.bin)
+  if !empty(s:path)
+    let s:server = #{ name: s:cand.name, filetype: s:cand.filetype, path: s:path }
+    if has_key(s:cand, 'args')
+      let s:server.args = s:cand.args
+    endif
+    call add(lspServers, s:server)
+  endif
+endfor
+unlet! s:cand s:path s:server
 
 function! s:on_lsp_buffer_enabled()
   setlocal omnifunc=g:LspOmniFunc

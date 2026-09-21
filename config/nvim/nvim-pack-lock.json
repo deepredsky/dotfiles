@@ -36,9 +36,17 @@
       "rev": "7cafff6a9e0a1b54364b26a87f1efe749f8fb96b",
       "src": "https://github.com/romainl/vim-qf"
     },
+    "vim-repeat": {
+      "rev": "65846025c15494983dafe5e3b46c8f88ab2e9635",
+      "src": "https://github.com/tpope/vim-repeat"
+    },
     "vim-rhubarb": {
       "rev": "5496d7c94581c4c9ad7430357449bb57fc59f501",
       "src": "https://github.com/tpope/vim-rhubarb"
+    },
+    "vim-surround": {
+      "rev": "3d188ed2113431cf8dac77be61b842acb64433d9",
+      "src": "https://github.com/tpope/vim-surround"
     },
     "vim-vinegar": {
       "rev": "bb1bcddf43cfebe05eb565a84ab069b357d0b3d6",

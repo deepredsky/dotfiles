@@ -26,7 +26,8 @@ let g:gist_post_private = 1 " make private gist by default
 
 Plug 'rhysd/committia.vim'
 Plug 'junegunn/vim-slash'
-Plug '/opt/homebrew/opt/fzf' | Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'lifepillar/vim-solarized8'
 Plug 'flazz/vim-colorschemes'
 Plug 'junegunn/goyo.vim'
@@ -36,6 +37,9 @@ Plug 'vimwiki/vimwiki'
 Plug 'sainnhe/everforest'
 
 let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md', 'template_path': '', 'custom_wiki2html': '$HOME/.bin/wiki2html.sh' }]
+" Without this, vimwiki claims filetype=vimwiki for *any* .md file, not
+" just files under ~/notes/ (its default "global_ext" behavior).
+let g:vimwiki_global_ext = 0
 
 Plug 'romainl/vim-qf'
 call plug#end()

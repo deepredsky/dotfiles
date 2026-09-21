@@ -1,1 +1,3 @@
-UltiSnipsAddFiletypes markdown
+if exists(':UltiSnipsAddFiletypes')
+  UltiSnipsAddFiletypes markdown
+endif

@@ -63,7 +63,7 @@ vim.g.vimwiki_list = {{
 vim.keymap.set('n', '<leader>w', '<cmd>write<cr>')
 vim.keymap.set('n', '<Leader><Leader>', ':')
 vim.keymap.set('v', '<Leader><Leader>', ':')
-vim.keymap.set('n', '<leader>p', '<cmd>r!pbpaste<cr>')
+vim.keymap.set('n', '<leader>p', '"+p')
 vim.keymap.set('n','<C-Space>', '<Esc>:noh<CR>')
 vim.keymap.set('v','<C-Space>', '<Esc>gV')
 vim.keymap.set('o','<C-Space>', '<Esc>')
@@ -120,10 +120,8 @@ vim.keymap.set('n', '<Space><Space>', '<Plug>(qf_qf_toggle)')
 vim.keymap.set('n', '<C-n>', '<Plug>(qf_qf_next)')
 vim.keymap.set('n', '<C-p>', '<Plug>(qf_qf_previous)')
 
--- Fix broken netrw gx
-vim.keymap.set('n', 'gx', function()
-  vim.fn.system({ 'open', vim.fn.expand('<cWORD>') })
-end, { silent = true })
+-- gx is natively cross-platform since Neovim 0.10 (vim.ui.open picks
+-- open/xdg-open/wslview per OS), so no custom mapping needed here.
 
 -- Add plugins using vim.pack
 vim.pack.add({

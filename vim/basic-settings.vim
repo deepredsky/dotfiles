@@ -99,7 +99,9 @@ augroup vimrcEx
   " Clear all autocmds in the group
   autocmd!
   autocmd FileType text setlocal textwidth=78
-  autocmd FileType vimwiki setlocal spell textwidth=79 formatoptions=tcroqn2
+  " No 't' in formatoptions: don't hard-wrap while typing (it breaks URLs
+  " mid-string). Soft-wrap visually instead via wrap+linebreak.
+  autocmd FileType vimwiki setlocal spell textwidth=79 formatoptions=croqn2 wrap linebreak breakindent
   " Jump to last cursor position unless it's invalid or in an event handler
   autocmd BufReadPost *
         \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -112,9 +114,13 @@ augroup vimrcEx
 
   autocmd FileType asciidoc setlocal ts=2 sw=2 sts=2 et
 
-  autocmd BufRead *.mkd setlocal ai tw=79 spell formatoptions=tcroqn2 comments=n:&gt;
-  autocmd BufRead *.markdown setlocal ai spell formatoptions=tcroqn2 comments=n:&gt;
-  autocmd BufRead *.md setlocal ai spell formatoptions=tcroqn2 comments=n:&gt;
+  " .md/.markdown/.mkd all resolve to filetype=markdown already, so one
+  " FileType autocmd replaces the old per-extension BufRead ones (which
+  " also missed brand-new, not-yet-saved buffers). comments=n:> was
+  " previously the HTML-escaped literal "&gt;", so blockquote continuation
+  " via o/<CR> never actually worked. No 't' in formatoptions: don't
+  " hard-wrap while typing (it breaks URLs mid-string); soft-wrap instead.
+  autocmd FileType markdown setlocal ai spell textwidth=79 formatoptions=croqn2 comments=n:> wrap linebreak breakindent
 
   " Don't spellcheck urls
   au BufReadPost * syn match UrlNoSpell '\w\+:\/\/[^[:space:]]\+' contains=@NoSpell

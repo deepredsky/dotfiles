@@ -64,4 +64,8 @@ imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
 let g:copilot_no_tab_map = v:true
 
 " fix broken newrw gx
-nnoremap <silent> gx :execute 'silent! !open ' . shellescape(expand('<cWORD>'), 1)<cr>
+function! s:OpenCWORD() abort
+  let l:opener = has('mac') ? 'open' : 'xdg-open'
+  execute 'silent! !' . l:opener . ' ' . shellescape(expand('<cWORD>'), 1)
+endfunction
+nnoremap <silent> gx :call <SID>OpenCWORD()<cr>
