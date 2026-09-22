@@ -163,7 +163,6 @@
       nmap
       nfs-utils
       chromium
-      xdg-desktop-portal-gnome
       discord
       # freecad
       digikam
@@ -202,7 +201,7 @@
 
   programs.uwsm.enable = true;
 
-  programs.regreet = {
+  services.displayManager.regreet = {
     enable = true;
     theme = {
       name = "Adwaita";
@@ -240,7 +239,7 @@
           hyprlandConfig =
             pkgs.writeText "hyprlandGreeter.conf"
               ''
-                exec-once = ${lib.meta.getExe config.programs.regreet.package} && hyprctl dispatch exit
+                exec-once = ${lib.meta.getExe config.services.displayManager.regreet.package} && hyprctl dispatch exit
                 misc {
                     disable_hyprland_logo = true
                     disable_splash_rendering = true
