@@ -143,6 +143,23 @@
       bat
       fd
       ripgrep
+      dust
+      gh
+      jq
+      pandoc
+      tig
+      ydiff
+      eza
+      zoxide
+      delta
+      difftastic
+      lazygit
+      yazi
+      tealdeer
+      sd
+      hexyl
+      tokei
+      glow
       neovim
       hyprlock
       hyprpaper
