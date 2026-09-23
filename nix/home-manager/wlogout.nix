@@ -20,7 +20,7 @@
       }
       {
         "label" = "logout";
-        "action" = "sleep 1; hyprctl dispatch exit";
+        "action" = "sleep 1; niri msg action quit";
         "text" = "Exit";
         "keybind" = "e";
       }
@@ -32,7 +32,7 @@
       }
       {
         "label" = "lock";
-        "action" = "sleep 1; hyprlock";
+        "action" = "sleep 1; swaylock";
         "text" = "Lock";
         "keybind" = "l";
       }

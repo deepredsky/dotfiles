@@ -3,6 +3,7 @@
 {
   imports = [
 	  ./wlogout.nix
+	  ./swaylock.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -78,7 +79,7 @@
 
   gtk.enable = true;
   qt.enable = true; 
-  qt.platformTheme = "gtk";
+  qt.platformTheme.name = "gtk3";
 
   gtk = {
     iconTheme = {
@@ -87,9 +88,14 @@
     };
 
     theme = {
-      package = pkgs.tokyonight-gtk-theme;
-      name = "Tokyonight-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        variant = "mocha";
+        accents = [ "blue" ];
+      };
+      name = "catppuccin-mocha-blue-standard";
     };
+
+    gtk4.theme = config.gtk.theme;
 
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
@@ -101,7 +107,7 @@
 
   home.sessionVariables = {
     EDITOR = "vim";
-    GTK_THEME = "Tokyonight-Dark"; 
+    GTK_THEME = "catppuccin-mocha-blue-standard";
   };
 
 
