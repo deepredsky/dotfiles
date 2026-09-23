@@ -161,8 +161,7 @@
       tokei
       glow
       neovim
-      hyprlock
-      hyprpaper
+      swaylock
       btop
       _1password-gui
       # logseq
@@ -207,12 +206,6 @@
   nixpkgs.config.allowUnfree = true;
 
   users.users.rajesh.shell = pkgs.fish;
-
-  programs.hyprland = {
-    enable = true;
-    withUWSM = true;
-    # xwayland.enable = true;
-  };
 
   programs.niri.enable = true;
 
