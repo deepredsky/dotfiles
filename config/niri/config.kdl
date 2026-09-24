@@ -564,10 +564,23 @@ binds {
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
 
+    // Print-key binds below are unreachable on keyboards without a Print
+    // Screen key (e.g. Kinesis Advantage 360) — kept in case an external
+    // keyboard with Print is ever plugged in. Mod+Shift+3/4/5 mirror
+    // macOS's screenshot scheme (3=full screen, 4=region, 5=window) and
+    // are reachable on every keyboard.
     Print { screenshot; }
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
-    Mod+Shift+3 { screenshot-window; }
+    Mod+Shift+3 { screenshot-screen; }
+    Mod+Shift+4 { screenshot; }
+    Mod+Shift+5 { screenshot-window; }
+
+    // Region screenshot piped straight into satty for annotation
+    // (draw arrows/boxes/text, then save/copy from within satty).
+    Mod+Shift+S hotkey-overlay-title="Annotate a Screenshot: satty" {
+        spawn "sh" "-c" "grim -g \"$(slurp)\" - | satty --filename - --output-filename ~/Pictures/Screenshots/satty-$(date +%Y%m%d-%H%M%S).png --early-exit";
+    }
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here

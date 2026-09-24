@@ -43,6 +43,9 @@
     pkgs.imv
     pkgs.inkscape
     pkgs.zathura
+    pkgs.grim
+    pkgs.slurp
+    pkgs.satty
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
