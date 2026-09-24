@@ -1,0 +1,56 @@
+{
+  "position": "top",
+  "modules-left": ["niri/workspaces"],
+  "modules-center": ["niri/window"],
+  "modules-right": ["tray", "custom/separator", "cpu", "custom/separator", "memory", "custom/separator", "temperature", "custom/separator", "network", "custom/separator", "pulseaudio", "custom/separator", "clock", "custom/separator", "custom/power"],
+  "clock": {
+    "format": "<span foreground='#f5c2e7'> </span>{:%a %d %H:%M}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+  "tray": {
+      "icon-size": 16,
+      "spacing": 8
+  },
+  "pulseaudio": {
+      "format": "{icon}  {volume}%",
+      "format-muted": "",
+      "format-icons": {
+          "default": ["", "", ""]
+      },
+      "on-click": "pavucontrol",
+      "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+      "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+  },
+  "cpu": {
+      "format": " {usage}%",
+      "tooltip": false
+  },
+  "memory": {
+      "format": "󰍛 {percentage}%",
+      "tooltip-format": "{used:0.1f}GB / {total:0.1f}GB used"
+  },
+  // hwmon2 is k10temp on this host; the index can shift after a kernel/driver
+  // update, in which case this module will just go blank until re-pointed.
+  "temperature": {
+      "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+      "critical-threshold": 80,
+      "format": "{icon} {temperatureC}°C",
+      "format-icons": ["", "", "", "", ""]
+  },
+  "network": {
+      "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+      "format-ethernet": "  {bandwidthDownBits}  {bandwidthUpBits}",
+      "format-wifi": "  {bandwidthDownBits}  {bandwidthUpBits}",
+      "format-disconnected": "󰤮",
+      "tooltip" : false
+  },
+  "custom/power": {
+      "format": "   ",
+      "tooltip": false,
+      "on-click": "wlogout"
+  },
+  "custom/separator": {
+      "format": "│",
+      "tooltip": false
+  }
+}
