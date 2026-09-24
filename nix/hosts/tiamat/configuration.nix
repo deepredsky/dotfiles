@@ -209,8 +209,6 @@
 
   programs.niri.enable = true;
 
-  programs.uwsm.enable = true;
-
   services.displayManager.regreet = {
     enable = true;
     theme = {
@@ -244,21 +242,9 @@
   services.greetd = {
       enable = true;
       restart = true;
-      settings.default_session =
-        let
-          hyprlandConfig =
-            pkgs.writeText "hyprlandGreeter.conf"
-              ''
-                exec-once = ${lib.meta.getExe config.services.displayManager.regreet.package} && hyprctl dispatch exit
-                misc {
-                    disable_hyprland_logo = true
-                    disable_splash_rendering = true
-                }
-              '';
-        in
-        {
-          command = "Hyprland --config ${hyprlandConfig}";
-        };
+      settings.default_session = {
+        command = "${lib.getExe pkgs.cage} -s -- ${lib.getExe config.services.displayManager.regreet.package}";
+      };
     };
 
 
@@ -267,7 +253,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    hyprland
     vim-full
     kitty
     git
