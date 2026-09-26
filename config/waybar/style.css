@@ -60,7 +60,8 @@ button:hover {
 #memory,
 #temperature,
 #tray,
-#network {
+#network,
+#custom-notification {
   margin-top: 2px;
   margin-bottom: 2px;
   margin-left: 2px;
@@ -110,6 +111,10 @@ button:hover {
 
 #temperature.critical {
     color: @red;
+}
+
+#custom-notification {
+    color: @pink;
 }
 
 /* If workspaces is the leftmost module, omit left margin */

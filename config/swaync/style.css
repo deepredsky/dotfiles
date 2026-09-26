@@ -1,0 +1,205 @@
+@define-color rosewater #f5e0dc;
+@define-color flamingo #f2cdcd;
+@define-color pink #f5c2e7;
+@define-color mauve #cba6f7;
+@define-color red #f38ba8;
+@define-color maroon #eba0ac;
+@define-color peach #fab387;
+@define-color yellow #f9e2af;
+@define-color green #a6e3a1;
+@define-color teal #94e2d5;
+@define-color sky #89dceb;
+@define-color sapphire #74c7ec;
+@define-color blue #89b4fa;
+@define-color lavender #b4befe;
+@define-color text #cdd6f4;
+@define-color subtext1 #bac2de;
+@define-color subtext0 #a6adc8;
+@define-color overlay2 #9399b2;
+@define-color overlay1 #7f849c;
+@define-color overlay0 #6c7086;
+@define-color surface2 #585b70;
+@define-color surface1 #45475a;
+@define-color surface0 #313244;
+@define-color base #1e1e2e;
+@define-color mantle #181825;
+@define-color crust #11111b;
+
+* {
+    font-family: "MesloLGS Nerd Font Mono Bold";
+    font-size: 14px;
+}
+
+.control-center,
+.floating-notifications {
+    background: transparent;
+}
+
+.notification-row {
+    outline: none;
+    margin: 8px 8px 0 8px;
+    padding: 0;
+}
+
+.notification-row:focus,
+.notification-row:hover {
+    background: transparent;
+}
+
+.notification {
+    background: @base;
+    border: 1px solid @surface1;
+    border-radius: 12px;
+    padding: 8px;
+    margin: 0;
+}
+
+.notification-content {
+    background: transparent;
+    padding: 4px;
+}
+
+.close-button {
+    background: @surface0;
+    color: @text;
+    text-shadow: none;
+    padding: 0;
+    border-radius: 100%;
+    margin-top: 8px;
+    margin-right: 8px;
+    min-width: 24px;
+    min-height: 24px;
+}
+
+.close-button:hover {
+    background: @red;
+    color: @crust;
+}
+
+.notification-default-action,
+.notification-action {
+    background: @surface0;
+    color: @text;
+    border: none;
+    border-radius: 8px;
+    margin: 4px;
+    padding: 4px;
+}
+
+.notification-default-action:hover,
+.notification-action:hover {
+    background: @surface1;
+    color: @mauve;
+}
+
+.notification-action:active {
+    background: @mauve;
+    color: @crust;
+}
+
+.summary {
+    color: @text;
+    font-weight: bold;
+    font-size: 15px;
+    background: transparent;
+}
+
+.time {
+    color: @subtext0;
+    background: transparent;
+    font-size: 12px;
+}
+
+.body {
+    color: @subtext1;
+    background: transparent;
+    font-size: 13px;
+}
+
+.image {
+    border-radius: 8px;
+}
+
+/* urgency */
+.critical {
+    border: 1px solid @red;
+}
+
+.critical .summary {
+    color: @red;
+}
+
+.low .summary {
+    color: @overlay1;
+}
+
+/* control center */
+.control-center {
+    background: @base;
+}
+
+.blank-window {
+    background: alpha(@crust, 0.35);
+}
+
+.control-center-list {
+    background: transparent;
+}
+
+.control-center-list-placeholder {
+    color: @overlay0;
+}
+
+.widget-title {
+    background: @mantle;
+    color: @text;
+    padding: 8px 16px;
+    border-radius: 12px 12px 0 0;
+    font-weight: bold;
+}
+
+.widget-title > button {
+    background: @surface0;
+    color: @text;
+    border-radius: 8px;
+    padding: 4px 8px;
+}
+
+.widget-title > button:hover {
+    background: @red;
+    color: @crust;
+}
+
+.widget-dnd {
+    background: @mantle;
+    color: @text;
+    padding: 8px 16px;
+}
+
+.widget-dnd > switch {
+    background: @surface0;
+    border-radius: 999px;
+}
+
+.widget-dnd > switch:checked {
+    background: @mauve;
+}
+
+.widget-dnd > switch slider {
+    background: @text;
+    border-radius: 999px;
+}
+
+.widget-buttons-grid {
+    background: @mantle;
+    padding: 8px;
+}
+
+.notification-group {
+    background: transparent;
+    margin: 8px;
+}
+
+.notification-group-headers {
+    color: @lavender;
+}

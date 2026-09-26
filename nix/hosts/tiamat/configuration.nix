@@ -266,7 +266,8 @@
     hyprpicker
     pavucontrol
     fuzzel
-    mako
+    swaynotificationcenter
+    libnotify
     swaybg
     claude-code
     visidata

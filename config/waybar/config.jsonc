@@ -2,7 +2,7 @@
   "position": "top",
   "modules-left": ["niri/workspaces"],
   "modules-center": ["niri/window"],
-  "modules-right": ["tray", "custom/separator", "cpu", "custom/separator", "memory", "custom/separator", "temperature", "custom/separator", "network", "custom/separator", "pulseaudio", "custom/separator", "clock", "custom/separator", "custom/power"],
+  "modules-right": ["tray", "custom/separator", "cpu", "custom/separator", "memory", "custom/separator", "temperature", "custom/separator", "network", "custom/separator", "pulseaudio", "custom/separator", "custom/notification", "custom/separator", "clock", "custom/separator", "custom/power"],
   "clock": {
     "format": "<span foreground='#f5c2e7'> </span>{:%a %d %H:%M}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
@@ -43,6 +43,26 @@
       "format-wifi": "  {bandwidthDownBits}  {bandwidthUpBits}",
       "format-disconnected": "󰤮",
       "tooltip" : false
+  },
+  "custom/notification": {
+      "tooltip": false,
+      "format": "{icon}",
+      "format-icons": {
+          "notification": "<span foreground='red'><sup></sup></span>",
+          "none": "",
+          "dnd-notification": "<span foreground='red'><sup></sup></span>",
+          "dnd-none": "",
+          "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+          "inhibited-none": "",
+          "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+          "dnd-inhibited-none": ""
+      },
+      "return-type": "json",
+      "exec-if": "which swaync-client",
+      "exec": "swaync-client -swb",
+      "on-click": "swaync-client -t -sw",
+      "on-click-right": "swaync-client -d -sw",
+      "escape": true
   },
   "custom/power": {
       "format": "   ",
