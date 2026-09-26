@@ -113,8 +113,34 @@ vim.keymap.set('n', '<leader>ew', ":e <C-R>=expand('%:h').'/'<cr>")
 vim.keymap.set('c', '%%', "<C-R>=expand('%:h').'/'<CR>")
 vim.keymap.set('c', '$$', "<C-R>=expand('%')<CR>")
 
--- Vimwiki toggle
-vim.keymap.set('n', '<Leader><Space>', '<Plug>VimwikiToggleListItem')
+-- Toggle checkbox: vimwiki's own toggle inside wiki files, plain GFM
+-- checkbox toggle elsewhere (vimwiki_global_ext=0 means plain .md files
+-- outside ~/notes are filetype=markdown, not vimwiki)
+local function toggle_gfm_checkbox()
+  local line = vim.api.nvim_get_current_line()
+  local new_line, n = line:gsub('%[ %]', '[x]', 1)
+  if n == 0 then
+    new_line, n = line:gsub('%[[xX]%]', '[ ]', 1)
+  end
+  if n == 0 then
+    -- Plain list item, no checkbox yet - add one
+    new_line, n = line:gsub('^(%s*[-*+]%s+)', '%1[ ] ', 1)
+  end
+  if n == 0 then
+    new_line, n = line:gsub('^(%s*%d+[%.%)]%s+)', '%1[ ] ', 1)
+  end
+  if n > 0 then
+    vim.api.nvim_set_current_line(new_line)
+  end
+end
+
+vim.keymap.set('n', '<Leader><Space>', function()
+  if vim.bo.filetype == 'vimwiki' then
+    vim.cmd('VimwikiToggleListItem')
+  else
+    toggle_gfm_checkbox()
+  end
+end, { desc = 'Toggle checkbox' })
 vim.keymap.set('v', '<Leader><Space>', '<Plug>VimwikiToggleListItem')
 
 -- Claiming this Plug target here stops vimwiki's ftplugin from also
