@@ -210,11 +210,21 @@ nnoremap <leader>zk :NewNote<CR>
 " Log timestamp on a new line
 nnoremap <leader>zt o<C-R>=strftime('%H:%M ')<CR>
 
+function! s:MarkdownPreview() abort
+  let l:out = '/tmp/' . expand('%:t:r') . '.html'
+  let l:css = expand('~/.vim/markdown-preview.css')
+  call system('pandoc --standalone --from gfm --to html5 --css=' . shellescape(l:css) . ' -o ' . shellescape(l:out) . ' -- ' . shellescape(expand('%:p')))
+  let l:opener = has('mac') ? 'open' : 'xdg-open'
+  execute 'silent! !' . l:opener . ' ' . shellescape(l:out, 1)
+endfunction
+command! -nargs=0 MarkdownPreview call s:MarkdownPreview()
+
 function! QuickCommands(...)
   let cmds_dicts_by_ft = {
   \ 'ruby': [ 'RuboCopFix', 'TestNearest', 'TestFile' ],
-  \ 'markdown': [ 'Vimwiki2HTMLBrowse' ],
-  \ 'vimwiki': [ 'Vimwiki2HTMLBrowse' ]
+  \ 'markdown': [ 'MarkdownPreview', 'TogglePencil' ],
+  \ 'vimwiki': [ 'Vimwiki2HTMLBrowse', 'MarkdownPreview', 'TogglePencil' ],
+  \ 'text': [ 'TogglePencil' ]
   \}
 
   let global_cmds = [

@@ -8,6 +8,7 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 
 nnoremap Y  y$
+nnoremap <Tab> za
 
 nmap <silent> <F5> <Plug>StripTrailingWhitespace
 
@@ -57,6 +58,7 @@ nmap <F23> <Plug>VimwikiRemoveHeaderLevel
 
 nnoremap <leader>G :Goyo<CR>
 nnoremap <leader>cw :Wordy<CR>
+nnoremap <leader>ss :setlocal spell!<CR>
 
 " Space mappings
 nmap <Space><Space> <Plug>(qf_qf_toggle)
