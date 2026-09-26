@@ -264,6 +264,7 @@
     tmux
     wl-clipboard
     cliphist
+    hyprpicker
     pavucontrol
     fuzzel
     mako

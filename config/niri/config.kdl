@@ -353,6 +353,9 @@ binds {
         spawn "sh" "-c" "cliphist list | fuzzel --dmenu | cliphist decode | wl-copy";
     }
 
+    // Pick a color from the screen; copies the hex value to the clipboard.
+    Mod+Ctrl+P hotkey-overlay-title="Pick a Color: hyprpicker" { spawn "hyprpicker" "-a"; }
+
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
     // Mod+T { spawn "bash" "-c" "notify-send hello && exec alacritty"; }
