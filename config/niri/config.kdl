@@ -336,6 +336,10 @@ binds {
     // show/hide and the shell session persists in the background.
     F12 hotkey-overlay-title="Toggle Quick Terminal: kitty" { spawn "kitten" "quick-access-terminal"; }
 
+    // Same trick, but a separate instance-group dedicated to a scratch
+    // notes file, independent of the general-purpose F12 terminal.
+    F11 hotkey-overlay-title="Toggle Quick Notes: nvim" { spawn "kitten" "quick-access-terminal" "--instance-group=quicknotes" "nvim" "/home/rajesh/notes/scratch.md"; }
+
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
     // Mod+T { spawn "bash" "-c" "notify-send hello && exec alacritty"; }
