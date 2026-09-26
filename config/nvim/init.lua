@@ -159,6 +159,18 @@ vim.pack.add({
 -- Colorscheme
 vim.cmd.colorscheme('everforest')
 
+-- Treesitter
+local ts_parsers = {
+  'lua', 'vim', 'vimdoc', 'query',
+  'ruby', 'go', 'gomod', 'c', 'rust',
+  'bash', 'json', 'yaml', 'markdown', 'markdown_inline',
+}
+require('nvim-treesitter').install(ts_parsers)
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'lua', 'vim', 'help', 'query', 'ruby', 'go', 'gomod', 'c', 'rust', 'bash', 'json', 'yaml', 'markdown' },
+  callback = function() vim.treesitter.start() end,
+})
+
 -- fzf-lua keymaps
 vim.keymap.set('n', '<leader>f', function() require('fzf-lua').files() end, { desc = 'Files' })
 vim.keymap.set('n', '<leader>F', function() require('fzf-lua').files({ cwd = vim.fn.expand('%:p:h') }) end, { desc = 'Files in current dir' })
@@ -199,8 +211,14 @@ vim.lsp.config('clangd', {
   root_markers = { 'compile_commands.json', '.git' },
 })
 
+vim.lsp.config('rust_analyzer', {
+  cmd = { 'rust-analyzer' },
+  filetypes = { 'rust' },
+  root_markers = { 'Cargo.toml', '.git' },
+})
+
 -- Enable servers
-vim.lsp.enable({ 'solargraph', 'gopls', 'lua_ls', 'clangd' })
+vim.lsp.enable({ 'solargraph', 'gopls', 'lua_ls', 'clangd', 'rust_analyzer' })
 
 -- Diagnostics: off by default
 vim.diagnostic.enable(false)
@@ -241,6 +259,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
     if client and client.server_capabilities.inlayHintProvider then
       vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
+    end
+
+    if client and client:supports_method('textDocument/completion') then
+      vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
     end
   end,
 })
