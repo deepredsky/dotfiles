@@ -35,18 +35,14 @@ Plug 'christoomey/vim-system-copy'
 Plug 'github/copilot.vim'
 
 " Vim Ruby
-Plug 'vim-ruby/vim-ruby'
-Plug 'kana/vim-textobj-user'
-Plug 'nelstrom/vim-textobj-rubyblock'
-Plug 'tpope/vim-rbenv'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-projectionist'
-Plug 'deepredsky/vim-rubocop'
+Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'eruby'] }
+Plug 'kana/vim-textobj-user', { 'for': ['ruby', 'eruby'] }
+Plug 'nelstrom/vim-textobj-rubyblock', { 'for': ['ruby', 'eruby'] }
+Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby'] }
+Plug 'tpope/vim-projectionist', { 'for': ['ruby', 'eruby'] }
+Plug 'deepredsky/vim-rubocop', { 'for': ['ruby', 'eruby'] }
 
 " View helpers
-Plug 'tpope/vim-haml'
-Plug 'slim-template/vim-slim'
-Plug 'yaymukund/vim-rabl'
 Plug 'elzr/vim-json'
 
 " Git helpers
@@ -80,36 +76,19 @@ command! -bang -nargs=* -complete=file AgFromSearch call ack#AckFromSearch('grep
 Plug 'rhysd/committia.vim'
 
 Plug 'elixir-lang/vim-elixir'
-Plug 'fatih/vim-go'
 
 Plug 'janko-m/vim-test'
 
 " Better search handling
 Plug 'bronson/vim-visual-star-search'
 
-Plug 'walm/jshint.vim'
-Plug 'logico-dev/typewriter'
+" Flash the yanked region briefly
+Plug 'machakann/vim-highlightedyank'
 
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
+Plug 'logico-dev/typewriter'
 
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'AndrewRadev/switch.vim'
-
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
-
-let g:prettier#config#semi = 'false'
-
-" ES2015 code snippets (Optional)
-Plug 'epilande/vim-es2015-snippets'
-
-" React code snippets
-Plug 'epilande/vim-react-snippets'
-
-" React html snippets
-Plug 'cristianoliveira/vim-react-html-snippets'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -127,7 +106,6 @@ Plug 'vmchale/dhall-vim'
 
 " Improved UI
 Plug 'flazz/vim-colorschemes'
-Plug 'lifepillar/vim-solarized8'
 Plug 'sainnhe/everforest'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
@@ -144,7 +122,6 @@ let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md', '
 let g:vimwiki_global_ext = 0
 
 Plug 'FooSoft/vim-argwrap'
-Plug 'tyrannicaltoucan/vim-quantum'
 
 Plug 'ElmCast/elm-vim'
 let g:elm_setup_keybindings = 0
@@ -195,7 +172,6 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 function! QuickCommands(...)
   let cmds_dicts_by_ft = {
   \ 'ruby': [ 'RuboCopFix', 'TestNearest', 'TestFile' ],
-  \ 'javascript': [ 'Prettier' ],
   \ 'markdown': [ 'Vimwiki2HTMLBrowse' ],
   \ 'vimwiki': [ 'Vimwiki2HTMLBrowse' ]
   \}
@@ -243,6 +219,7 @@ endfunc
 let s:lspCandidates = [
       \ #{ name: 'clang', filetype: ['c', 'cpp'], bin: 'clangd', args: ['--background-index'] },
       \ #{ name: 'ruby', filetype: 'ruby', bin: 'ruby-lsp' },
+      \ #{ name: 'go', filetype: ['go', 'gomod', 'gowork'], bin: 'gopls' },
       \ ]
 
 let lspServers = []
