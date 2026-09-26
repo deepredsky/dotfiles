@@ -58,6 +58,8 @@ vim.g.vimwiki_list = {{
   syntax = 'markdown',
   ext = '.md',
 }}
+-- Don't claim every .md file on disk as a "temporary wiki" - only ~/notes
+vim.g.vimwiki_global_ext = 0
 
 -- Keymaps
 vim.keymap.set('n', '<leader>w', '<cmd>write<cr>')
@@ -115,6 +117,10 @@ vim.keymap.set('c', '$$', "<C-R>=expand('%')<CR>")
 vim.keymap.set('n', '<Leader><Space>', '<Plug>VimwikiToggleListItem')
 vim.keymap.set('v', '<Leader><Space>', '<Plug>VimwikiToggleListItem')
 
+-- Claiming this Plug target here stops vimwiki's ftplugin from also
+-- binding its default '-' key, which shadows vinegar's directory-up map
+vim.keymap.set('n', '<leader>v-', '<Plug>VimwikiRemoveHeaderLevel')
+
 -- Quickfix mappings (vim-qf)
 vim.keymap.set('n', '<Space><Space>', '<Plug>(qf_qf_toggle)')
 vim.keymap.set('n', '<C-n>', '<Plug>(qf_qf_next)')
@@ -137,6 +143,15 @@ vim.pack.add({
 
   -- Completion
   { src = 'https://github.com/Saghen/blink.cmp', version = 'v1.10.2' },
+
+  -- Motion
+  'https://github.com/folke/flash.nvim',
+
+  -- Formatting
+  'https://github.com/stevearc/conform.nvim',
+
+  -- Markdown rendering
+  'https://github.com/MeanderingProgrammer/render-markdown.nvim',
 
   -- Git
   'https://github.com/tpope/vim-fugitive',
@@ -170,9 +185,35 @@ local ts_parsers = {
   'bash', 'json', 'yaml', 'markdown', 'markdown_inline',
 }
 require('nvim-treesitter').install(ts_parsers)
+-- vimwiki keeps &filetype=vimwiki even with syntax='markdown', so alias it
+-- to the markdown parser for treesitter (and render-markdown.nvim)
+vim.treesitter.language.register('markdown', 'vimwiki')
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'lua', 'vim', 'help', 'query', 'ruby', 'go', 'gomod', 'c', 'rust', 'bash', 'json', 'yaml', 'markdown' },
+  pattern = { 'lua', 'vim', 'help', 'query', 'ruby', 'go', 'gomod', 'c', 'rust', 'bash', 'json', 'yaml', 'markdown', 'vimwiki' },
   callback = function() vim.treesitter.start() end,
+})
+
+-- Flash (treesitter-powered jump motion)
+require('flash').setup()
+vim.keymap.set({ 'n', 'x', 'o' }, 's', function() require('flash').jump() end, { desc = 'Flash' })
+vim.keymap.set({ 'n', 'x', 'o' }, 'S', function() require('flash').treesitter() end, { desc = 'Flash Treesitter' })
+vim.keymap.set('o', 'r', function() require('flash').remote() end, { desc = 'Remote Flash' })
+vim.keymap.set({ 'o', 'x' }, 'R', function() require('flash').treesitter_search() end, { desc = 'Treesitter Search' })
+vim.keymap.set('c', '<C-s>', function() require('flash').toggle() end, { desc = 'Toggle Flash Search' })
+
+-- Conform (formatting)
+require('conform').setup({
+  formatters_by_ft = {
+    lua = { 'stylua' },
+    ruby = { 'rubocop' },
+  },
+  format_on_save = { lsp_format = 'fallback' },
+})
+
+-- render-markdown
+require('render-markdown').setup({
+  file_types = { 'markdown', 'vimwiki' },
+  heading = { enabled = false },
 })
 
 -- fzf-lua keymaps
