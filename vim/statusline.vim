@@ -10,9 +10,15 @@ function! s:fileinfo() abort
   return l:statuslinetext
 endfunction
 
+function! s:wordcount() abort
+  let l:wc = wordcount()
+  return get(l:wc, 'visual_words', l:wc.words) . 'w '
+endfunction
+
 function! s:bufinfo() abort
   let l:statuslinetext = ' %4(%p%%%) '
   let l:statuslinetext .= '%5(%l:%c%) '
+  let l:statuslinetext .= s:wordcount() . ' '
   return l:statuslinetext
 endfunction
 

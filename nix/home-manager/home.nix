@@ -47,6 +47,8 @@
     pkgs.grim
     pkgs.slurp
     pkgs.satty
+    # Wordlist for vim dictionary-completion, symlinked below
+    pkgs.miscfiles
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -56,6 +58,8 @@
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
+
+    ".local/share/dict/words".source = "${pkgs.miscfiles}/share/web2";
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''

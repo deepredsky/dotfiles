@@ -15,10 +15,10 @@ vnoremap <Leader>c "+y
 nnoremap <leader>p <Plug>SystemPasteLine
 nnoremap j gj
 nnoremap k gk
-nmap cd :lcd %:h<cr>
+nnoremap <leader>cd :lcd %:h<cr>
 
-map <Leader><Leader> :
-map <Leader>w :update<CR>
+noremap <Leader><Leader> :
+nnoremap <Leader>w :update<CR>
 
 " Do not use <Ctrl-c> to break out to normal mode
 " Use C-Space to Esc out of any mode
@@ -54,6 +54,9 @@ cnoremap $$ <C-R>=expand('%')<CR>
 nmap <Leader><Space> <Plug>VimwikiToggleListItem
 vmap <Leader><Space> <Plug>VimwikiToggleListItem
 nmap <F23> <Plug>VimwikiRemoveHeaderLevel
+
+nnoremap <leader>G :Goyo<CR>
+nnoremap <leader>cw :Wordy<CR>
 
 " Space mappings
 nmap <Space><Space> <Plug>(qf_qf_toggle)

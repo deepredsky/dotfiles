@@ -14,6 +14,9 @@ set termguicolors
 
 set tags=./tags,tags,.git/tags
 
+" Wordlist for <C-X><C-K>, symlinked via nix/home-manager/home.nix
+set dictionary+=~/.local/share/dict/words
+
 ""
 "" Whitespace
 ""
@@ -31,6 +34,9 @@ set showcmd
 
 " keep more context when scrolling off the end of a buffer
 set scrolloff=3
+
+" Faster multi-key mapping disambiguation than the 1000ms default
+set timeoutlen=400
 
 ""
 "" Searching
@@ -98,11 +104,14 @@ source ~/.vim/statusline.vim
 augroup vimrcEx
   " Clear all autocmds in the group
   autocmd!
+  " Must precede the setlocal overrides below so ours win, not pencil's
+  autocmd FileType text,vimwiki,markdown call litecorrect#init()
+  autocmd FileType text,vimwiki,markdown call pencil#init({'wrap': 'soft'})
+  autocmd FileType text,vimwiki,markdown call textobj#sentence#init()
   autocmd FileType text setlocal spell textwidth=78 formatoptions=croqn2 wrap linebreak breakindent complete+=kspell
   " No 't' in formatoptions: don't hard-wrap while typing (it breaks URLs
   " mid-string). Soft-wrap visually instead via wrap+linebreak.
   autocmd FileType vimwiki setlocal spell textwidth=79 formatoptions=croqn2 wrap linebreak breakindent complete+=kspell
-  autocmd FileType text,vimwiki,markdown call litecorrect#init()
   " Jump to last cursor position unless it's invalid or in an event handler
   autocmd BufReadPost *
         \ if line("'\"") > 0 && line("'\"") <= line("$") |

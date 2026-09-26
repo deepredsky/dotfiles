@@ -36,7 +36,7 @@ Plug 'github/copilot.vim'
 
 " Vim Ruby
 Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'eruby'] }
-Plug 'kana/vim-textobj-user', { 'for': ['ruby', 'eruby'] }
+Plug 'kana/vim-textobj-user'
 Plug 'nelstrom/vim-textobj-rubyblock', { 'for': ['ruby', 'eruby'] }
 Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby'] }
 Plug 'tpope/vim-projectionist', { 'for': ['ruby', 'eruby'] }
@@ -47,6 +47,10 @@ Plug 'elzr/vim-json'
 
 " Folding/TOC/GFM checkboxes for plain .md files outside vimwiki's scope
 Plug 'preservim/vim-markdown', { 'for': 'markdown' }
+" Fold level 6: start files unfolded (default 1 hides body text on open)
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_strikethrough = 1
+let g:vim_markdown_folding_level = 6
 
 " Git helpers
 Plug 'tpope/vim-fugitive'
@@ -120,8 +124,13 @@ Plug 'vimwiki/vimwiki'
 " let g:wiki_root = '~/wiki'
 
 Plug 'dhruvasagar/vim-table-mode'
+" Use '|' corners so tables stay valid GFM/Markdown, not just reST
+let g:table_mode_corner = '|'
 Plug 'reedes/vim-wordy'
 Plug 'reedes/vim-litecorrect'
+Plug 'reedes/vim-pencil'
+" Sentence text object; native )/( breaks on "e.g."/"Mr."
+Plug 'reedes/vim-textobj-sentence', { 'for': ['markdown', 'text', 'vimwiki'] }
 
 let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md', 'template_path': '', 'custom_wiki2html': '$HOME/.bin/wiki2html.sh' }]
 " Without this, vimwiki claims filetype=vimwiki for *any* .md file, not
@@ -162,6 +171,7 @@ function! s:goyo_enter()
   GitGutterDisable
   set scrolloff=10
   set nocursorline
+  Limelight
 endfunction
 
 function! s:goyo_leave()
@@ -169,12 +179,36 @@ function! s:goyo_leave()
   GitGutterEnable
   set scrolloff=3
   set cursorline
+  Limelight!
 endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 "}}}
+
+" Open (or resume) today's note at ~/notes/daily/2026-09-26.md
+function! s:NewNote() abort
+  let l:dir = expand(get(get(g:vimwiki_list, 0, {}), 'path', '~/notes/')) . 'daily/'
+  if !isdirectory(l:dir)
+    call mkdir(l:dir, 'p')
+  endif
+  let l:date = strftime('%Y-%m-%d')
+  let l:fname = l:dir . l:date . '.md'
+  let l:is_new = !filereadable(l:fname)
+  execute 'edit ' . fnameescape(l:fname)
+  if l:is_new
+    call setline(1, '# ' . l:date)
+    call append(1, '')
+  endif
+  normal! G
+  startinsert!
+endfunction
+command! -nargs=0 NewNote call s:NewNote()
+nnoremap <leader>zk :NewNote<CR>
+
+" Log timestamp on a new line
+nnoremap <leader>zt o<C-R>=strftime('%H:%M ')<CR>
 
 function! QuickCommands(...)
   let cmds_dicts_by_ft = {

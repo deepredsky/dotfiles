@@ -36,8 +36,14 @@ Plug 'junegunn/limelight.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'sainnhe/everforest'
 Plug 'dhruvasagar/vim-table-mode'
+" Use '|' corners so tables stay valid GFM/Markdown, not just reST
+let g:table_mode_corner = '|'
 Plug 'reedes/vim-wordy'
 Plug 'reedes/vim-litecorrect'
+Plug 'reedes/vim-pencil'
+Plug 'kana/vim-textobj-user'
+" Sentence text object; native )/( breaks on "e.g."/"Mr."
+Plug 'reedes/vim-textobj-sentence', { 'for': ['markdown', 'text', 'vimwiki'] }
 
 let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md', 'template_path': '', 'custom_wiki2html': '$HOME/.bin/wiki2html.sh' }]
 " Without this, vimwiki claims filetype=vimwiki for *any* .md file, not
@@ -64,11 +70,13 @@ function! s:goyo_enter()
   cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
   silent !tmux set status off
   set scrolloff=10
+  Limelight
 endfunction
 
 function! s:goyo_leave()
   silent !tmux set status on
   set scrolloff=3
+  Limelight!
 
   " Quit Vim if this is the only remaining buffer
   if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
