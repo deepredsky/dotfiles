@@ -263,6 +263,7 @@
     rofi
     tmux
     wl-clipboard
+    cliphist
     pavucontrol
     fuzzel
     mako

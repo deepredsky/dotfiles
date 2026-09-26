@@ -237,6 +237,13 @@ spawn-at-startup "waybar"
 spawn-at-startup "sh" "-c" "sleep 2; systemctl --user restart xremap.service"
 spawn-at-startup "~/.bin/wallpapers.sh"
 
+// Feed the clipboard manager: cliphist keeps a persistent history of
+// everything copied, since Wayland's clipboard otherwise clears once the
+// source app closes. Two watchers because text and image mime types need
+// separate `wl-paste --type` filters to be stored cleanly.
+spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
+spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
+
 spawn-at-startup "python3" "/home/rajesh/dev/niri_tweaks/niri_tile_to_n.py"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
@@ -339,6 +346,12 @@ binds {
     // Same trick, but a separate instance-group dedicated to a scratch
     // notes file, independent of the general-purpose F12 terminal.
     F11 hotkey-overlay-title="Toggle Quick Notes: nvim" { spawn "kitten" "quick-access-terminal" "--instance-group=quicknotes" "nvim" "/home/rajesh/notes/scratch.md"; }
+
+    // Clipboard history: cliphist list piped through fuzzel to pick an
+    // entry, decoded back onto the clipboard.
+    Mod+Shift+C hotkey-overlay-title="Clipboard History: cliphist" {
+        spawn "sh" "-c" "cliphist list | fuzzel --dmenu | cliphist decode | wl-copy";
+    }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
