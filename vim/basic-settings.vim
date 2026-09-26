@@ -98,10 +98,11 @@ source ~/.vim/statusline.vim
 augroup vimrcEx
   " Clear all autocmds in the group
   autocmd!
-  autocmd FileType text setlocal textwidth=78
+  autocmd FileType text setlocal spell textwidth=78 formatoptions=croqn2 wrap linebreak breakindent complete+=kspell
   " No 't' in formatoptions: don't hard-wrap while typing (it breaks URLs
   " mid-string). Soft-wrap visually instead via wrap+linebreak.
-  autocmd FileType vimwiki setlocal spell textwidth=79 formatoptions=croqn2 wrap linebreak breakindent
+  autocmd FileType vimwiki setlocal spell textwidth=79 formatoptions=croqn2 wrap linebreak breakindent complete+=kspell
+  autocmd FileType text,vimwiki,markdown call litecorrect#init()
   " Jump to last cursor position unless it's invalid or in an event handler
   autocmd BufReadPost *
         \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -120,7 +121,7 @@ augroup vimrcEx
   " previously the HTML-escaped literal "&gt;", so blockquote continuation
   " via o/<CR> never actually worked. No 't' in formatoptions: don't
   " hard-wrap while typing (it breaks URLs mid-string); soft-wrap instead.
-  autocmd FileType markdown setlocal ai spell textwidth=79 formatoptions=croqn2 comments=n:> wrap linebreak breakindent
+  autocmd FileType markdown setlocal ai spell textwidth=79 formatoptions=croqn2 comments=n:> wrap linebreak breakindent complete+=kspell
 
   " Don't spellcheck urls
   au BufReadPost * syn match UrlNoSpell '\w\+:\/\/[^[:space:]]\+' contains=@NoSpell

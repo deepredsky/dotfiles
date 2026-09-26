@@ -35,6 +35,9 @@ Plug 'junegunn/limelight.vim'
 
 Plug 'vimwiki/vimwiki'
 Plug 'sainnhe/everforest'
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'reedes/vim-wordy'
+Plug 'reedes/vim-litecorrect'
 
 let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md', 'template_path': '', 'custom_wiki2html': '$HOME/.bin/wiki2html.sh' }]
 " Without this, vimwiki claims filetype=vimwiki for *any* .md file, not

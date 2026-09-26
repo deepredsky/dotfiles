@@ -45,6 +45,9 @@ Plug 'deepredsky/vim-rubocop', { 'for': ['ruby', 'eruby'] }
 " View helpers
 Plug 'elzr/vim-json'
 
+" Folding/TOC/GFM checkboxes for plain .md files outside vimwiki's scope
+Plug 'preservim/vim-markdown', { 'for': 'markdown' }
+
 " Git helpers
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
@@ -115,6 +118,10 @@ Plug 'google/vim-jsonnet'
 Plug 'vimwiki/vimwiki'
 " Plug 'https://github.com/lervag/wiki.vim'
 " let g:wiki_root = '~/wiki'
+
+Plug 'dhruvasagar/vim-table-mode'
+Plug 'reedes/vim-wordy'
+Plug 'reedes/vim-litecorrect'
 
 let g:vimwiki_list = [{'path': '~/notes/', 'syntax': 'markdown', 'ext': '.md', 'template_path': '', 'custom_wiki2html': '$HOME/.bin/wiki2html.sh' }]
 " Without this, vimwiki claims filetype=vimwiki for *any* .md file, not
