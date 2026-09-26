@@ -162,6 +162,14 @@
       tokei
       glow
       neovim
+      gcc
+      tree-sitter
+      gopls
+      lua-language-server
+      clang-tools
+      solargraph
+      rustup
+      rust-analyzer
       btop
       _1password-gui
       # logseq
