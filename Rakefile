@@ -1,79 +1,91 @@
 require 'rake'
 require 'erb'
+require 'fileutils'
+
+DOTFILES_DIR = File.expand_path(__dir__)
+HOME = ENV.fetch('HOME')
+BACKUP_DIR = File.join(HOME, '.dotfiles_backup', Time.now.strftime('%Y%m%d%H%M%S'))
+
+SKIP = %w[Rakefile README.md LICENSE Brewfile config nix]
 
 desc "install the dot files into user's home directory"
 task :install do
-  switch_to_fish
+  ensure_fish_shell
   replace_all = false
-  files = Dir['*'] - %w[Rakefile README.md LICENSE Brewfile]
-  files.each do |file|
-    system %Q{mkdir -p "$HOME/.#{File.dirname(file)}"} if file =~ /\//
-    if File.exist?(File.join(ENV['HOME'], ".#{file.sub(/\.erb$/, '')}"))
-      if File.identical? file, File.join(ENV['HOME'], ".#{file.sub(/\.erb$/, '')}")
-        puts "identical ~/.#{file.sub(/\.erb$/, '')}"
-      elsif replace_all
-        replace_file(file)
+
+  (Dir['*'] - SKIP).each do |file|
+    target = File.join(HOME, ".#{file.sub(/\.erb$/, '')}")
+
+    if up_to_date?(file, target)
+      puts "identical #{target}"
+      next
+    end
+
+    if File.exist?(target) || File.symlink?(target)
+      if replace_all
+        install_file(file, target)
       else
-        print "overwrite ~/.#{file.sub(/\.erb$/, '')}? [ynaq] "
+        print "overwrite #{target}? [ynaq] "
         case $stdin.gets.chomp
-        when 'a'
-          replace_all = true
-          replace_file(file)
-        when 'y'
-          replace_file(file)
-        when 'q'
-          exit
-        else
-          puts "skipping ~/.#{file.sub(/\.erb$/, '')}"
+        when 'a' then replace_all = true; install_file(file, target)
+        when 'y' then install_file(file, target)
+        when 'q' then exit
+        else puts "skipping #{target}"
         end
       end
     else
-      link_file(file)
+      install_file(file, target)
     end
   end
 end
 
-def replace_file(file)
-  system %Q{rm -rf "$HOME/.#{file.sub(/\.erb$/, '')}"}
-  link_file(file)
-end
+def up_to_date?(file, target)
+  return false unless File.exist?(target) || File.symlink?(target)
 
-def link_file(file)
-  if file =~ /.erb$/
-    puts "generating ~/.#{file.sub(/\.erb$/, '')}"
-    File.open(File.join(ENV['HOME'], ".#{file.sub(/\.erb$/, '')}"), 'w') do |new_file|
-      new_file.write ERB.new(File.read(file)).result(binding)
-    end
-  elsif file =~ /config\.fish$/
-    #~/.config/fish/config.fish
-    puts "copying ~/.config/fish/#{file}"
-    system %Q{mkdir -p ~/.config/fish}
-    system %Q{cp "$PWD/#{file}" "$HOME/.config/fish/#{file}"}
+  if file =~ /\.erb$/
+    !File.symlink?(target) && File.exist?(target) && File.read(target) == render_erb(file)
   else
-    puts "linking ~/.#{file}"
-    system %Q{ln -s "$PWD/#{file}" "$HOME/.#{file}"}
+    File.symlink?(target) && File.readlink(target) == File.join(DOTFILES_DIR, file)
   end
 end
 
-def switch_to_fish
-  if ENV["SHELL"] =~ /fish/
+def install_file(file, target)
+  if File.exist?(target) || File.symlink?(target)
+    FileUtils.mkdir_p(BACKUP_DIR)
+    FileUtils.mv(target, File.join(BACKUP_DIR, File.basename(target)))
+    puts "backed up #{target} -> #{BACKUP_DIR}"
+  end
+
+  if file =~ /\.erb$/
+    puts "generating #{target}"
+    File.write(target, render_erb(file))
+  else
+    puts "linking #{target}"
+    File.symlink(File.join(DOTFILES_DIR, file), target)
+  end
+end
+
+def render_erb(file)
+  ERB.new(File.read(file)).result(binding)
+end
+
+def ensure_fish_shell
+  fish = `which fish`.strip
+
+  if fish.empty?
+    puts "fish not found (install it via Brewfile on macOS or programs.fish on NixOS, then re-run)"
+    return
+  end
+
+  if ENV['SHELL'] == fish
     puts "using fish"
-  else
-    print "switch to fish? (recommended) [ynq] "
-    case $stdin.gets.chomp
-    when 'y'
-      puts "switching to fish"
-      install_fish
-      system %Q{chsh -s `which fish`}
-    when 'q'
-      exit
-    else
-      puts "skipping fish"
-    end
+    return
   end
-end
 
-def install_fish
-  puts "installing fish"
-  system %Q{brew install fish}
+  print "switch default shell to fish (#{fish})? [ynq] "
+  case $stdin.gets.chomp
+  when 'y' then system(%Q{chsh -s "#{fish}"})
+  when 'q' then exit
+  else puts "skipping shell switch"
+  end
 end
