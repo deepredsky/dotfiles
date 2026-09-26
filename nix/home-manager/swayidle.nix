@@ -18,11 +18,8 @@ in
       }
     ];
 
-    events = [
-      {
-        event = "before-sleep";
-        command = lockCommand;
-      }
-    ];
+    events = {
+      before-sleep = lockCommand;
+    };
   };
 }
