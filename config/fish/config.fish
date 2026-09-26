@@ -8,7 +8,7 @@ alias b="bundle"
 alias s="bundle exec rails s"
 alias c="bundle exec rails c"
 alias gd="git diff"
-alias l="ls -l"
+alias l="eza -l --icons --git"
 alias k="kubectl"
 
 set normal (set_color normal)
@@ -99,12 +99,12 @@ set -g fish_key_bindings hybrid_bindings
 function fish_mode_prompt
 end
 
-set PATH $HOME/.cargo/bin $PATH
-set PATH $HOME/.rbenv/shims $PATH
-set PATH $HOME/.bin $PATH
-set PATH $HOME/.local/bin $PATH
-set PATH $HOME/.cabal/bin $PATH
-set PATH /usr/local/sbin $PATH
+fish_add_path $HOME/.cargo/bin
+fish_add_path $HOME/.rbenv/shims
+fish_add_path $HOME/.bin
+fish_add_path $HOME/.local/bin
+fish_add_path $HOME/.cabal/bin
+fish_add_path /usr/local/sbin
 set -gx TERMINFO_DIRS $HOME/.local/share/terminfo
 fish_add_path /opt/homebrew/bin
 
@@ -139,9 +139,9 @@ end
 function cleanup_dead_docker -d "Remove dead docker images"
     docker ps --filter status=dead --filter status=exited | awk '/weeks ago/ { print $1 }' | xargs docker rm -v
 
-    docker volume ls -qf "dangling=true" | egrep -v "^$_" | xargs docker volume rm
+    docker volume ls -qf "dangling=true" | grep -Ev "^$_" | xargs docker volume rm
 
-    docker images -qf "dangling=true" | egrep -v "^$_" | xargs docker rmi -f
+    docker images -qf "dangling=true" | grep -Ev "^$_" | xargs docker rmi -f
 end
 
 function apps -d "Fuzzy-find and open apps"
@@ -185,7 +185,9 @@ function jira -d "Open vim jira"
     vi +JiraSprint
 end
 
-export GPG_TTY=$(tty)
+set -gx GPG_TTY (tty)
+zoxide init fish | source
+
 set -gx ATUIN_NOBIND "true"
 atuin init fish | source
 
