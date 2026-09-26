@@ -1,6 +1,9 @@
 { pkgs, config, ... }:
 let
-  lockCommand = "${config.programs.swaylock.package}/bin/swaylock";
+  # Guard against duplicate swaylock instances: swayidle can fire a stale
+  # timeout burst after resuming from suspend, and without this a second
+  # swaylock spawns right on top of the one you just unlocked.
+  lockCommand = "${pkgs.procps}/bin/pgrep -x swaylock >/dev/null || ${config.programs.swaylock.package}/bin/swaylock";
 in
 {
   services.swayidle = {
