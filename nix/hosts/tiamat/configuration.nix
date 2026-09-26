@@ -169,6 +169,7 @@
       clang-tools
       solargraph
       rustup
+      stylua
       rust-analyzer
       btop
       _1password-gui
