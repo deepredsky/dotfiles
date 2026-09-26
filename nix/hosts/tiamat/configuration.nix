@@ -260,7 +260,6 @@
     python3
     fish
     waybar
-    rofi
     tmux
     wl-clipboard
     cliphist
