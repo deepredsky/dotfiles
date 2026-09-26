@@ -347,7 +347,10 @@ binds {
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+ALT+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
     Mod+Space hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
-    Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+    // macOS lock is Ctrl+Cmd+Q; Mod = Cmd here, so this is the direct equivalent.
+    // (Was Super+Alt+L, which collided with Mod+Alt+L / focus-column-right below
+    // since Mod resolves to Super in a TTY session.)
+    Mod+Ctrl+Q hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
@@ -595,6 +598,8 @@ binds {
     // The quit action will show a confirmation dialog to avoid accidental exits.
     Mod+Shift+E { quit; }
     Ctrl+Alt+Delete { quit; }
+
+    Mod+Shift+Q hotkey-overlay-title="Open Power Menu: wlogout" { spawn "wlogout"; }
 
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
