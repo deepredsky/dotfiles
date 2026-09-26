@@ -513,7 +513,6 @@ binds {
     // If the window is already in a column, they will expel it out.
     Mod+Alt+BracketLeft  { consume-or-expel-window-left; }
     Mod+Alt+BracketRight { consume-or-expel-window-right; }
-    
 
     // Consume one window from the right to the bottom of the focused column.
     Mod+Comma  { consume-window-into-column; }

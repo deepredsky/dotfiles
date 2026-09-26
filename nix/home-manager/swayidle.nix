@@ -1,4 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
+let
+  lockCommand = "${config.programs.swaylock.package}/bin/swaylock";
+in
 {
   services.swayidle = {
     enable = true;
@@ -7,7 +10,7 @@
     timeouts = [
       {
         timeout = 300;
-        command = "${pkgs.swaylock-effects}/bin/swaylock";
+        command = lockCommand;
       }
       {
         timeout = 600;
@@ -18,7 +21,7 @@
     events = [
       {
         event = "before-sleep";
-        command = "${pkgs.swaylock-effects}/bin/swaylock";
+        command = lockCommand;
       }
     ];
   };
