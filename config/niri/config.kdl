@@ -330,6 +330,12 @@ binds {
     // since Mod resolves to Super in a TTY session.)
     Mod+Ctrl+Q hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
 
+    // Quake-style dropdown terminal for quick notes/scratch work.
+    // kitty's quick-access-terminal kitten draws itself as a wlr-layer-shell
+    // surface, so niri never tiles/manages it; the same command toggles
+    // show/hide and the shell session persists in the background.
+    F12 hotkey-overlay-title="Toggle Quick Terminal: kitty" { spawn "kitten" "quick-access-terminal"; }
+
     // You can also use a shell. Do this if you need pipes, multiple commands, etc.
     // Note: the entire command goes as a single argument in the end.
     // Mod+T { spawn "bash" "-c" "notify-send hello && exec alacritty"; }
