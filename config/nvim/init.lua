@@ -135,9 +135,13 @@ vim.pack.add({
   -- Fuzzy finder
   'https://github.com/ibhagwan/fzf-lua',
 
+  -- Completion
+  { src = 'https://github.com/Saghen/blink.cmp', version = 'v1.10.2' },
+
   -- Git
   'https://github.com/tpope/vim-fugitive',
   'https://github.com/tpope/vim-rhubarb',
+  'https://github.com/lewis6991/gitsigns.nvim',
 
   -- Colorscheme
   'https://github.com/sainnhe/everforest',
@@ -180,12 +184,39 @@ vim.keymap.set('n', '<leader>.', function() require('fzf-lua').btags() end, { de
 -- Git keymaps
 vim.keymap.set('n', '<leader>gb', '<cmd>G blame<cr>', { desc = 'Git blame' })
 
+-- gitsigns
+require('gitsigns').setup()
+vim.keymap.set('n', ']c', function() require('gitsigns').next_hunk() end, { desc = 'Next hunk' })
+vim.keymap.set('n', '[c', function() require('gitsigns').prev_hunk() end, { desc = 'Prev hunk' })
+vim.keymap.set('n', '<leader>gs', function() require('gitsigns').stage_hunk() end, { desc = 'Stage hunk' })
+vim.keymap.set('n', '<leader>gr', function() require('gitsigns').reset_hunk() end, { desc = 'Reset hunk' })
+vim.keymap.set('n', '<leader>gp', function() require('gitsigns').preview_hunk() end, { desc = 'Preview hunk' })
+vim.keymap.set('n', '<leader>gB', function() require('gitsigns').blame_line() end, { desc = 'Blame line' })
+
 -- Goyo (distraction-free writing)
 vim.keymap.set('n', '<leader>z', '<cmd>Goyo<cr>', { desc = 'Goyo' })
+
+-- Completion
+require('blink.cmp').setup({
+  keymap = {
+    preset = 'default',
+    -- Don't steal <C-space>; it's already mapped to Escape below
+    ['<C-space>'] = { 'fallback' },
+    -- Accept with <CR> when the popup is open, otherwise normal <CR>
+    ['<CR>'] = { 'accept', 'fallback' },
+  },
+  appearance = { nerd_font_variant = 'mono' },
+  signature = { enabled = true },
+})
 
 -- =============================================================================
 -- Native LSP (neovim 0.11+)
 -- =============================================================================
+-- Merge blink.cmp's completion capabilities into every server below
+vim.lsp.config('*', {
+  capabilities = require('blink.cmp').get_lsp_capabilities(),
+})
+
 -- Configure language servers
 vim.lsp.config('solargraph', {
   cmd = { 'solargraph', 'stdio' },
@@ -260,10 +291,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     if client and client.server_capabilities.inlayHintProvider then
       vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
     end
-
-    if client and client:supports_method('textDocument/completion') then
-      vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
-    end
   end,
 })
 
@@ -285,5 +312,7 @@ end, { desc = 'Snippet jump forward' })
 vim.keymap.set({ 'i', 's' }, '<C-h>', function()
   if vim.snippet.active({ direction = -1 }) then
     vim.snippet.jump(-1)
+  else
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<BS>', true, false, true), 'n', false)
   end
-end, { desc = 'Snippet jump backward' })
+end, { desc = 'Snippet jump backward (or backspace)' })
