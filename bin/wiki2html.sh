@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # This is heavily based on this code here:
 # https://gist.github.com/maikeldotuk/54a91c21ed9623705fdce7bab2989742
@@ -57,9 +57,9 @@ pandoc_template=( pandoc \
     --to html5+smart \
     --toc \
     --wrap=none \
-    --css="/Users/rajesh.sharma/dev/pandoc-markdown-css-theme/public/css/theme.css" \
-    --css="/Users/rajesh.sharma/dev/pandoc-markdown-css-theme/public/css/solarized.css" \
-    --css="/Users/rajesh.sharma/dev/pandoc-markdown-css-theme/public/css/skylighting-solarized-theme.css" \
+    --css="$HOME/dev/pandoc-markdown-css-theme/public/css/theme.css" \
+    --css="$HOME/dev/pandoc-markdown-css-theme/public/css/solarized.css" \
+    --css="$HOME/dev/pandoc-markdown-css-theme/public/css/skylighting-solarized-theme.css" \
     -M root_path:$ROOT_PATH )
 
 # Searches for markdown links (without extension or .md) and appends a .html

@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-bin=/opt/homebrew/bin/notmuch
+bin=$(command -v notmuch)
 
 function notmuch {
   echo $1
@@ -22,7 +22,7 @@ function notmuch {
 }
 
 function tag_new { notmuch "tag $1 tag:inbox and ($2)"; }
-function archive { notmuch "tag -unread -inbox +archive --  date:'1month..today' not tag:starred and $1"; }
+function archive { notmuch "tag -unread -inbox +archive --  date:1month..today not tag:starred and $1"; }
 function delete { tag_new "-inbox -unread +delete" $1; }
 
 notmuch new

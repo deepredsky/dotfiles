@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+source "$(dirname "$0")/lib/platform.sh"
 
 git_grouped_log_by_day() {
   commit_range="${1:-}"
@@ -10,15 +12,14 @@ git_grouped_log_by_day() {
   fi
 
   echo "Fetching logs..."
-  dates=$($date_command | tr -d "'" | sort -u | tac)
+  dates=$($date_command | tr -d "'" | sort -u | reverse_lines)
   if [[ -z "$dates" ]]; then
     echo "No commits found."
     return 0
   fi
 
   for since in $dates; do
-    # For BSD date (macOS), use the '-v+1d' option to get the next day.
-    until=$(date -j -v+1d -f '%Y-%m-%d' "$since" +%Y-%m-%d)
+    until=$(next_day "$since")
 
     echo "$since"
     echo "$until"
@@ -33,8 +34,5 @@ git_grouped_log_by_day() {
     echo
   done
 }
-
-# The 'tac' command is not present in macOS by default. If you don't have it installed (via coreutils), you can use `tail -r` as a replacement.
-# Change the 'tac' in the pipeline to 'tail -r' if necessary.
 
 git_grouped_log_by_day "$@"

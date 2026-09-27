@@ -9,8 +9,11 @@
 # without any warranty.
 set -e
 
+# GNU date: `gdate` on macOS (via `brew install coreutils`), plain `date` on Linux.
+GNUDATE=$(command -v gdate || command -v date)
+
 last_december() {
-  local year=$(gdate +%Y)
+  local year=$($GNUDATE +%Y)
   let year-- || true
 
   echo "${year}-12"
@@ -22,7 +25,7 @@ from="${1:-2010-01}"
 to="${2:-$(last_december)}"
 
 get_unix_timestamp() {
-  gdate --date="$(printf "%d-%0.2d-01" "${1}" "${2}") $3" +%s
+  $GNUDATE --date="$(printf "%d-%0.2d-01" "${1}" "${2}") $3" +%s
 }
 
 # search read email in inbox on the given range

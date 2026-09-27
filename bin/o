@@ -1,54 +1,63 @@
 #!/usr/bin/env bash
-# vim: set filetype=ruby:
-# b - browse bookmarks with fzf
+# Browse Firefox bookmarks with fzf and open the selected one.
+set -e
 
-[ $(uname) = Darwin ] || exit 1
-which fzf > /dev/null 2>&1 || brew reinstall --HEAD fzf || exit 1
+source "$(dirname "$0")/lib/platform.sh"
 
-/usr/bin/ruby -x "$0"                                          |
-  fzf-tmux -u 30% --ansi --multi --no-hscroll --tiebreak=begin |
-  awk 'BEGIN { FS = "\t" } { print $2 }'                       |
-  xargs open
+command -v sqlite3 >/dev/null 2>&1 || { echo "sqlite3 is required" >&2; exit 1; }
+command -v fzf >/dev/null 2>&1 || { echo "fzf is required" >&2; exit 1; }
 
-exit $?
+if os_is_darwin; then
+  base_dir="$HOME/Library/Application Support/Firefox"
+else
+  base_dir="$HOME/.mozilla/firefox"
+fi
 
-#!ruby
-# encoding: utf-8
+profiles_ini="$base_dir/profiles.ini"
 
-require 'json'
-FILE = '~/Library/Application Support/com.operasoftware.Opera/Bookmarks'
-CJK  = /\p{Han}|\p{Katakana}|\p{Hiragana}|\p{Hangul}/
+default_profile_path() {
+  awk '
+    /^\[/ {
+      if (is_default && path != "" && !found) { print path; found=1; exit }
+      path=""; is_default=0; next
+    }
+    /^Path=/ { sub(/^Path=/, ""); path=$0 }
+    /^Default=1/ { is_default=1 }
+    END { if (!found && is_default && path != "") print path }
+  ' "$profiles_ini"
+}
 
-def build parent, json
-  name = [parent, json['name']].compact.join('/')
-  if json['type'] == 'folder'
-    json['children'].map { |child| build name, child }
-  else
-    { name: name, url: json['url'] }
-  end
-end
+profile=""
+if [ -f "$profiles_ini" ]; then
+  rel_path=$(default_profile_path)
+  [ -n "$rel_path" ] && profile="$base_dir/$rel_path"
+fi
 
-def just str, width
-  str.ljust(width - str.scan(CJK).length)
-end
+if [ -z "$profile" ] || [ ! -d "$profile" ]; then
+  profile=$(find "$base_dir" -maxdepth 2 -type d -name '*.default-release' 2>/dev/null | head -n1)
+fi
+if [ -z "$profile" ]; then
+  profile=$(find "$base_dir" -maxdepth 2 -type d -name '*.default*' 2>/dev/null | head -n1)
+fi
 
-def trim str, width
-  len = 0
-  str.each_char.each_with_index do |char, idx|
-    len += char =~ CJK ? 2 : 1
-    return str[0, idx] if len > width
-  end
-  str
-end
+if [ -z "$profile" ]; then
+  echo "Could not find a Firefox profile in $base_dir" >&2
+  exit 1
+fi
 
-width = `tput cols`.strip.to_i / 2
-json  = JSON.load File.read File.expand_path FILE
-items = [json['roots']['bookmark_bar'], json['roots']['custom_root']['userRoot']]
-        .map { |e| build nil, e }
-        .flatten
+db="$profile/places.sqlite"
 
-items.each do |item|
-  name = trim item[:name], width
-  puts [just(name, width),
-        item[:url]].join("\t\x1b[36m") + "\x1b[m"
-end
+# Read via a URI with immutable=1 so this works even while Firefox has the
+# database open (no need to copy it first).
+selection=$(sqlite3 -separator "$(printf '\t')" "file:${db}?immutable=1" "
+  SELECT b.title, p.url
+  FROM moz_bookmarks b
+  JOIN moz_places p ON b.fk = p.id
+  WHERE b.type = 1 AND b.title IS NOT NULL AND p.url IS NOT NULL
+  ORDER BY b.title;
+" | fzf --delimiter='\t' --with-nth=1)
+
+[ -n "$selection" ] || exit 0
+
+url=$(printf '%s' "$selection" | awk -F'\t' '{print $NF}')
+open_default "$url"

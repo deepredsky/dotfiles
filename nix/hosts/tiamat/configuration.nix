@@ -173,6 +173,8 @@
       rust-analyzer
       btop
       _1password-gui
+      _1password-cli
+      sqlite
       # logseq
       xwayland-satellite
       foot

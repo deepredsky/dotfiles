@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 #
 # Print a diff summary like:
@@ -24,8 +24,8 @@ def get_lines(diff_lines):
 if __name__ == '__main__':
     diff_lines = list(fileinput.input())
     added_lines, removed_lines = get_lines(diff_lines)
-    print '%i lines of diff' % len(diff_lines)
-    print '%i lines added' % len(added_lines)
-    print '%i lines removed' % len(removed_lines)
-    print '%+i lines net change' % (len(added_lines) - len(removed_lines))
+    print('%i lines of diff' % len(diff_lines))
+    print('%i lines added' % len(added_lines))
+    print('%i lines removed' % len(removed_lines))
+    print('%+i lines net change' % (len(added_lines) - len(removed_lines)))
 

@@ -1,4 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+source "$(dirname "$0")/lib/platform.sh"
 
 # set the path to the git repository
 REPO_PATH="$HOME/dev/notes.git"
@@ -23,6 +25,6 @@ git_notes push origin master
 
 # check for errors and send notification if there are any
 if [ $? -ne 0 ]; then
-  terminal-notifier -title "Notes Sync Error" -message "There was an error syncing notes" -sound default
+  notify "Notes Sync Error" "There was an error syncing notes"
   exit 1
 fi

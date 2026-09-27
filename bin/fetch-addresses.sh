@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # lbdb-fetchalladdresses-daily
 # Release 0.3
