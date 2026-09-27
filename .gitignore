@@ -29,6 +29,7 @@ msmtprc
 config/gh
 config/iterm2/
 config/fish/fish_variables
+config/fish/conf.d/
 tmux/plugins/
 tmp
 config/containers/
