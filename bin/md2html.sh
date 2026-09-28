@@ -43,9 +43,55 @@ OUTPUTDIR="${2:-$(dirname "$INPUT")/}"
 ROOT_PATH="${3:-}"
 [[ "$ROOT_PATH" = "-" ]] && ROOT_PATH=''
 
-TEMPLATE="${MD2HTML_TEMPLATE:-$HOME/dev/wiki/template.html}"
-THEME_CSS="${MD2HTML_THEME_CSS:-$HOME/dev/pandoc-markdown-css-theme/public/css/theme.css}"
-HIGHLIGHT_CSS="${MD2HTML_HIGHLIGHT_CSS:-$HOME/dev/pandoc-markdown-css-theme/public/css/skylighting-modern-theme.css}"
+THEME_REPO_DIR="$HOME/dev/wiki"
+THEME_REPO_URL="https://github.com/jez/pandoc-markdown-css-theme.git"
+# Our local customizations (theme toggle, modern syntax colors) on top of
+# jez's upstream theme. Tracked in dotfiles (synced across machines) since
+# THEME_REPO_DIR itself is just a plain clone of someone else's repo and
+# a fresh auto-clone on a new machine would otherwise come back vanilla.
+OVERRIDES_DIR="$SCRIPT_DIR/pandoc-theme-overrides"
+
+TEMPLATE="${MD2HTML_TEMPLATE:-$THEME_REPO_DIR/template.html5}"
+THEME_CSS="${MD2HTML_THEME_CSS:-$THEME_REPO_DIR/public/css/theme.css}"
+HIGHLIGHT_CSS="${MD2HTML_HIGHLIGHT_CSS:-$THEME_REPO_DIR/public/css/skylighting-modern-theme.css}"
+
+# Defensive: the theme/template live in a separate clone (not this dotfiles
+# repo), so a fresh or older machine may not have it yet. Auto-clone only
+# when the directory is entirely absent; if it exists but looks wrong,
+# don't touch it -- just say so, since it may hold local customizations we
+# don't know about.
+ensure_theme_assets() {
+  if [[ ! -e "$THEME_REPO_DIR" ]]; then
+    echo "md2html.sh: $THEME_REPO_DIR not found; cloning $THEME_REPO_URL ..." >&2
+    if ! git clone "$THEME_REPO_URL" "$THEME_REPO_DIR" >&2; then
+      echo "md2html.sh: clone failed. Clone it yourself with:" >&2
+      echo "  git clone $THEME_REPO_URL $THEME_REPO_DIR" >&2
+      exit 1
+    fi
+  fi
+
+  # Layer our customizations on top of the clone every run, so they're
+  # always in effect regardless of whether the clone is fresh or old.
+  if [[ -d "$THEME_REPO_DIR" ]]; then
+    mkdir -p "$THEME_REPO_DIR/public/css"
+    cp "$OVERRIDES_DIR/template.html5" "$THEME_REPO_DIR/template.html5"
+    cp "$OVERRIDES_DIR/public/css/theme.css" "$THEME_REPO_DIR/public/css/theme.css"
+    cp "$OVERRIDES_DIR/public/css/skylighting-modern-theme.css" "$THEME_REPO_DIR/public/css/skylighting-modern-theme.css"
+  fi
+
+  if [[ -f "$TEMPLATE" && -f "$THEME_CSS" && -f "$HIGHLIGHT_CSS" ]]; then
+    return 0
+  fi
+
+  echo "md2html.sh: $THEME_REPO_DIR exists but is missing expected file(s):" >&2
+  [[ -f "$TEMPLATE" ]]      || echo "  $TEMPLATE" >&2
+  [[ -f "$THEME_CSS" ]]     || echo "  $THEME_CSS" >&2
+  [[ -f "$HIGHLIGHT_CSS" ]] || echo "  $HIGHLIGHT_CSS" >&2
+  echo "Check that $THEME_REPO_DIR is a clone of $THEME_REPO_URL and is up to date." >&2
+  exit 1
+}
+
+ensure_theme_assets
 
 # Example: index.md -> index
 BASENAME=$(basename "$INPUT")
