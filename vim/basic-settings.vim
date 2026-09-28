@@ -136,9 +136,6 @@ augroup vimrcEx
   " Don't spellcheck urls
   au BufReadPost * syn match UrlNoSpell '\w\+:\/\/[^[:space:]]\+' contains=@NoSpell
   au BufReadPost * syn match myExCapitalWords +\<\w*[A-Z]\K*\>\|'s\|:+ contains=@NoSpell
-
-  " indent slim two spaces, not four
-  autocmd! FileType *.slim set sw=2 sts=2 et
 augroup END
 
 set background=dark
