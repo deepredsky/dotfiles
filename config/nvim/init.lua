@@ -254,8 +254,12 @@ vim.keymap.set('n', '<leader>gb', '<cmd>G blame<cr>', { desc = 'Git blame' })
 
 -- gitsigns
 require('gitsigns').setup()
-vim.keymap.set('n', ']c', function() require('gitsigns').next_hunk() end, { desc = 'Next hunk' })
-vim.keymap.set('n', '[c', function() require('gitsigns').prev_hunk() end, { desc = 'Prev hunk' })
+vim.keymap.set('n', ']c', function()
+  if vim.wo.diff then vim.cmd.normal({ ']c', bang = true }) else require('gitsigns').nav_hunk('next') end
+end, { desc = 'Next hunk' })
+vim.keymap.set('n', '[c', function()
+  if vim.wo.diff then vim.cmd.normal({ '[c', bang = true }) else require('gitsigns').nav_hunk('prev') end
+end, { desc = 'Prev hunk' })
 vim.keymap.set('n', '<leader>gs', function() require('gitsigns').stage_hunk() end, { desc = 'Stage hunk' })
 vim.keymap.set('n', '<leader>gr', function() require('gitsigns').reset_hunk() end, { desc = 'Reset hunk' })
 vim.keymap.set('n', '<leader>gp', function() require('gitsigns').preview_hunk() end, { desc = 'Preview hunk' })
