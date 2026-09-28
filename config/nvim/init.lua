@@ -185,6 +185,9 @@ vim.pack.add({
   -- Colorscheme
   'https://github.com/sainnhe/everforest',
 
+  -- LSP server configs (lsp/*.lua)
+  'https://github.com/neovim/nvim-lspconfig',
+
   -- Treesitter
   'https://github.com/nvim-treesitter/nvim-treesitter',
 
@@ -281,40 +284,9 @@ require('blink.cmp').setup({
 -- =============================================================================
 -- Native LSP (neovim 0.11+)
 -- =============================================================================
--- Merge blink.cmp's completion capabilities into every server below
+-- Merge blink.cmp's completion capabilities into every server
 vim.lsp.config('*', {
   capabilities = require('blink.cmp').get_lsp_capabilities(),
-})
-
--- Configure language servers
-vim.lsp.config('solargraph', {
-  cmd = { 'solargraph', 'stdio' },
-  filetypes = { 'ruby', 'eruby' },
-  root_markers = { 'Gemfile', '.git' },
-})
-
-vim.lsp.config('gopls', {
-  cmd = { 'gopls' },
-  filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
-  root_markers = { 'go.mod', '.git' },
-})
-
-vim.lsp.config('lua_ls', {
-  cmd = { 'lua-language-server' },
-  filetypes = { 'lua' },
-  root_markers = { '.luarc.json', '.git' },
-})
-
-vim.lsp.config('clangd', {
-  cmd = { 'clangd' },
-  filetypes = { 'c', 'cpp', 'objc', 'objcpp' },
-  root_markers = { 'compile_commands.json', '.git' },
-})
-
-vim.lsp.config('rust_analyzer', {
-  cmd = { 'rust-analyzer' },
-  filetypes = { 'rust' },
-  root_markers = { 'Cargo.toml', '.git' },
 })
 
 -- Enable servers
