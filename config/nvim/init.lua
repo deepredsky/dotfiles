@@ -31,6 +31,7 @@ vim.opt.incsearch   = true
 vim.opt.ignorecase  = true
 vim.opt.smartcase   = true
 vim.opt.autoread   = true
+vim.opt.undofile   = true
 vim.opt.updatetime = 300  -- faster CursorHold (default 4000ms)
 
 vim.opt.termguicolors = true

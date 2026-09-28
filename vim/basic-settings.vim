@@ -52,6 +52,7 @@ set nobackup
 set nowritebackup
 set backupdir=~/.vim-tmp/backup//
 set undodir=~/.vim-tmp/undo//
+set undofile
 set directory=~/.vim-tmp/swap//
 
 " Make those folders automatically if they don't already exist.
