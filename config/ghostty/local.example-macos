@@ -1,0 +1,5 @@
+# Copy this file to config/ghostty/local (gitignored) on macOS.
+
+macos-option-as-alt = true
+font-family = "Input"
+font-size = 16
