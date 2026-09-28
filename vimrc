@@ -266,7 +266,7 @@ endfunc
 " dotfiles repo is checked out on, and skips servers that aren't installed.
 let s:lspCandidates = [
       \ #{ name: 'clang', filetype: ['c', 'cpp'], bin: 'clangd', args: ['--background-index'] },
-      \ #{ name: 'ruby', filetype: 'ruby', bin: 'ruby-lsp' },
+      \ #{ name: 'ruby', filetype: 'ruby', bin: 'solargraph', args: ['stdio'] },
       \ #{ name: 'go', filetype: ['go', 'gomod', 'gowork'], bin: 'gopls' },
       \ ]
 
