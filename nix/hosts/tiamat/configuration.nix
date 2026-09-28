@@ -208,6 +208,8 @@
   fonts.packages = with pkgs; [
         iosevka
         nerd-fonts.iosevka
+        maple-mono.NF
+        (pkgs.callPackage ../../packages/space-grotesk.nix { })
   ];
 
   # Install firefox.
