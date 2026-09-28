@@ -9,3 +9,4 @@ copy-on-select = clipboard
 
 # per-machine overrides (font, macOS-only settings, theme) - gitignored, see local.example-macos
 config-file = ?local
+config-file = ?auto/theme.ghostty
