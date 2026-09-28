@@ -25,7 +25,12 @@
 
 set -euo pipefail
 
-SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]}")"
+# Resolved physically (cd -P) because this is normally invoked through
+# ~/.bin, which is itself a symlink to <dotfiles>/bin -- a plain dirname
+# on an unresolved BASH_SOURCE would walk up out of ~/.bin instead of out
+# of the real bin/, landing on the wrong parent directory.
+SCRIPT_DIR="$(cd -P "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILES_DIR="$(dirname "$SCRIPT_DIR")"
 
 usage() {
   echo "usage: $0 <input.md> [outputdir] [root_path]" >&2
@@ -49,7 +54,7 @@ THEME_REPO_URL="https://github.com/jez/pandoc-markdown-css-theme.git"
 # jez's upstream theme. Tracked in dotfiles (synced across machines) since
 # THEME_REPO_DIR itself is just a plain clone of someone else's repo and
 # a fresh auto-clone on a new machine would otherwise come back vanilla.
-OVERRIDES_DIR="$SCRIPT_DIR/lib/pandoc-theme-overrides"
+OVERRIDES_DIR="$DOTFILES_DIR/pandoc/theme-overrides"
 
 TEMPLATE="${MD2HTML_TEMPLATE:-$THEME_REPO_DIR/template.html5}"
 THEME_CSS="${MD2HTML_THEME_CSS:-$THEME_REPO_DIR/public/css/theme.css}"
@@ -110,7 +115,7 @@ pandoc_template=( pandoc \
     --template="$TEMPLATE" \
     --from gfm \
     # --filter d2-filter
-    --lua-filter="$SCRIPT_DIR/lib/pandoc-sidenote.lua" \
+    --lua-filter="$DOTFILES_DIR/pandoc/pandoc-sidenote.lua" \
     --to html5+smart \
     --toc \
     --wrap=none \

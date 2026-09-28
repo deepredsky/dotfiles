@@ -1,0 +1,105 @@
+/*
+ * A modern, GitHub-inspired syntax highlighting theme for Pandoc/Skylighting.
+ * Replaces the Solarized skylighting theme. Follows the same CSS-variable
+ * structure as skylighting-solarized-theme.css so it's a drop-in swap.
+ *
+ * Responds to OS preference (prefers-color-scheme) by default, and to a
+ * manual override via [data-theme="light"|"dark"] on <html> (see the theme
+ * toggle in theme.css / template.html).
+ */
+
+:root {
+  --hl-bg:          #f6f8fa;
+  --hl-fg:          #24292e;
+  --hl-comment:     #6a737d;
+  --hl-keyword:     #d73a49;
+  --hl-string:      #032f62;
+  --hl-number:      #005cc5;
+  --hl-function:    #6f42c1;
+  --hl-type:        #e36209;
+  --hl-attribute:   #e36209;
+  --hl-import:      #22863a;
+  --hl-alert:       #d73a49;
+  --hl-alert-bg:    #ffeef0;
+  --hl-line-number: #a4a4a4;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --hl-bg:          #161b22;
+    --hl-fg:          #c9d1d9;
+    --hl-comment:     #8b949e;
+    --hl-keyword:     #ff7b72;
+    --hl-string:      #a5d6ff;
+    --hl-number:      #79c0ff;
+    --hl-function:    #d2a8ff;
+    --hl-type:        #ffa657;
+    --hl-attribute:   #ffa657;
+    --hl-import:      #7ee787;
+    --hl-alert:       #f85149;
+    --hl-alert-bg:    #3d1418;
+    --hl-line-number: #6e7681;
+  }
+}
+
+:root[data-theme="dark"] {
+  --hl-bg:          #161b22;
+  --hl-fg:          #c9d1d9;
+  --hl-comment:     #8b949e;
+  --hl-keyword:     #ff7b72;
+  --hl-string:      #a5d6ff;
+  --hl-number:      #79c0ff;
+  --hl-function:    #d2a8ff;
+  --hl-type:        #ffa657;
+  --hl-attribute:   #ffa657;
+  --hl-import:      #7ee787;
+  --hl-alert:       #f85149;
+  --hl-alert-bg:    #3d1418;
+  --hl-line-number: #6e7681;
+}
+
+pre, pre.numberSource {
+  background: var(--hl-bg);
+  --color-code-highlight-bg: var(--hl-bg);
+}
+pre code { color: var(--hl-fg); }
+pre.numberSource > code.sourceCode > span > a:first-child::before {
+  color: var(--hl-line-number);
+}
+
+code span.kw { color: var(--hl-keyword);  font-weight: normal; font-style: normal; } /* Keyword */
+code span.cf { color: var(--hl-keyword);  font-weight: normal; font-style: normal; } /* ControlFlow */
+code span.dt { color: var(--hl-type);     font-weight: normal; font-style: normal; } /* DataType */
+code span.dv { color: var(--hl-number);   font-weight: normal; font-style: normal; } /* DecVal */
+code span.bn { color: var(--hl-number);   font-weight: normal; font-style: normal; } /* BaseN */
+code span.fl { color: var(--hl-number);   font-weight: normal; font-style: normal; } /* Float */
+code span.cn { color: var(--hl-number);   font-weight: normal; font-style: normal; } /* Constant */
+code span.ch { color: var(--hl-string);   font-weight: normal; font-style: normal; } /* Char */
+code span.st { color: var(--hl-string);   font-weight: normal; font-style: normal; } /* String */
+code span.vs { color: var(--hl-string);   font-weight: normal; font-style: normal; } /* VerbatimString */
+code span.ss { color: var(--hl-string);   font-weight: normal; font-style: normal; } /* SpecialString */
+code span.sc { color: var(--hl-string);   font-weight: normal; font-style: normal; } /* SpecialChar */
+code span.co { color: var(--hl-comment);  font-weight: normal; font-style: italic; } /* Comment */
+code span.do { color: var(--hl-comment);  font-weight: normal; font-style: italic; } /* Documentation */
+code span.an { color: var(--hl-comment);  font-weight: normal; font-style: italic; } /* Annotation */
+code span.cv { color: var(--hl-comment);  font-weight: normal; font-style: italic; } /* CommentVar */
+code span.in { color: var(--hl-comment);  font-weight: normal; font-style: italic; } /* Information */
+code span.ot { color: var(--hl-function); font-weight: normal; font-style: normal; } /* Other */
+code span.fu { color: var(--hl-function); font-weight: normal; font-style: normal; } /* Function */
+code span.im { color: var(--hl-import);   font-weight: normal; font-style: normal; } /* Import */
+code span.bu { color: var(--hl-import);   font-weight: normal; font-style: normal; } /* BuiltIn */
+code span.ex { color: var(--hl-import);   font-weight: normal; font-style: normal; } /* Extension */
+code span.at { color: var(--hl-attribute);font-weight: normal; font-style: normal; } /* Attribute */
+code span.pp { color: var(--hl-attribute);font-weight: normal; font-style: normal; } /* Preprocessor */
+code span.va { color: var(--hl-fg);       font-weight: normal; font-style: normal; } /* Variable */
+code span.op { color: var(--hl-fg);       font-weight: normal; font-style: normal; } /* Operator */
+code span.al { color: var(--hl-alert); background-color: var(--hl-alert-bg); font-weight: normal; font-style: normal; } /* Alert */
+code span.er { color: var(--hl-alert); background-color: var(--hl-alert-bg); font-weight: normal; font-style: normal; } /* Error */
+code span.wa { color: var(--hl-type);     font-weight: normal; font-style: italic; } /* Warning */
+a.sourceLine::before { text-decoration: none; }
+
+/* pandoc diff mode */
+code.diff span.kw { color: var(--hl-type);    font-weight: normal; font-style: normal; } /* --- lines */
+code.diff span.dt { color: var(--hl-number);  font-weight: normal; font-style: normal; } /* +++ lines, @@ ... @@ lines */
+code.diff span.st { color: var(--hl-alert);   font-weight: normal; font-style: normal; } /* - lines */
+code.diff span.va { color: var(--hl-import);  font-weight: normal; font-style: normal; } /* + lines */

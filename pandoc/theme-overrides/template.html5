@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$lang$" xml:lang="$lang$"$if(dir)$ dir="$dir$"$endif$>
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc-markdown-css-theme" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+$for(author-meta)$
+  <meta name="author" content="$author-meta$" />
+$endfor$
+$if(date-meta)$
+  <meta name="dcterms.date" content="$date-meta$" />
+$endif$
+$if(keywords)$
+  <meta name="keywords" content="$for(keywords)$$keywords$$sep$, $endfor$" />
+$endif$
+$if(description-meta)$
+  <meta name="description" content="$description-meta$" />
+$endif$
+  <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</title>
+  <script>
+    // Applied before first paint to avoid a flash of the wrong theme.
+    (function() {
+      try {
+        var saved = localStorage.getItem('theme');
+        if (saved === 'light' || saved === 'dark') {
+          document.documentElement.dataset.theme = saved;
+        }
+      } catch (e) {}
+    })();
+  </script>
+$for(css)$
+  <link rel="stylesheet" href="$css$" />
+$endfor$
+$if(math)$
+  $math$
+$endif$
+$for(header-includes)$
+  $header-includes$
+$endfor$
+</head>
+<body>
+$for(include-before)$
+$include-before$
+$endfor$
+
+<header>
+<h1 class="title">$title$</h1>
+<blockquote class="metadata">
+$if(subtitle)$
+<p class="subtitle">$subtitle$</p>
+$endif$
+$if(author)$
+<p class="author">
+  $if(author-url)$
+    <a href="$author-url$">$author$</a>
+  $else$
+    $author$
+  $endif$
+</p>
+$endif$
+$if(date)$
+<p class="date $if(toc)$before-toc$endif$"><time datetime="$date$">$date$</time></p>
+$endif$
+</blockquote>
+</header>
+
+$if(toc)$
+<nav id="$idprefix$TOC" role="doc-toc">
+  $if(return-url)$
+  <a href="$return-url$">$if(return-text)$$return-text$$else$← Return$endif$</a><br>
+  $endif$
+  <strong>Contents</strong><label for="contents">⊕</label>
+  <input type="checkbox" id="contents">
+  $table-of-contents$
+</nav>
+$endif$
+
+<main>
+$body$
+</main>
+
+$if(return-url)$
+<footer>
+<p class="signoff">
+  <a href="$return-url$">$if(return-text)$$return-text$$else$← Return$endif$</a>
+</p>
+</footer>
+$endif$
+
+<footer>
+<button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme">
+  <span id="theme-toggle-label">Toggle theme</span>
+</button>
+</footer>
+
+<script>
+;(function() {
+  var STORAGE_KEY = 'theme';
+  var button = document.getElementById('theme-toggle');
+  var label = document.getElementById('theme-toggle-label');
+
+  function systemPrefersDark() {
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+
+  function currentTheme() {
+    return document.documentElement.dataset.theme || (systemPrefersDark() ? 'dark' : 'light');
+  }
+
+  function updateLabel() {
+    label.textContent = currentTheme() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme';
+  }
+
+  button.addEventListener('click', function() {
+    var next = currentTheme() === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem(STORAGE_KEY, next); } catch (e) {}
+    updateLabel();
+  });
+
+  updateLabel();
+})();
+</script>
+<script>
+;(function() {
+  // Non-essential if user has JavaScript off. Just makes checkboxes look nicer.
+  var selector = '.task-list > li > input[type="checkbox"]';
+  var checkboxes = document.querySelectorAll(selector);
+  Array.from(checkboxes).forEach((checkbox) => {
+    var wasChecked = checkbox.checked;
+    checkbox.disabled = false;
+    checkbox.addEventListener('click', (ev) => {ev.target.checked = wasChecked});
+  });
+
+  function hoistAbove() {
+    const toHoist = document.querySelectorAll('main > .sidenote-wrapper + :not(.sidenote-wrapper)');
+    for (let i = toHoist.length - 1; i >= 0; i--) {
+      const source = toHoist[i];
+      let target = source.previousElementSibling;
+      while (target.previousElementSibling?.classList.contains('sidenote-wrapper')) {
+        target = target.previousElementSibling;
+      }
+      source.parentNode.insertBefore(source, target);
+    }
+  }
+
+  function sinkBelow() {
+    const toHoist = document.querySelectorAll('main > :not(.sidenote-wrapper) + .sidenote-wrapper');
+    for (let i = 0; i < toHoist.length; i++) {
+      const source = toHoist[i].previousElementSibling;
+      let target = source.nextElementSibling;
+      while (target.classList.contains('sidenote-wrapper')) {
+        target = target.nextElementSibling;
+      }
+      source.parentNode.insertBefore(source, target);
+    }
+  }
+
+  if (window.matchMedia('screen')) {
+    if (window.innerWidth <= 796) {
+      hoistAbove();
+    }
+    let prevSize = window.innerWidth;
+    // Needs to mirror breakpoints in :root settings in CSS variables
+    // 745px = --main-width-narrow
+    // 26px = --line-height
+    // 169px = side note min width narrow
+    const breakpoint = 26 + 550 + 26 + 169 + 26 - 1;
+    window.addEventListener('resize', function() {
+      const newSize = window.innerWidth;
+      if (prevSize >= breakpoint && newSize < breakpoint) {
+        hoistAbove();
+      } else if (prevSize < breakpoint && newSize >= breakpoint) {
+        sinkBelow();
+      }
+      prevSize = newSize;
+    });
+  }
+})();
+</script>
+$for(include-after)$
+$include-after$
+$endfor$
+</body>
+</html>
