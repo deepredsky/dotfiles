@@ -121,6 +121,12 @@
 
   services.udiskie.enable = true;
 
+  # zathura-cb claims inode/directory in its .desktop MimeType list, which can
+  # win as the fallback default when nothing else claims it explicitly.
+  home.activation.fixDirectoryMimeDefault = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+    $DRY_RUN_CMD ${pkgs.xdg-utils}/bin/xdg-mime default org.gnome.Nautilus.desktop inode/directory
+  '';
+
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
