@@ -58,34 +58,6 @@ vim.api.nvim_create_user_command('Ag', function(opts)
   vim.cmd('copen')
 end, { nargs = '+', complete = 'file' })
 
--- Autocmds
-local augroup = vim.api.nvim_create_augroup('config', { clear = true })
-
-vim.api.nvim_create_autocmd('TextYankPost', {
-  group = augroup,
-  callback = function() vim.hl.on_yank() end,
-})
-
--- Reopen at last cursor position (:h last-position-jump)
-vim.api.nvim_create_autocmd('BufReadPre', {
-  group = augroup,
-  callback = function(ev)
-    vim.api.nvim_create_autocmd('FileType', {
-      buffer = ev.buf,
-      once = true,
-      callback = function()
-        local line = vim.api.nvim_buf_get_mark(ev.buf, '"')[1]
-        local ft = vim.bo[ev.buf].filetype
-        if line >= 1 and line <= vim.api.nvim_buf_line_count(ev.buf)
-          and not ft:find('commit') and ft ~= 'xxd' and ft ~= 'gitrebase'
-          and not vim.wo.diff then
-          vim.cmd('normal! g`"')
-        end
-      end,
-    })
-  end,
-})
-
 -- Plugin-specific globals (vimwiki)
 vim.g.vimwiki_map_prefix = ',v'
 vim.g.vimwiki_list = {{
