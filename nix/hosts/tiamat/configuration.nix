@@ -283,9 +283,16 @@
     libnotify
     swaybg
     claude-code
+    codex
     visidata
     duckdb
     vlc
+    imv
+    inkscape
+    zathura
+    grim
+    slurp
+    satty
   ];
 
   environment.sessionVariables.GTK_THEME = "Adwaita:dark";

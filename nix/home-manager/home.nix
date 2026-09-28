@@ -40,13 +40,6 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
-    pkgs.vesktop
-    pkgs.imv
-    pkgs.inkscape
-    pkgs.zathura
-    pkgs.grim
-    pkgs.slurp
-    pkgs.satty
     # Wordlist for vim dictionary-completion, symlinked below
     pkgs.miscfiles
   ];
