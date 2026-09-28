@@ -108,6 +108,9 @@ augroup vimrcEx
   " Must precede the setlocal overrides below so ours win, not pencil's
   autocmd FileType text,vimwiki,markdown call litecorrect#init()
   autocmd FileType text,vimwiki,markdown call pencil#init({'wrap': 'soft'})
+  " Pencil's buffer-local j/k ignore counts; restore count-aware ones
+  autocmd FileType text,vimwiki,markdown nnoremap <buffer> <expr> j v:count ? 'j' : 'gj'
+  autocmd FileType text,vimwiki,markdown nnoremap <buffer> <expr> k v:count ? 'k' : 'gk'
   autocmd FileType text,vimwiki,markdown call textobj#sentence#init()
   autocmd FileType text setlocal spell textwidth=78 formatoptions=croqn2 wrap linebreak breakindent complete+=kspell
   " No 't' in formatoptions: don't hard-wrap while typing (it breaks URLs

@@ -93,9 +93,9 @@ vim.keymap.set('i', '<right>', '<nop>')
 -- Make Y behave like C and D
 vim.keymap.set('n', 'Y', 'y$')
 
--- Move by display lines
-vim.keymap.set('n', 'j', 'gj')
-vim.keymap.set('n', 'k', 'gk')
+-- Move by display lines; counts use real lines so they match relativenumber
+vim.keymap.set('n', 'j', "v:count ? 'j' : 'gj'", { expr = true })
+vim.keymap.set('n', 'k', "v:count ? 'k' : 'gk'", { expr = true })
 
 -- cd to current file's directory
 vim.keymap.set('n', 'cd', ':lcd %:h<cr>')

@@ -15,8 +15,9 @@ nmap <silent> <F5> <Plug>StripTrailingWhitespace
 
 vnoremap <Leader>c "+y
 nnoremap <leader>p <Plug>SystemPasteLine
-nnoremap j gj
-nnoremap k gk
+" Counts use real lines so they match relativenumber
+nnoremap <expr> j v:count ? 'j' : 'gj'
+nnoremap <expr> k v:count ? 'k' : 'gk'
 nnoremap <leader>cd :lcd %:h<cr>
 
 noremap <Leader><Leader> :
