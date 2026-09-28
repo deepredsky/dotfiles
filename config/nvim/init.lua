@@ -8,11 +8,9 @@ vim.g.mapleader = ','
 vim.opt_global.completeopt = { "menuone", "noinsert", "noselect" }
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.ruler = true
 vim.opt.colorcolumn = "80"
 vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"  -- keep text from shifting when signs appear
-vim.opt.wildmenu = true
 vim.opt.wrap = false
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
@@ -27,14 +25,10 @@ vim.opt.listchars = {
 vim.opt.scrolloff = 3
 vim.opt.splitright = true
 vim.opt.splitbelow = true
-vim.opt.showcmd = true
 vim.opt.showbreak = '↪'
 
-vim.opt.hlsearch    = true
-vim.opt.incsearch   = true
 vim.opt.ignorecase  = true
 vim.opt.smartcase   = true
-vim.opt.autoread   = true
 vim.opt.undofile   = true
 vim.opt.updatetime = 300  -- faster CursorHold (default 4000ms)
 vim.opt.timeoutlen = 400
@@ -95,9 +89,6 @@ vim.keymap.set('i', '<up>', '<nop>')
 vim.keymap.set('i', '<down>', '<nop>')
 vim.keymap.set('i', '<left>', '<nop>')
 vim.keymap.set('i', '<right>', '<nop>')
-
--- Make Y behave like C and D
-vim.keymap.set('n', 'Y', 'y$')
 
 -- Move by display lines; counts use real lines so they match relativenumber
 vim.keymap.set('n', 'j', "v:count ? 'j' : 'gj'", { expr = true })
@@ -358,8 +349,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', '<leader>k', vim.lsp.buf.hover, opts)
     vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
     vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-    vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-    vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
     vim.keymap.set('n', 'gl', vim.diagnostic.open_float, opts)
 
     -- Enable inlay hints if supported
