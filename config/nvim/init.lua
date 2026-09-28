@@ -40,7 +40,8 @@ vim.opt.updatetime = 300  -- faster CursorHold (default 4000ms)
 vim.opt.timeoutlen = 400
 
 vim.opt.termguicolors = true
-vim.opt.background = 'dark'
+-- fish's theme-switch touches this file (also read by vim, bat, tmux, mutt)
+vim.opt.background = vim.uv.fs_stat('/tmp/light-theme') and 'light' or 'dark'
 
 -- Use rg or ag for grep
 if vim.fn.executable('rg') == 1 then
