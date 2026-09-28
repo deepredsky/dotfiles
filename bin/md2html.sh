@@ -49,7 +49,7 @@ THEME_REPO_URL="https://github.com/jez/pandoc-markdown-css-theme.git"
 # jez's upstream theme. Tracked in dotfiles (synced across machines) since
 # THEME_REPO_DIR itself is just a plain clone of someone else's repo and
 # a fresh auto-clone on a new machine would otherwise come back vanilla.
-OVERRIDES_DIR="$SCRIPT_DIR/pandoc-theme-overrides"
+OVERRIDES_DIR="$SCRIPT_DIR/lib/pandoc-theme-overrides"
 
 TEMPLATE="${MD2HTML_TEMPLATE:-$THEME_REPO_DIR/template.html5}"
 THEME_CSS="${MD2HTML_THEME_CSS:-$THEME_REPO_DIR/public/css/theme.css}"
@@ -110,7 +110,7 @@ pandoc_template=( pandoc \
     --template="$TEMPLATE" \
     --from gfm \
     # --filter d2-filter
-    --lua-filter="$SCRIPT_DIR/pandoc-sidenote.lua" \
+    --lua-filter="$SCRIPT_DIR/lib/pandoc-sidenote.lua" \
     --to html5+smart \
     --toc \
     --wrap=none \
