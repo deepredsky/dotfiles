@@ -132,7 +132,7 @@ vim.keymap.set('n', 'j', "v:count ? 'j' : 'gj'", { expr = true })
 vim.keymap.set('n', 'k', "v:count ? 'k' : 'gk'", { expr = true })
 
 -- cd to current file's directory
-vim.keymap.set('n', 'cd', ':lcd %:h<cr>')
+vim.keymap.set('n', '<leader>cd', ':lcd %:h<cr>')
 
 -- K to grep word under cursor
 vim.keymap.set('n', 'K', ':grep! "\\b<C-R><C-W>\\b"<CR>:cw<CR>')
@@ -300,7 +300,7 @@ vim.keymap.set('n', '<leader>gp', function() require('gitsigns').preview_hunk() 
 vim.keymap.set('n', '<leader>gB', function() require('gitsigns').blame_line() end, { desc = 'Blame line' })
 
 -- Goyo (distraction-free writing)
-vim.keymap.set('n', '<leader>z', '<cmd>Goyo<cr>', { desc = 'Goyo' })
+vim.keymap.set('n', '<leader>G', '<cmd>Goyo<cr>', { desc = 'Goyo' })
 
 -- Completion
 require('blink.cmp').setup({
