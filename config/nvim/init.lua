@@ -10,6 +10,8 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.ruler = true
 vim.opt.colorcolumn = "80"
+vim.opt.cursorline = true
+vim.opt.signcolumn = "yes"  -- keep text from shifting when signs appear
 vim.opt.wildmenu = true
 vim.opt.wrap = false
 vim.opt.tabstop = 2
@@ -23,6 +25,8 @@ vim.opt.listchars = {
   trail = '☠',
 }
 vim.opt.scrolloff = 3
+vim.opt.splitright = true
+vim.opt.splitbelow = true
 vim.opt.showcmd = true
 vim.opt.showbreak = '↪'
 
@@ -33,6 +37,7 @@ vim.opt.smartcase   = true
 vim.opt.autoread   = true
 vim.opt.undofile   = true
 vim.opt.updatetime = 300  -- faster CursorHold (default 4000ms)
+vim.opt.timeoutlen = 400
 
 vim.opt.termguicolors = true
 vim.opt.background = 'dark'

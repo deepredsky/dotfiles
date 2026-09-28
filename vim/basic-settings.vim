@@ -35,6 +35,9 @@ set showcmd
 " keep more context when scrolling off the end of a buffer
 set scrolloff=3
 
+set splitright
+set splitbelow
+
 " Faster multi-key mapping disambiguation than the 1000ms default
 set timeoutlen=400
 
