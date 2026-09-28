@@ -33,6 +33,8 @@ Plug 'tpope/vim-vinegar'
 Plug 'christoomey/vim-system-copy'
 
 Plug 'github/copilot.vim'
+let g:copilot_no_tab_map = v:true
+imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
 
 " Vim Ruby
 Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'eruby'] }

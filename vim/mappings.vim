@@ -66,9 +66,6 @@ nmap <Space><Space> <Plug>(qf_qf_toggle)
 nmap <C-n> <Plug>(qf_qf_next)
 nmap <C-p> <Plug>(qf_qf_previous)
 
-imap <silent><script><expr> <C-J> copilot#Accept("\<CR>")
-let g:copilot_no_tab_map = v:true
-
 " fix broken newrw gx
 function! s:OpenCWORD() abort
   let l:opener = has('mac') ? 'open' : 'xdg-open'
