@@ -5,7 +5,8 @@
   "modules-right": ["tray", "custom/separator", "cpu", "custom/separator", "memory", "custom/separator", "temperature", "custom/separator", "network", "custom/separator", "pulseaudio", "custom/separator", "custom/notification", "custom/separator", "clock", "custom/separator", "custom/power"],
   "clock": {
     "format": "<span foreground='#f5c2e7'> </span>{:%a %d %H:%M}",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    "tooltip": false,
+    "on-click": "gsimplecal"
   },
   "tray": {
       "icon-size": 16,

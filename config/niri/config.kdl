@@ -295,6 +295,13 @@ window-rule {
     open-floating true
 }
 
+// Pop the waybar clock's calendar near the clock instead of screen center.
+window-rule {
+    match app-id=r#"^gsimplecal$"#
+    open-floating true
+    default-floating-position x=60 y=40 relative-to="top-right"
+}
+
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
 /-window-rule {

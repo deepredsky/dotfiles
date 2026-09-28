@@ -293,6 +293,7 @@
     grim
     slurp
     satty
+    gsimplecal
   ];
 
   environment.sessionVariables.GTK_THEME = "Adwaita:dark";
