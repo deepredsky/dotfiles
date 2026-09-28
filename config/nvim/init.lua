@@ -213,7 +213,7 @@ require('nvim-treesitter').install(ts_parsers)
 -- to the markdown parser for treesitter (and render-markdown.nvim)
 vim.treesitter.language.register('markdown', 'vimwiki')
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = { 'lua', 'vim', 'help', 'query', 'ruby', 'go', 'gomod', 'c', 'rust', 'bash', 'json', 'yaml', 'markdown', 'vimwiki' },
+  pattern = { 'lua', 'vim', 'help', 'query', 'ruby', 'go', 'gomod', 'c', 'rust', 'sh', 'json', 'yaml', 'markdown', 'vimwiki' },
   callback = function() vim.treesitter.start() end,
 })
 
