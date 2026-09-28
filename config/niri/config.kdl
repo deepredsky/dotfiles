@@ -68,12 +68,11 @@ input {
 // Find more information on the wiki:
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
 //
-// Pinned to the BenQ PD3200U on HDMI-A-1, matching the mode/scale
-// niri was already auto-selecting, so a driver/EDID change can't
-// silently pick a different mode.
+// Pinned to the BenQ PD3200U on HDMI-A-1, so a driver/EDID change
+// can't silently pick a different mode.
 output "HDMI-A-1" {
     mode "3840x2160@59.997"
-    scale 1.25
+    scale 1.5
     transform "normal"
     position x=0 y=0
 }
