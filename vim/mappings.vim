@@ -8,6 +8,7 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 
 nnoremap Y  y$
+" Terminals send <Tab> as <C-i>, so this shadows jumplist-forward
 nnoremap <Tab> za
 
 nmap <silent> <F5> <Plug>StripTrailingWhitespace
