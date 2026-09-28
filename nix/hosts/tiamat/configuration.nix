@@ -164,6 +164,7 @@
       neovim
       gcc
       tree-sitter
+      go
       gopls
       lua-language-server
       clang-tools
