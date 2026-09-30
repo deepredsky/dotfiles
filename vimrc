@@ -171,7 +171,9 @@ nnoremap <leader>. :BTags<cr>
 " Others {{{
 
 function! s:goyo_enter()
-  silent !tmux set status off
+  if exists('$TMUX')
+    silent !tmux set status off
+  endif
   GitGutterDisable
   set scrolloff=10
   set nocursorline
@@ -179,7 +181,9 @@ function! s:goyo_enter()
 endfunction
 
 function! s:goyo_leave()
-  silent !tmux set status on
+  if exists('$TMUX')
+    silent !tmux set status on
+  endif
   GitGutterEnable
   set scrolloff=3
   set cursorline

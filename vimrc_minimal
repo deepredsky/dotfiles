@@ -72,13 +72,17 @@ function! s:goyo_enter()
   let b:quitting_bang = 0
   autocmd QuitPre <buffer> let b:quitting = 1
   cabbrev <buffer> q! let b:quitting_bang = 1 <bar> q!
-  silent !tmux set status off
+  if exists('$TMUX')
+    silent !tmux set status off
+  endif
   set scrolloff=10
   Limelight
 endfunction
 
 function! s:goyo_leave()
-  silent !tmux set status on
+  if exists('$TMUX')
+    silent !tmux set status on
+  endif
   set scrolloff=3
   Limelight!
 
