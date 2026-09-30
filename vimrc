@@ -128,6 +128,8 @@ Plug 'vimwiki/vimwiki'
 Plug 'dhruvasagar/vim-table-mode'
 " Use '|' corners so tables stay valid GFM/Markdown, not just reST
 let g:table_mode_corner = '|'
+" Default ,t prefix made vimrc's ,t (TestNearest) wait; toggle is now ,|m
+let g:table_mode_map_prefix = '<Leader><Bar>'
 Plug 'reedes/vim-wordy'
 Plug 'reedes/vim-litecorrect'
 Plug 'reedes/vim-pencil'
