@@ -65,6 +65,13 @@ nmap <leader>v- <Plug>VimwikiRemoveHeaderLevel
 nnoremap <leader>G :Goyo<CR>
 nnoremap <leader>cw :Wordy<CR>
 nnoremap <leader>ss :setlocal spell!<CR>
+" Fix the previous misspelling with its first suggestion, keeping the cursor
+function! s:FixLastSpelling() abort
+  let l:view = winsaveview()
+  normal! [s1z=
+  call winrestview(l:view)
+endfunction
+nnoremap <silent> <leader>sf :call <SID>FixLastSpelling()<CR>
 
 " Space mappings
 nmap <Space><Space> <Plug>(qf_qf_toggle)
