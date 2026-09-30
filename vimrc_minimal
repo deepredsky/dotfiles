@@ -1,3 +1,6 @@
+" -u skips the vimrc detection that normally turns this off
+set nocompatible
+
 let g:vimwiki_map_prefix = ',v'
 
 " Plugins {{{
