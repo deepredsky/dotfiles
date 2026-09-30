@@ -248,6 +248,9 @@ vim.keymap.set('n', '<leader>f', function() require('fzf-lua').files() end, { de
 vim.keymap.set('n', '<leader>F', function() require('fzf-lua').files({ cwd = vim.fn.expand('%:p:h') }) end, { desc = 'Files in current dir' })
 vim.keymap.set('n', '<leader>b', function() require('fzf-lua').buffers() end, { desc = 'Buffers' })
 vim.keymap.set('n', '<leader>.', function() require('fzf-lua').btags() end, { desc = 'Tags in buffer' })
+vim.keymap.set('n', '<leader>/', function() require('fzf-lua').live_grep() end, { desc = 'Live grep' })
+vim.keymap.set('n', '<leader>*', function() require('fzf-lua').grep_cword() end, { desc = 'Grep word under cursor' })
+vim.keymap.set('n', '<leader>o', function() require('fzf-lua').oldfiles() end, { desc = 'Recent files' })
 
 -- Git keymaps
 vim.keymap.set('n', '<leader>gb', '<cmd>G blame<cr>', { desc = 'Git blame' })

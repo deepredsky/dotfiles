@@ -47,6 +47,9 @@ nmap <leader>ew :e <C-R>=expand('%:h').'/'<cr>
 
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>b :Buffers<cr>
+nnoremap <leader>/ :RG<CR>
+nnoremap <leader>* :Rg <C-R><C-W><CR>
+nnoremap <leader>o :History<CR>
 
 " Shortcut for expanding to the directory of the currently displayed file
 cnoremap %% <C-R>=expand('%:h').'/'<CR>
