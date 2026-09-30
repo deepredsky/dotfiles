@@ -8,6 +8,17 @@ inoremap <left> <nop>
 inoremap <right> <nop>
 
 nnoremap Y  y$
+
+" Keep the selection after indenting so it can be repeated
+xnoremap < <gv
+xnoremap > >gv
+
+" Repeat the last :s with its flags (plain & drops them)
+nnoremap & :&&<CR>
+xnoremap & :&&<CR>
+
+" Run a macro on each selected line: select, then @q
+xnoremap @ :<C-u>execute ":'<,'>normal @" . nr2char(getchar())<CR>
 " Terminals send <Tab> as <C-i>, so this shadows jumplist-forward
 nnoremap <Tab> za
 
