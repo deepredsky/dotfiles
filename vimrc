@@ -22,8 +22,6 @@ let g:UltiSnipsExpandTrigger='<c-e>'
 let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-commentary'
-Plug 'tmhedberg/matchit'
 Plug 'godlygeek/tabular'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -91,9 +89,10 @@ Plug 'janko-m/vim-test'
 " Better search handling
 Plug 'bronson/vim-visual-star-search'
 
-" Flash the yanked region briefly
-Plug 'machakann/vim-highlightedyank'
-let g:highlightedyank_highlight_in_visual = 0
+" Flash the yanked region briefly (built-in package)
+packadd! hlyank
+let g:hlyank_duration = 1000
+let g:hlyank_invisual = v:false
 
 Plug 'logico-dev/typewriter'
 

@@ -16,8 +16,6 @@ let g:UltiSnipsExpandTrigger='<c-e>'
 let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-commentary'
-Plug 'tmhedberg/matchit'
 Plug 'godlygeek/tabular'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
