@@ -93,6 +93,7 @@ Plug 'bronson/vim-visual-star-search'
 
 " Flash the yanked region briefly
 Plug 'machakann/vim-highlightedyank'
+let g:highlightedyank_highlight_in_visual = 0
 
 Plug 'logico-dev/typewriter'
 
