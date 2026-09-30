@@ -59,7 +59,8 @@ cnoremap $$ <C-R>=expand('%')<CR>
 
 nmap <Leader><Space> <Plug>VimwikiToggleListItem
 vmap <Leader><Space> <Plug>VimwikiToggleListItem
-nmap <F23> <Plug>VimwikiRemoveHeaderLevel
+" Claiming this Plug target stops vimwiki from mapping '-', which vinegar uses
+nmap <leader>v- <Plug>VimwikiRemoveHeaderLevel
 
 nnoremap <leader>G :Goyo<CR>
 nnoremap <leader>cw :Wordy<CR>

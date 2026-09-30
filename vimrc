@@ -253,8 +253,6 @@ vmap <leader>gB :GBrowse<cr>
 map <leader>gj :Jump diff head<cr>
 map <leader>gJ :Jump diff head^<cr>
 
-nmap <leader>v- <Plug>VimwikiRemoveHeaderLevel
-
 command! -bar -nargs=* Jump cexpr system('git jump ' . expand(<q-args>))
 
 function! SynStack()
