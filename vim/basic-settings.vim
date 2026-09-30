@@ -24,6 +24,12 @@ packadd! matchit
 packadd! cfilter
 packadd! nohlsearch
 
+" From Vim's defaults.vim, which isn't loaded when a vimrc exists
+set nojoinspaces
+set nrformats-=octal
+set display=lastline
+set smoothscroll
+
 ""
 "" Whitespace
 ""
