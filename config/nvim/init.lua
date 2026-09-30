@@ -34,6 +34,7 @@ vim.opt.updatetime = 300  -- faster CursorHold (default 4000ms)
 vim.opt.timeoutlen = 400
 
 vim.opt.termguicolors = true
+vim.o.winborder = 'rounded'
 -- fish's theme-switch touches this file (also read by vim, bat, tmux, mutt)
 vim.opt.background = vim.uv.fs_stat('/tmp/light-theme') and 'light' or 'dark'
 
@@ -201,6 +202,10 @@ vim.pack.add({
   'https://github.com/junegunn/goyo.vim',
   'https://github.com/junegunn/limelight.vim',
 })
+
+-- Built-in optional plugins and plugin updates
+vim.cmd.packadd('nvim.undotree')
+vim.api.nvim_create_user_command('PackUpdate', function() vim.pack.update() end, {})
 
 -- Colorscheme
 vim.cmd.colorscheme('everforest')
