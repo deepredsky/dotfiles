@@ -33,6 +33,10 @@
       "rev": "617064e84e896f6f36b5e559f8e6486d632f68ed",
       "src": "https://github.com/junegunn/limelight.vim"
     },
+    "mini.ai": {
+      "rev": "6c39ae7b11abe479fbe1bc81bf00ac6bca7afa07",
+      "src": "https://github.com/nvim-mini/mini.ai"
+    },
     "nvim-lspconfig": {
       "rev": "a9bb4d5f4276aa5cddc015faa3ecc5a7b5a26b14",
       "src": "https://github.com/neovim/nvim-lspconfig"

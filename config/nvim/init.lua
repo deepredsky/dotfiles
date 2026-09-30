@@ -172,6 +172,9 @@ vim.pack.add({
   -- Motion
   'https://github.com/folke/flash.nvim',
 
+  -- Text objects
+  'https://github.com/nvim-mini/mini.ai',
+
   -- Formatting
   'https://github.com/stevearc/conform.nvim',
 
@@ -236,6 +239,9 @@ vim.keymap.set({ 'n', 'x', 'o' }, 'S', function() require('flash').treesitter() 
 vim.keymap.set('o', 'r', function() require('flash').remote() end, { desc = 'Remote Flash' })
 vim.keymap.set({ 'o', 'x' }, 'R', function() require('flash').treesitter_search() end, { desc = 'Treesitter Search' })
 vim.keymap.set('c', '<C-s>', function() require('flash').toggle() end, { desc = 'Toggle Flash Search' })
+
+-- mini.ai (next/last, any-quote/bracket, argument, function-call text objects)
+require('mini.ai').setup()
 
 -- Conform (formatting)
 require('conform').setup({
