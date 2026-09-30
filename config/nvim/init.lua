@@ -197,6 +197,7 @@ vim.pack.add({
 
   -- Quickfix
   'https://github.com/romainl/vim-qf',
+  'https://github.com/stevearc/quicker.nvim',
 
   -- Writing/Notes
   'https://github.com/vimwiki/vimwiki',
@@ -242,6 +243,14 @@ vim.keymap.set('c', '<C-s>', function() require('flash').toggle() end, { desc = 
 
 -- mini.ai (next/last, any-quote/bracket, argument, function-call text objects)
 require('mini.ai').setup()
+
+-- quicker (editable quickfix: edit result lines, :w writes them to the files)
+require('quicker').setup({
+  keys = {
+    { '>', function() require('quicker').expand({ before = 2, after = 2, add_to_existing = true }) end, desc = 'Expand quickfix context' },
+    { '<', function() require('quicker').collapse() end, desc = 'Collapse quickfix context' },
+  },
+})
 
 -- Conform (formatting)
 require('conform').setup({
