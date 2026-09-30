@@ -41,6 +41,10 @@
       "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
+    "oil.nvim": {
+      "rev": "b73018b75affd13fa38e2fc94ef753b465f770d7",
+      "src": "https://github.com/stevearc/oil.nvim"
+    },
     "render-markdown.nvim": {
       "rev": "640a3ec6d538bad17c328be373c7cad0293d9589",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
@@ -64,10 +68,6 @@
     "vim-surround": {
       "rev": "3d188ed2113431cf8dac77be61b842acb64433d9",
       "src": "https://github.com/tpope/vim-surround"
-    },
-    "vim-vinegar": {
-      "rev": "bb1bcddf43cfebe05eb565a84ab069b357d0b3d6",
-      "src": "https://github.com/tpope/vim-vinegar"
     },
     "vimwiki": {
       "rev": "72792615e739d0eb54a9c8f7e0a46a6e2407c9e8",

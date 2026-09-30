@@ -143,7 +143,7 @@ end, { desc = 'Toggle checkbox' })
 vim.keymap.set('v', '<Leader><Space>', '<Plug>VimwikiToggleListItem')
 
 -- Claiming this Plug target here stops vimwiki's ftplugin from also
--- binding its default '-' key, which shadows vinegar's directory-up map
+-- binding its default '-' key, which shadows oil's directory-up map
 vim.keymap.set('n', '<leader>v-', '<Plug>VimwikiRemoveHeaderLevel')
 
 -- Quickfix mappings (vim-qf)
@@ -157,7 +157,7 @@ vim.keymap.set('n', '<C-p>', '<Plug>(qf_qf_previous)')
 -- Add plugins using vim.pack
 vim.pack.add({
   -- File navigation
-  'https://github.com/tpope/vim-vinegar',
+  'https://github.com/stevearc/oil.nvim',
 
   -- Tim Pope essentials
   'https://github.com/tpope/vim-surround',
@@ -206,6 +206,10 @@ vim.pack.add({
 -- Built-in optional plugins and plugin updates
 vim.cmd.packadd('nvim.undotree')
 vim.api.nvim_create_user_command('PackUpdate', function() vim.pack.update() end, {})
+
+-- Oil (file explorer, replaces netrw)
+require('oil').setup()
+vim.keymap.set('n', '-', '<cmd>Oil<cr>', { desc = 'Open parent directory' })
 
 -- Colorscheme
 vim.cmd.colorscheme('everforest')
