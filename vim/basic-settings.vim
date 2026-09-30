@@ -17,6 +17,9 @@ set tags=./tags,tags,.git/tags
 " Wordlist for <C-X><C-K>, symlinked via nix/home-manager/home.nix
 set dictionary+=~/.local/share/dict/words
 
+" Honor .editorconfig files (bundled with Vim 9)
+packadd! editorconfig
+
 ""
 "" Whitespace
 ""
