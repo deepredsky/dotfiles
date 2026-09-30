@@ -164,6 +164,7 @@
       neovim
       gcc
       tree-sitter
+      universal-ctags
       go
       gopls
       lua-language-server
