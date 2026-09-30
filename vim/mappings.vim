@@ -70,10 +70,3 @@ nnoremap <leader>ss :setlocal spell!<CR>
 nmap <Space><Space> <Plug>(qf_qf_toggle)
 nmap <C-n> <Plug>(qf_qf_next)
 nmap <C-p> <Plug>(qf_qf_previous)
-
-" fix broken newrw gx
-function! s:OpenCWORD() abort
-  let l:opener = has('mac') ? 'open' : 'xdg-open'
-  execute 'silent! !' . l:opener . ' ' . shellescape(expand('<cWORD>'), 1)
-endfunction
-nnoremap <silent> gx :call <SID>OpenCWORD()<cr>
