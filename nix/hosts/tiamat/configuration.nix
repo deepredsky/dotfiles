@@ -296,6 +296,8 @@
     slurp
     satty
     gsimplecal
+    libqalculate
+    qalculate-gtk
   ];
 
   systemd.services.greetd.environment = {
