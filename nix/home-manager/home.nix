@@ -101,6 +101,8 @@
 
     # libadwaita ignores prefer-dark-theme and only honours dconf color-scheme
     colorScheme = "dark";
+    # colorScheme also emits this for gtk4, which makes libadwaita warn
+    gtk4.extraConfig.gtk-application-prefer-dark-theme = false;
   };
 
   home.sessionVariables = {

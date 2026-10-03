@@ -298,8 +298,6 @@
     gsimplecal
   ];
 
-  environment.sessionVariables.GTK_THEME = "Adwaita:dark";
-
   systemd.services.greetd.environment = {
     GTK_THEME = "Adwaita:dark";
   };
