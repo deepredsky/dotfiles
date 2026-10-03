@@ -1,6 +1,6 @@
 function fish_user_key_bindings
   if functions -q fzf_configure_bindings
-    fzf_configure_bindings --history=  # leave ctrl-r to atuin
+    fzf_configure_bindings --history= --variables=  # ctrl-r is atuin; keep ctrl-v free
   else if functions -q fzf_key_bindings
     fzf_key_bindings
   end
