@@ -298,6 +298,7 @@
     gsimplecal
     libqalculate
     qalculate-gtk
+    gnome-calculator
   ];
 
   systemd.services.greetd.environment = {
