@@ -96,19 +96,15 @@
       name = "catppuccin-mocha-blue-standard";
     };
 
-    gtk4.theme = config.gtk.theme;
+    # catppuccin-gtk's gtk4 CSS breaks current libadwaita; let libadwaita style itself
+    gtk4.theme = null;
 
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
+    # libadwaita ignores prefer-dark-theme and only honours dconf color-scheme
+    colorScheme = "dark";
   };
 
   home.sessionVariables = {
     EDITOR = "vim";
-    GTK_THEME = "catppuccin-mocha-blue-standard";
   };
 
 
@@ -123,10 +119,4 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
-  xdg.configFile = {
-    "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
-    "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
-    "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
-  };
 }
