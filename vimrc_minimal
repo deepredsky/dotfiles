@@ -74,7 +74,6 @@ function! s:goyo_enter()
     silent !tmux set status off
   endif
   set scrolloff=10
-  Limelight
 endfunction
 
 function! s:goyo_leave()
@@ -82,7 +81,6 @@ function! s:goyo_leave()
     silent !tmux set status on
   endif
   set scrolloff=3
-  Limelight!
 
   " Quit Vim if this is the only remaining buffer
   if b:quitting && len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
