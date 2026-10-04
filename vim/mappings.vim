@@ -24,7 +24,13 @@ nnoremap <Tab> za
 
 nmap <silent> <F5> <Plug>StripTrailingWhitespace
 
-vnoremap <Leader>c "+y
+" Native Wayland clipboard is flaky; setsid keeps wl-copy serving while Vim is suspended
+if exists('$WAYLAND_DISPLAY') && executable('wl-copy')
+  xnoremap <silent> <Leader>c y:call system('setsid -f wl-copy', @")<CR>
+  let g:system_copy#copy_command = 'setsid -f wl-copy'
+else
+  xnoremap <Leader>c "+y
+endif
 nnoremap <leader>p :put +<CR>
 " Counts use real lines so they match relativenumber
 nnoremap <expr> j v:count ? 'j' : 'gj'
