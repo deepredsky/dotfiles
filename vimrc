@@ -55,6 +55,7 @@ let g:vim_markdown_folding_level = 6
 " Projects/tasks as markdown files (man 7 tome)
 Plug '~/dev/tome', { 'rtp': 'vim' }
 let g:tome_root = '~/notes/projects'
+let g:tome_status_key = '<Leader><Space>'
 
 " Git helpers
 Plug 'tpope/vim-fugitive'
