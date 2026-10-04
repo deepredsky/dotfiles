@@ -5,6 +5,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     xremap-flake.url = "github:xremap/nix-flake";
     claude-code.url = "github:sadjow/claude-code-nix";
+    tome = {
+      url = "git+file:///home/rajesh/dev/tome";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Add grub2 themes to your inputs ...
     grub2-themes = {

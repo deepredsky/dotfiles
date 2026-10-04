@@ -299,6 +299,7 @@
     libqalculate
     qalculate-gtk
     gnome-calculator
+    inputs.tome.packages.${pkgs.system}.default
   ];
 
   systemd.services.greetd.environment = {

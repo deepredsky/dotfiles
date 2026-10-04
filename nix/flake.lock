@@ -175,6 +175,7 @@
         "grub2-themes": "grub2-themes",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs_3",
+        "tome": "tome",
         "xremap-flake": "xremap-flake"
       }
     },
@@ -191,6 +192,26 @@
         "owner": "nix-systems",
         "repo": "default",
         "type": "github"
+      }
+    },
+    "tome": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791113500,
+        "narHash": "sha256-F6B6fp2GBA3R32zW5DgxH+cMneQZvXjgMo4/CGXG2PA=",
+        "ref": "refs/heads/main",
+        "rev": "2a0344d4de2ac319d676652b79dce040b0ea5de9",
+        "revCount": 18,
+        "type": "git",
+        "url": "file:///home/rajesh/dev/tome"
+      },
+      "original": {
+        "type": "git",
+        "url": "file:///home/rajesh/dev/tome"
       }
     },
     "xremap": {
