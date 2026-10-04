@@ -1,7 +1,7 @@
 set -gx EDITOR vim
 set -gx HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK 1
 set -gx FZF_DEFAULT_COMMAND 'fd --type=file --hidden --exclude .git'
-set -gx MANPAGER "col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -"
+set -gx MANPAGER "vim +MANPAGER -c 'set ts=8 nolist nonu noma' --not-a-term -"
 
 alias be="bundle exec"
 alias b="bundle"
