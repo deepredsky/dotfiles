@@ -151,6 +151,11 @@ augroup vimrcEx
   " via o/<CR> never actually worked. No 't' in formatoptions: don't
   " hard-wrap while typing (it breaks URLs mid-string); soft-wrap instead.
   autocmd FileType markdown setlocal ai spell textwidth=79 formatoptions=croqn2 comments=n:> wrap linebreak breakindent complete+=kspell
+  " tome files anywhere (b:tome is set by the tome plugin, man 7 tome): no
+  " hard wrap (a wrapped bullet in the task block would be split into two
+  " lines), long lines shown unwrapped, and all folds open. After the
+  " lines above so it wins.
+  autocmd FileType markdown,vimwiki if exists('b:tome') | setlocal textwidth=0 nowrap foldlevel=99 | endif
 
   " Don't spellcheck urls
   au BufReadPost * syn match UrlNoSpell '\w\+:\/\/[^[:space:]]\+' contains=@NoSpell
