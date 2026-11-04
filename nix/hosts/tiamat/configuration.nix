@@ -301,6 +301,7 @@
     libqalculate
     qalculate-gtk
     gnome-calculator
+    fastfetch
     inputs.tome.packages.${pkgs.system}.default
   ];
 
