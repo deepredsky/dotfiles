@@ -245,6 +245,7 @@ spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
 spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
 
 spawn-at-startup "python3" "/home/rajesh/dev/niri_tweaks/niri_tile_to_n.py"
+spawn-at-startup "handy" "--start-hidden"
 
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
@@ -331,6 +332,9 @@ binds {
     //
     // Most actions that you can bind here can also be invoked programmatically with
     // `niri msg action do-something`.
+
+    // Handy dictation: press to start recording, press again to transcribe and type.
+    Alt+grave hotkey-overlay-title="Toggle dictation (Handy)" { spawn "handy" "--toggle-transcription"; }
 
     // Mod-Shift-/, which is usually the same as Mod-?,
     // shows a list of important hotkeys.

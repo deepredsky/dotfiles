@@ -196,6 +196,8 @@
       # freecad
       digikam
       icloudpd
+      handy # offline speech-to-text dictation
+      wtype # lets handy type into windows on wayland
     ];
   };
 
