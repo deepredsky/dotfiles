@@ -112,6 +112,14 @@
 
   services.udiskie.enable = true;
 
+  programs.jujutsu = {
+    enable = true;
+    settings.user = {
+      name = "Rajesh Sharma";
+      email = "rajesh@surf.net.np";
+    };
+  };
+
   # zathura-cb claims inode/directory in its .desktop MimeType list, which can
   # win as the fallback default when nothing else claims it explicitly.
   home.activation.fixDirectoryMimeDefault = config.lib.dag.entryAfter [ "writeBoundary" ] ''
