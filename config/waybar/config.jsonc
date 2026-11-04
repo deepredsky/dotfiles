@@ -2,7 +2,7 @@
   "position": "top",
   "modules-left": ["niri/workspaces"],
   "modules-center": ["niri/window"],
-  "modules-right": ["tray", "custom/separator", "cpu", "custom/separator", "memory", "custom/separator", "temperature", "custom/separator", "network", "custom/separator", "pulseaudio", "custom/separator", "custom/notification", "custom/separator", "clock", "custom/separator", "custom/power"],
+  "modules-right": ["tray", "custom/separator", "cpu", "custom/separator", "memory", "custom/separator", "custom/vram", "custom/separator", "custom/temperature", "custom/separator", "network", "custom/separator", "pulseaudio", "custom/separator", "custom/notification", "custom/separator", "clock", "custom/separator", "custom/power"],
   "clock": {
     "format": "<span foreground='#f5c2e7'> </span>{:%a %d %H:%M}",
     "tooltip": false,
@@ -30,13 +30,17 @@
       "format": "󰍛 {percentage}%",
       "tooltip-format": "{used:0.1f}GB / {total:0.1f}GB used"
   },
-  // hwmon2 is k10temp on this host; the index can shift after a kernel/driver
-  // update, in which case this module will just go blank until re-pointed.
-  "temperature": {
-      "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-      "critical-threshold": 80,
-      "format": "{icon} {temperatureC}°C",
-      "format-icons": ["", "", "", "", ""]
+  "custom/vram": {
+      "exec": "~/.config/waybar/vram.sh",
+      "format": "󰢮 {}",
+      "interval": 5
+  },
+  "custom/temperature": {
+      "exec": "~/.config/waybar/temps.sh",
+      "return-type": "json",
+      "interval": 5,
+      "format": "{icon} {text}",
+      "format-icons": ["", "", "", "", ""]
   },
   "network": {
       "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],

@@ -58,7 +58,8 @@ button:hover {
 #clock,
 #cpu,
 #memory,
-#temperature,
+#custom-vram,
+#custom-temperature,
 #tray,
 #network,
 #custom-notification {
@@ -101,15 +102,19 @@ button:hover {
     color: @teal;
 }
 
-#temperature {
+#custom-temperature {
     color: @peach;
+}
+
+#custom-vram {
+    color: @sapphire;
 }
 
 #memory {
     color: @sky;
 }
 
-#temperature.critical {
+#custom-temperature.critical {
     color: @red;
 }
 
