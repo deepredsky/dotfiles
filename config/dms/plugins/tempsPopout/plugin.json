@@ -1,0 +1,12 @@
+{
+    "id": "tempsPopout",
+    "name": "Temperatures",
+    "description": "Hottest sensor on the bar, every sensor on click",
+    "version": "1.0.0",
+    "author": "rajesh",
+    "type": "widget",
+    "capabilities": ["dankbar-widget"],
+    "component": "./TempsPopout.qml",
+    "icon": "thermostat",
+    "requires_dms": ">=1.7.0"
+}

@@ -1,0 +1,12 @@
+{
+    "id": "netSpeed",
+    "name": "Net Speed",
+    "description": "Download/upload rates without the network-status icon",
+    "version": "1.0.0",
+    "author": "rajesh",
+    "type": "widget",
+    "capabilities": ["dankbar-widget"],
+    "component": "./NetSpeed.qml",
+    "icon": "swap_vert",
+    "requires_dms": ">=1.7.0"
+}

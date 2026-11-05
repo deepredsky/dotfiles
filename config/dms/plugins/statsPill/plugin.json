@@ -1,0 +1,12 @@
+{
+    "id": "statsPill",
+    "name": "Stats",
+    "description": "CPU, RAM and VRAM percentages with no click popout",
+    "version": "1.0.0",
+    "author": "rajesh",
+    "type": "widget",
+    "capabilities": ["dankbar-widget"],
+    "component": "./StatsPill.qml",
+    "icon": "memory",
+    "requires_dms": ">=1.7.0"
+}

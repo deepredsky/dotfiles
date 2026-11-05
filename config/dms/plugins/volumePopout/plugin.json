@@ -1,0 +1,12 @@
+{
+    "id": "volumePopout",
+    "name": "Volume Popout",
+    "description": "Volume icon that opens only the output slider and devices",
+    "version": "1.0.0",
+    "author": "rajesh",
+    "type": "widget",
+    "capabilities": ["dankbar-widget"],
+    "component": "./VolumePopout.qml",
+    "icon": "volume_up",
+    "requires_dms": ">=1.7.0"
+}
