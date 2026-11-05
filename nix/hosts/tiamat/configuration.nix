@@ -225,6 +225,11 @@
   users.users.rajesh.shell = pkgs.fish;
 
   programs.niri.enable = true;
+  # Trialling alongside waybar; ~/.bin/shell-switch picks which one runs.
+  programs.dank-material-shell = {
+    enable = true;
+    package = inputs.dms.packages.${pkgs.system}.default;
+  };
 
   services.displayManager.regreet = {
     enable = true;
@@ -303,6 +308,7 @@
     gnome-calculator
     fastfetch
     inputs.tome.packages.${pkgs.system}.default
+    inputs.noctalia.packages.${pkgs.system}.default
   ];
 
   systemd.services.greetd.environment = {

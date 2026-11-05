@@ -15,6 +15,13 @@
       url = "github:vinceliuice/grub2-themes";
     };
 
+    # Not following nixpkgs: DMS needs a newer Go than our pin.
+    dms.url = "github:AvengeMedia/DankMaterialShell";
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,6 +37,7 @@
         modules = [
           ./hosts/tiamat/configuration.nix
           grub2-themes.nixosModules.default
+          inputs.dms.nixosModules.default
 
           ./modules/xremap.nix
         ];

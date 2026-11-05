@@ -39,3 +39,4 @@ config/vifm/vifminfo.json
 config/ghc/
 config/github-copilot/
 config/ghostty/local
+config/niri/dms/

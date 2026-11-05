@@ -231,9 +231,8 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 
-// This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "waybar"
-spawn-at-startup "swaync"
+// Starts the last-chosen shell (waybar+swaync, dms or noctalia).
+spawn-at-startup "~/.bin/shell-switch"
 spawn-at-startup "sh" "-c" "sleep 2; systemctl --user restart xremap.service"
 spawn-at-startup "~/.bin/wallpapers.sh"
 
@@ -346,7 +345,7 @@ binds {
     // macOS lock is Ctrl+Cmd+Q; Mod = Cmd here, so this is the direct equivalent.
     // (Was Super+Alt+L, which collided with Mod+Alt+L / focus-column-right below
     // since Mod resolves to Super in a TTY session.)
-    Mod+Ctrl+Q hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+    Mod+Ctrl+Q hotkey-overlay-title="Lock the Screen" { spawn "sh" "-c" "dms ipc call lock lock || swaylock"; }
 
     // Quake-style dropdown terminal for quick notes/scratch work.
     // kitty's quick-access-terminal kitten draws itself as a wlr-layer-shell
