@@ -9,6 +9,8 @@
     serviceMode = "user";
     userName = "rajesh";
     withWlroots = true;
+    # Re-grab keyboards that reconnect (the Kinesis drops out and was left unmapped).
+    watch = true;
 
     config.modmap = [
       {
