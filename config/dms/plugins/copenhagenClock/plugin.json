@@ -1,0 +1,23 @@
+{
+    "id": "copenhagenClock",
+    "name": "Copenhagen Clock",
+    "description": "Copenhagen time, sunrise and sunset card for the dash overview",
+    "version": "1.0.0",
+    "author": "rajesh",
+    "type": "dashCard",
+    "capabilities": ["dash-card"],
+    "component": "./CopenhagenClock.qml",
+    "icon": "public",
+    "dash": {
+        "card": {
+            "title": "Copenhagen",
+            "w": 3,
+            "h": 3,
+            "minW": 1,
+            "minH": 1,
+            "maxW": 4,
+            "maxH": 6
+        }
+    },
+    "requires_dms": ">=1.7.0"
+}
