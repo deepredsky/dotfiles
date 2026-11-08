@@ -40,3 +40,4 @@ config/ghc/
 config/github-copilot/
 config/ghostty/local
 config/niri/dms/
+config/dms/HANDOFF.md
