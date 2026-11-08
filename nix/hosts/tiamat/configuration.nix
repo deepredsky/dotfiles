@@ -278,7 +278,7 @@
     vim-full
     kitty
     git
-    ruby
+    ruby_4_0
     python3
     fish
     waybar
