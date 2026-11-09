@@ -345,7 +345,7 @@ binds {
     // macOS lock is Ctrl+Cmd+Q; Mod = Cmd here, so this is the direct equivalent.
     // (Was Super+Alt+L, which collided with Mod+Alt+L / focus-column-right below
     // since Mod resolves to Super in a TTY session.)
-    Mod+Ctrl+Q hotkey-overlay-title="Lock the Screen" { spawn "sh" "-c" "dms ipc call lock lock || swaylock"; }
+    Mod+Ctrl+Q hotkey-overlay-title="Lock the Screen" { spawn "swaylock"; }
 
     // Quake-style dropdown terminal for quick notes/scratch work.
     // kitty's quick-access-terminal kitten draws itself as a wlr-layer-shell

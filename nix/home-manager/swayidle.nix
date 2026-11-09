@@ -1,9 +1,9 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 let
   # Guard against duplicate swaylock instances: swayidle can fire a stale
   # timeout burst after resuming from suspend, and without this a second
   # swaylock spawns right on top of the one you just unlocked.
-  lockCommand = "${pkgs.procps}/bin/pgrep -x swaylock >/dev/null || ${config.programs.swaylock.package}/bin/swaylock";
+  lockCommand = "${pkgs.procps}/bin/pgrep -x swaylock >/dev/null || ${pkgs.swaylock-effects}/bin/swaylock";
 in
 {
   services.swayidle = {

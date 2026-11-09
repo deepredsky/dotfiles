@@ -40,16 +40,16 @@
           inputs.dms.nixosModules.default
 
           ./modules/xremap.nix
-        ];
-      };
-    };
 
-    homeConfigurations = {
-      "rajesh" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules = [
-          ./home-manager/home.nix
+          # One nixos-rebuild updates system and user packages from the same nixpkgs.
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "hm-backup";
+            home-manager.extraSpecialArgs = { inherit inputs outputs; };
+            home-manager.users.rajesh = import ./home-manager/home.nix;
+          }
         ];
       };
     };

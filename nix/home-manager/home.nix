@@ -125,8 +125,4 @@
   home.activation.fixDirectoryMimeDefault = config.lib.dag.entryAfter [ "writeBoundary" ] ''
     $DRY_RUN_CMD ${pkgs.xdg-utils}/bin/xdg-mime default org.gnome.Nautilus.desktop inode/directory
   '';
-
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
 }

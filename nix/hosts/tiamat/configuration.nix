@@ -95,6 +95,7 @@
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
+  # System-installed so swaylock always matches the PAM modules it dlopens.
   security.pam.services.swaylock = {};
   services.pipewire = {
     enable = true;
@@ -291,6 +292,7 @@
     swaynotificationcenter
     libnotify
     swaybg
+    swaylock-effects
     claude-code
     codex
     visidata

@@ -2,7 +2,8 @@
 {
   programs.swaylock = {
     enable = true;
-    package = pkgs.swaylock-effects;
+    # Installed system-wide in configuration.nix; this only writes the config.
+    package = null;
     settings = {
       screenshots = true;
       effect-blur = "7x5";
