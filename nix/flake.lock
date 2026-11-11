@@ -201,11 +201,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794430572,
-        "narHash": "sha256-5+mg5ITc7uZcu+NcQvULkq8qfgaQH18ZO4U991DKW/4=",
+        "lastModified": 1794431031,
+        "narHash": "sha256-H9E+hfBITb8fHqozDaXVk17BEEK3accYSu2pfdbu1z4=",
         "ref": "refs/heads/main",
-        "rev": "aceb9374ded50945432422c1280d9d5d49457a12",
-        "revCount": 39,
+        "rev": "a0a1f1a6839ee03e90d156b2c34da777992a8d5f",
+        "revCount": 40,
         "type": "git",
         "url": "file:///home/rajesh/dev/tome"
       },
