@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Usage: shell-switch [quickshell|waybar|dms|noctalia]  (no arg = last choice, default waybar)
+# Usage: shell-switch [quickshell|waybar]  (no arg = last choice, default waybar)
 
 set -e
 
@@ -7,23 +7,19 @@ STATE="${XDG_STATE_HOME:-$HOME/.local/state}/desktop-shell"
 choice="${1:-$(cat "$STATE" 2>/dev/null || echo waybar)}"
 
 case "$choice" in
-  quickshell|waybar|dms|noctalia) ;;
-  *) echo "usage: shell-switch [quickshell|waybar|dms|noctalia]" >&2; exit 1 ;;
+  quickshell|waybar) ;;
+  *) echo "usage: shell-switch [quickshell|waybar]" >&2; exit 1 ;;
 esac
 
 mkdir -p "$(dirname "$STATE")"
 echo "$choice" > "$STATE"
 
-# Each owns the notification daemon, so stop everything before starting one.
+# Stop the running bar and swaync before starting the chosen one.
 # NixOS wrappers rename processes to .foo-wrapped (comm is cut at 15 chars).
 ps -eo pid=,comm= \
-  | awk '$2 ~ /^\.?(waybar|swaync(-client)?|dms|noctalia|quickshell)(-wr|-?$)/ {print $1}' \
+  | awk '$2 ~ /^\.?(waybar|swaync(-client)?|quickshell)(-wr|-?$)/ {print $1}' \
   | xargs -r kill
 sleep 0.5
 
-case "$choice" in
-  quickshell) setsid -f quickshell >/dev/null 2>&1; setsid -f swaync >/dev/null 2>&1 ;;
-  waybar)   setsid -f waybar >/dev/null 2>&1; setsid -f swaync >/dev/null 2>&1 ;;
-  dms)      setsid -f dms run >/dev/null 2>&1 ;;
-  noctalia) setsid -f noctalia >/dev/null 2>&1 ;;
-esac
+setsid -f "$choice" >/dev/null 2>&1
+setsid -f swaync >/dev/null 2>&1
