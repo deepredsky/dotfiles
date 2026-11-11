@@ -2,7 +2,7 @@ import QtQuick
 import qs.components
 import qs.services
 
-// CPU / RAM / VRAM in waybar's colours; click for the System popout.
+// CPU / RAM / VRAM; click for the System popout.
 BarButton {
     Label {
         text: Theme.glyph(0xf2db) + " " + Stats.cpu.toFixed(0) + "%"

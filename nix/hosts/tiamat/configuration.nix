@@ -277,7 +277,6 @@
     ruby_4_0
     python3
     fish
-    waybar
     quickshell
     tmux
     wl-clipboard
@@ -300,7 +299,6 @@
     grim
     slurp
     satty
-    gsimplecal
     libqalculate
     qalculate-gtk
     gnome-calculator

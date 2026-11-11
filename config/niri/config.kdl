@@ -231,8 +231,8 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 
-// Starts the last-chosen bar (quickshell or waybar), plus swaync.
-spawn-at-startup "~/.bin/shell-switch"
+spawn-at-startup "quickshell"
+spawn-at-startup "swaync"
 spawn-at-startup "sh" "-c" "sleep 2; systemctl --user restart xremap.service"
 spawn-at-startup "~/.bin/wallpapers.sh"
 
@@ -293,13 +293,6 @@ window-rule {
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     open-floating true
-}
-
-// Pop the waybar clock's calendar near the clock instead of screen center.
-window-rule {
-    match app-id=r#"^gsimplecal$"#
-    open-floating true
-    default-floating-position x=60 y=40 relative-to="top-right"
 }
 
 // Example: block out two password managers from screen capture.

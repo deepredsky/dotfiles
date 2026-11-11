@@ -2,7 +2,7 @@ pragma Singleton
 import QtQuick
 import Quickshell
 
-// Catppuccin Mocha, same palette as the waybar config.
+// Catppuccin Mocha.
 Singleton {
     readonly property color rosewater: "#f5e0dc"
     readonly property color pink: "#f5c2e7"

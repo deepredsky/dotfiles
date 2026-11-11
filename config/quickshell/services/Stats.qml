@@ -20,7 +20,7 @@ Singleton {
     property real swapTotal: 0
     property real swapUsed: 0
 
-    // dGPU = the card with the most VRAM, same rule as ~/.bin/vram.sh.
+    // dGPU = the card with the most VRAM, so it's found even if card indices shift.
     property real vramTotal: 0
     property real vramUsed: 0
     readonly property real vram: vramTotal > 0 ? vramUsed * 100 / vramTotal : 0

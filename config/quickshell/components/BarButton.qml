@@ -1,7 +1,7 @@
 import QtQuick
 import qs.services
 
-// A bar cell: content in a row, waybar-style mauve top border on hover,
+// A bar cell: content in a row, mauve top border on hover,
 // and an optional popout toggled by left click.
 MouseArea {
     id: root
