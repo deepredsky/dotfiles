@@ -283,6 +283,7 @@
     python3
     fish
     waybar
+    quickshell
     tmux
     wl-clipboard
     cliphist
