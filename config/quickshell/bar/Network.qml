@@ -17,16 +17,49 @@ BarButton {
         return Theme.glyph([0xf092f, 0xf091f, 0xf0922, 0xf0925, 0xf0928][Math.min(4, Math.floor(strength * 5))]);
     }
 
+    // At most 4 chars ("1.2K", "45K", "999M") so the fixed width stays tight.
     function rate(b) {
-        return Theme.bytes(b) + "/s";
+        const units = ["B", "K", "M", "G"];
+        let i = 0;
+        while (b >= 1000 && i < units.length - 1) {
+            b /= 1024;
+            i++;
+        }
+        return (i > 0 && b < 10 ? b.toFixed(1) : b.toFixed(0)) + units[i];
+    }
+
+    TextMetrics {
+        id: rateWidth
+        font.family: Theme.font
+        font.pixelSize: Theme.fontSize
+        font.weight: Font.Bold
+        text: "999M"
     }
 
     Label {
         text: root.wired ? Theme.glyph(0xf0200) : root.active ? root.signalGlyph(root.active.signalStrength) : Theme.glyph(0xf092e)
         color: Theme.yellow
     }
+    // Fixed width so changing rates don't shift the rest of the bar.
     Label {
-        text: Theme.glyph(0xf063) + " " + root.rate(Stats.rxRate) + "  " + Theme.glyph(0xf062) + " " + root.rate(Stats.txRate)
+        text: Theme.glyph(0xf063)
+        color: Theme.yellow
+    }
+    Label {
+        width: rateWidth.advanceWidth
+        horizontalAlignment: Text.AlignRight
+        text: root.rate(Stats.rxRate)
+        color: Theme.yellow
+    }
+    Label {
+        leftPadding: 8
+        text: Theme.glyph(0xf062)
+        color: Theme.yellow
+    }
+    Label {
+        width: rateWidth.advanceWidth
+        horizontalAlignment: Text.AlignRight
+        text: root.rate(Stats.txRate)
         color: Theme.yellow
     }
 
