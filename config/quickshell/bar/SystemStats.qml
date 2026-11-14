@@ -4,18 +4,42 @@ import qs.services
 
 // CPU / RAM / VRAM; click for the System popout.
 BarButton {
+    TextMetrics {
+        id: pctWidth
+        font.family: Theme.font
+        font.pixelSize: Theme.fontSize
+        font.weight: Font.Bold
+        text: "99%"
+    }
+
+    // Glyphs apart from fixed-width numbers so changing values don't shift the bar.
     Label {
-        text: Theme.glyph(0xf2db) + " " + Stats.cpu.toFixed(0) + "%"
+        text: Theme.glyph(0xf2db)
+        color: Theme.teal
+    }
+    Label {
+        width: pctWidth.advanceWidth
+        text: Stats.cpu.toFixed(0) + "%"
         color: Theme.teal
     }
     Label {
         leftPadding: 8
-        text: Theme.glyph(0xf035b) + " " + Stats.mem.toFixed(0) + "%"
+        text: Theme.glyph(0xf035b)
+        color: Theme.sky
+    }
+    Label {
+        width: pctWidth.advanceWidth
+        text: Stats.mem.toFixed(0) + "%"
         color: Theme.sky
     }
     Label {
         leftPadding: 8
-        text: Theme.glyph(0xf08ae) + " " + Stats.vram.toFixed(0) + "%"
+        text: Theme.glyph(0xf08ae)
+        color: Theme.sapphire
+    }
+    Label {
+        width: pctWidth.advanceWidth
+        text: Stats.vram.toFixed(0) + "%"
         color: Theme.sapphire
     }
 
